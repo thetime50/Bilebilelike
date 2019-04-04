@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p style="color: #fb7299"><b>Hello Bilibililike </b></p>
+    <p style="color : #fb7299 ; font-size : 25px"><b>Hello Bilibililike </b></p>
     <router-view/>
   </div>
 </template>
