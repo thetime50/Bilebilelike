@@ -1,8 +1,11 @@
 #  Bilebilelike项目
-
+*(2019-04-04 08:30)*  
+[预览→](https://thetime50.github.io/Bilebilelike/)
 ## 说明
 用于面试准备的作品，类似bilibile app的vue实现  
 项目范围：app整体框架 关键页面 懒加载 模拟数据
+
+*(因为赶时间先写项目，文档慢慢写)*
 
 ## 技术选型
 - 前台数据交互处理组件化
