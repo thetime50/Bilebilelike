@@ -1,12 +1,12 @@
 <template>
 <div>
-Activity
+MainPage
 </div>
 </template>
 
 <script>
 export default {
-  name: "Activity",
+  name: "MainPage",
   data () {
 	 return {
 	 };
