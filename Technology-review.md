@@ -26,6 +26,7 @@ mock数据:mockjs
 - [stylus的使用](https://www.jianshu.com/p/3aae14a82566)
 - [stylus入门使用方法](https://segmentfault.com/a/1190000002712872#articleHeader9)
 - [强大的css预编译stylus以及在vue中使用stylus](https://www.jianshu.com/p/8601ccf91225)
+- [vue项目安装使用stylus步骤](https://www.jianshu.com/p/c02f5f94b77e)
 
 ```
 npm install stylus --save//在项目上安装
