@@ -1,6 +1,6 @@
 
 <template>
-<div class="foot_guide">
+<div class="footer_guide">
     <div class="guide_item" v-for="(item,key) in guide_item" :key="key" @click="goto(item.path)" :class="{on: isCurrent(item.path)}">
       <span class="item_icon">
         <i class="iconfont" :class="item.icon"></i>
@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" rel="stylesheet/stylus">
 //@import url("mixins.styl")
 .footer_guide
   // 顶部有白色的边框
