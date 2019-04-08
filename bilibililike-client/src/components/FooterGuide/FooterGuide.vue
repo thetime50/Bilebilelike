@@ -1,11 +1,11 @@
 
 <template>
 <div class="foot_guide">
-    <div class="guide_item" v-for="(path,icon,text) in guide_item" @click="goto(path)" :class="{on: isCurrent(path)}">
-    <span class="item_icon">
-      <i class="iconfont" :class="icon"></i>
-    </span>
-    <span>{{text}}</span>
+    <div class="guide_item" v-for="(item,key) in guide_item" :key="key" @click="goto(item.path)" :class="{on: isCurrent(item.path)}">
+      <span class="item_icon">
+        <i class="iconfont" :class="item.icon"></i>
+      </span>
+      <span>{{item.text}}</span>
     </div>
 </div>
 </template>
@@ -16,20 +16,31 @@ export default {
   data () {
     return {
       guide_item:[
-        {path:"/mainpge"  ,icon:"icon-zhuye",text:"主页"},
+        {path:"/mainpage"  ,icon:"icon-zhuye",text:"主页"},
         {path:"/channel"  ,icon:"icon-pindao",text:"频道"},
         {path:"/activity" ,icon:"icon-dongtaiweixuanzhong",text:"动态"},
         {path:"/shop"     ,icon:"icon-gouwu",text:"购物"},
       ],
     };
-  }
+  },
+  methods: {
+    goto (path) {
+      this.$router.replace(path)
+    },
+    isCurrent (path) {
+      // console.log(this.$route.path)
+      return this.$route.path === path
+    }
+  },
+
 }
 </script>
 
-<style lang="stylus"  rel="stylesheet/stylus">
+<style lang="stylus">
+//@import url("mixins.styl")
 .footer_guide
   // 顶部有白色的边框
-  top-border-1px(#e4e4e4)
+  //top-border-1px(#e4e4e4)
   position fixed
   z-index 100
   left 0
