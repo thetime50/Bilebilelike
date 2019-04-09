@@ -55,6 +55,19 @@
 考虑改用JS选择引入样式文件，而不是使用stylus实现选择引入  
 一些辅助工具语法不够严谨，工具嵌套的时候容易出问题(下回试试cass)
 
+<!-- 用server打开页面FootGuide能够应用main.js引入的icon.css  
+静态build文件打开页面 FootGuide无法应用main.js引入的icon.css -->
+有渲染有icon没有显示？？
+1 dom中有FootGuide的元素  
+2 css中有element.style{display:none}
+3 得知element.style为js添加的样式(其实原本是内联样式)
+4 FootGuide引用时有 v-show="$route.meta.showFooter"
+5 使用了mode: 'history'选项，静态文件没法路由，所以隐藏了组件
+6 路由屏蔽mode设置改为root#/path的形式，使用分段字符串来路由解决路径问题
+
+(总算是能够通过思考解决的问题，上回引入.styl的问题花的时间太多了)
+(一个很有意思的现象，使用mode: 'history'可以在页面内跳转到root/path,但是直接访问root/path是404)
+
 
 现在优先打通业务逻辑vuex ajax mock 以及懒加载和应用滑动库  
 包括：
