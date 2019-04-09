@@ -2,7 +2,7 @@
 *(2019-04-04 08:30)*  
 [预览→](https://thetime50.github.io/Bilebilelike/)
 
-![Bilibililike-qr.png](docs\imgs\Bilibililike-qr.png)
+![Bilibililike-qr.png](docs/imgs/Bilibililike-qr.png)
 
 <!-- 
 http://www.wwei.cn
