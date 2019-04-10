@@ -18,7 +18,7 @@ export default {
       guide_item:[
         {path:"/mainpage"  ,icon:"icon-zhuye",text:"主页"},
         {path:"/channel"  ,icon:"icon-pindao",text:"频道"},
-        {path:"/activity" ,icon:"icon-dongtaiweixuanzhong",text:"动态"},
+        {path:"/activity" ,icon:"icon-dongtai",text:"动态"},
         {path:"/shop"     ,icon:"icon-gouwu",text:"购物"},
       ],
     };
