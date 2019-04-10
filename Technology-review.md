@@ -4,6 +4,44 @@
 
 # 前台数据交互处理组件化
 ## vue
+### vue插件
+#### Vue_extend
+[Vue.extend构造器的延伸](https://www.w3cplus.com/vue/vue-extend.html)
+
+Vue.extend()返回一个组件的构造器(Vue的子类构造函数)
+
+```javascript
+let baseExtend = Vue.extend(myContent)
+
+//挂载组件
+new baseExtend().$mount('#app')
+let app = new baseExtend({ el: '#app' })
+new baseExtend().$mount('custom-element')著作权归作者所有。
+商业转载请联系作者获得授权,非商业转载请注明出处。
+
+//使用子类构造函数创建组件
+var MyComponent = Vue.extend({ template: '一个自定义的组件!' }) // 使用`id:my-component`注册构造函数 
+Vue.component('my-component', MyComponent)
+//引用
+<div v-component="my-component"></div>
+<my-component></my-component>
+```
+
+**组件的ID必须包含一个连字符-**
+
+#### 插件
+[简单的例子实现vue插件](https://segmentfault.com/a/1190000012224638)  
+这是一个集成生成构造和操作元素的插件(toast提示框)
+
+[Vue.js插件开发](https://www.cnblogs.com/libin-1/p/6810746.html)  
+插件注入 修改Vue构造器 修改Vue实例等
+
+[插件 ---编写vue插件](https://blog.csdn.net/zgpeterliu/article/details/80509135)  
+复用的loading+axios拦截器插件
+
+[Vue.js 插件开发详解 ](https://www.cnblogs.com/linxin/p/6637904.html)  
+又是toast,另一种创建消息提醒的方法
+
 ## vue-router
 ## vuex
 ## mint-ui
