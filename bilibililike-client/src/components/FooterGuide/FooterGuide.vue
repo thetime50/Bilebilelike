@@ -40,7 +40,7 @@ export default {
 @import "../../assets/style/index.styl"
 .footer_guide
   // 顶部有白色的边框
-  //top-border-1px(#e4e4e4)
+  top-border-1px(#dcdcdc)
   position fixed
   z-index 100
   left 0
@@ -48,7 +48,7 @@ export default {
   bottom 0
   background-color #fff
   width 100%
-  height 50px
+  height 63px
   display flex
   .guide_item
     display flex
@@ -64,9 +64,9 @@ export default {
         .iconfont
           text-shadow 0px 0px 15px $blbl-pink-s
     span
-      font-size 12px
+      font-size 14px
       margin-top 2px
       margin-bottom 2px
       .iconfont
-        font-size 22px
+        font-size 26px
 </style>

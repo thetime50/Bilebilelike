@@ -53,6 +53,13 @@ https://thetime50.github.io/Bilebilelike
 
 ## 执行计划
 
+优先打通业务逻辑vuex ajax mock 以及懒加载和应用滑动库  
+包括：
+- [ ] 主页面和(顶部和底部菜单 左侧菜单 视频推荐刷新)
+- [ ] 登录页面
+- [ ] 个人信息页面
+- [ ] 侧边栏
+
 ## 项目日志
 ### 2019年4月9日
 #### 样式文件引入问题
@@ -78,6 +85,8 @@ https://thetime50.github.io/Bilebilelike
 6 路由屏蔽mode设置改为root#/path的形式，使用分段字符串来路由解决路径问题  
 
 (总算是能够通过思考解决的问题，上回引入.styl的问题花的时间太多了)  
+(从前天夜里遇到这个问题今天早晨才解决，找错方向了以为是stylus-loader的问题)  
+(而且又着急出项目，卡关了就很绝望)  
 (一个很有意思的现象，使用mode: 'history'可以在页面内跳转到root/path,但是直接访问root/path是404)  
 (似乎使用路径的形式会产生多次的页面重定向)  
 
@@ -92,3 +101,7 @@ https://thetime50.github.io/Bilebilelike
 - 登录页面
 - 个人信息页面
 - 侧边栏
+
+![log-2019-04-10.png](docs/imgs/README/log-2019-04-10.png)
+
+### 2019年4月10日
