@@ -104,4 +104,17 @@ https://thetime50.github.io/Bilebilelike
 
 ![log-2019-04-10.png](docs/imgs/README/log-2019-04-10.png)
 
-### 2019年4月10日
+### 2019年4月10-11日
+[插件相关知识](Technology-review.md#vue插件)
+
+解决HeaderTop.vue组件各种问题
+1. 插槽元素中央对齐
+2. default插槽/left right插槽/center插槽层叠 显示在同一行
+3. 动态的元素宽度实现left/right插槽(一直找css的解决方案，最后用js来做)
+4. 解决来自根组件等其他地方的样式干扰
+5. 解决各种定位问题 box相关问题(position float)
+
+***不知道为著名float会影响父组件里网站的中央对齐***
+*加div都不能消除影响但是用br可以*
+
+实现组件花了一点时间，这两天里20多小时都在调试和布局

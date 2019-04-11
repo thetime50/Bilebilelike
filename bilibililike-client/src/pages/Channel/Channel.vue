@@ -1,6 +1,6 @@
 <template>
 <div>
-    <header-top lift-icon-type="liftMenu">
+    <header-top lift-icon-type="back">
     <template v-slot:liftContent>
       l
     </template>

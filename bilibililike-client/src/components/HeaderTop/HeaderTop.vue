@@ -1,24 +1,33 @@
 <template>
-  <header class="header">
-    <div class="lift-icon" v-if="liftIconType=='liftMenu'"><!-- src -->
-      <span class="icon_span">
-        <i class="iconfont icon-caidan"></i>
-      </span>
-      <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
-    </div>
-    <div class="lift-icon" v-if="liftIconType=='back'"></div>
+  <div class="header-div">
+    <header class="header">
+      <div class="lift-icon lift-menu" v-if="liftIconType=='liftMenu'"><!-- src -->
+        <span class="icon_span">
+          <i class="iconfont icon-caidan"></i>
+        </span>
+        <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
+      </div>
+      <div class="lift-icon back" v-if="liftIconType=='back'">
+        <span class="icon_span">
+          <i class="iconfont icon-fanhui"></i>
+        </span>
+      </div>
 
-    <div class="centerContent"> <slot name="centerContent"/> </div>
-    <div class="divisions" ref="divisions" :style="{width: divisions_fill.width}">
-      <div class="div-section1">
-        <div class="liftContent">   <slot name="liftContent"/>   </div> 
-        <div class="rightContent">  <slot name="rightContent"/>  </div>
+      <div class="centerContent"> <slot name="centerContent"/> </div>
+      <div class="divisions-prosition">
+        <div class="divisions" ref="divisions" :style="{width: divisions_fill.width}">
+          <div class="div-section1">
+            <div class="liftContent">   <slot name="liftContent"/>   </div> 
+            <div class="rightContent">  <slot name="rightContent"/>  </div>
+          </div>
+          <div class="div-section2">
+            <slot/> <!-- name="default" --> <!-- 这里的样式完全由引用处控制 -->
+          </div>
+        </div>
       </div>
-      <div class="div-section2">
-        <slot/> <!-- name="default" --> <!-- 这里的样式完全由引用处控制 -->
-      </div>
-    </div>
-  </header>
+    </header>
+    <div><br></div>
+  </div>
 </template>
 
 <script>
@@ -52,10 +61,7 @@ export default {
     autoFill(ele_fill){
       let ele=ele_fill.ele
       if(ele){
-        ele_fill.width=ele.parentNode.clientWidth - ele.offsetLeft -1 +"px"
-        let w=ele.parentNode.clientWidth - ele.offsetLeft +"px"
-        console.log(ele.parentNode.clientWidth , ele.offsetLeft,ele_fill.width,w)
-        console.log(typeof(ele.parentNode.clientWidth ),typeof( ele.offsetLeft))
+        ele_fill.width=ele.parentNode.parentNode.clientWidth - ele.parentNode.offsetLeft -1 +"px"
       }
     }
   }
@@ -74,6 +80,7 @@ export default {
     width 100%
     height 3.5rem
     font-size 2rem
+    color #fff
     // padding 0.5rem
     outline 0
     *
@@ -88,17 +95,21 @@ export default {
         float left
         display: table-cell;
         vertical-align: middle;
-    .lift-icon
-      .icon_span
-        .iconfont
-          font-size 1.6rem
-          margin 0 0.3rem
+    .iconfont
+      font-size $com-iconsize
+      margin 0 0.3rem
+    .lift-icon.lift-menu
+      position relative
+      left -1rem
       .head-img
         width 2rem
         height 2rem
         border-radius 50%
-        margin 0 0.3rem
+        margin-left  0 0.3rem
         overflow hidden
+        border 1.5px solid #fff
+        position relative
+        left 0.5rem
         img
           width 100%
           height 100%
@@ -107,16 +118,19 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-    .divisions
-      .div-section2
-        position absolute
-      .div-section1
-        width 100%
-        position relative
-        .liftContent
-          float left
-        .rightContent
-          float right
-
+    .divisions-prosition//用来定位 计算宽度
+      width 1px
+      .divisions
+        position relative//使用非static定位作为absolute的基准
+        .div-section2
+          position absolute
+          top 0
+        .div-section1
+          width 100%
+          position relative
+          .liftContent
+            float left
+          .rightContent
+            float right
 
 </style>
