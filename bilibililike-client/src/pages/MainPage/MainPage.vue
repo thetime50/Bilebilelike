@@ -58,6 +58,7 @@ export default {
           position relative
           top @height*0.1
           margin-left 0.4rem
+          margin-right 0.2rem
           background-color $blbl-search-pink
           border-radius @height*0.5
           text-align left
