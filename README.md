@@ -102,7 +102,7 @@ https://thetime50.github.io/Bilebilelike
 - 个人信息页面
 - 侧边栏
 
-![log-2019-04-10.png](docs/imgs/README/log-2019-04-10.png)
+![log-2019-04-10.png](docs/imgs/README/log-2019-04-09.png)
 
 ### 2019年4月10-11日
 [插件相关知识](Technology-review.md#vue插件)
@@ -114,7 +114,18 @@ https://thetime50.github.io/Bilebilelike
 4. 解决来自根组件等其他地方的样式干扰
 5. 解决各种定位问题 box相关问题(position float)
 
-***不知道为著名float会影响父组件里网站的中央对齐***
+***不知道为著名float会影响父组件里网站的中央对齐***  
 *加div都不能消除影响但是用br可以*
 
 实现组件花了一点时间，这两天里20多小时都在调试和布局
+
+元素布局好花时间，需要再找一些，可能使用ui框架会好点
+
+[CSS秘密花园： 环形文本](https://www.w3cplus.com/css3/css-secrets/circular-text.html)  
+[5-5 文字编排 -- 圆形文字](https://www.jianshu.com/p/fc69f2ff1e88)  
+[神奇的阿基米德螺线](https://blog.csdn.net/github_39335046/article/details/73931821)  
+[SVG &ltg>、&ltdefs>、&ltsymbol>和&ltuse>元素详解](http://www.softwhy.com/article-122-1.html)  
+[tweenmax](https://www.tweenmax.com.cn)  
+[深度掌握SVG路径path的贝塞尔曲线指令](https://www.zhangxinxu.com/wordpress/2014/06/deep-understand-svg-path-bezier-curves-command/)  
+
+![log-2019-04-11-0.png](docs/imgs/README/log-2019-04-11-0.png) ![log-2019-04-11-1.png](docs/imgs/README/log-2019-04-11-1.png)
