@@ -21,6 +21,10 @@
     </template>
   </header-top>
   MainPage
+  <br><br>
+  <div class="emmm">
+    我说啊，我在这写demo，不如去给你写产品
+  </div>
 </div>
 </template>
 
@@ -76,5 +80,6 @@ export default {
         flex 1
     .m-game .iconfont.icon-youxifull
       font-size $com-iconsize*1.2
-
+  .emmm
+    color #c0c0ff
 </style>
