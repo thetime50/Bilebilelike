@@ -45,7 +45,7 @@ export default {
 
 <style lang="stylus"  rel="stylesheet/stylus">
   @import "../../assets/style/index.styl"
-  .main-page .header .div-section1
+  .main-page .header .div-section1//尽量外面套自己的class 不要去引内部的class
     width 100%
     .liftContent
       width 70%
