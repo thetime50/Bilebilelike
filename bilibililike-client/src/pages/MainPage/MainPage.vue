@@ -58,19 +58,19 @@ export default {
           float left
           width 100%
           .search-back-div
-            position relative
-            top 0.2rem
-            margin-left 0.4rem
             width 100%
             height $com-iconsize*1.6
+            position relative
+            top @height*0.1
+            margin-left 0.4rem
             background-color $blbl-search-pink
-            border-radius $com-iconsize
+            border-radius @height*0.5
             text-align left
-            padding-left $com-iconsize*0.4
+            padding-left @height*0.27
             .iconfont
               margin 0
               position relative
-              top -0.25rem
+              top -@height*0.15
               opaticy 0.1
     .m-game .iconfont.icon-youxifull
       font-size $com-iconsize*1.2
