@@ -1,6 +1,6 @@
 <template>
   <div class="header-div">
-    <header class="header">
+    <header class="header" :class="{'header-game-page': pageCase==='game'}">
       <div class="left-icon left-menu" v-if="leftIconType=='leftMenu'"><!-- src -->
         <span class="icon_span">
           <i class="iconfont icon-caidan"></i>
@@ -8,7 +8,7 @@
         <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
       </div>
       <div class="left-icon back" v-if="leftIconType=='back'">
-        <span class="icon_span">
+        <span class="icon_span" @click="$router.go(-1)">
           <i class="iconfont icon-fanhui"></i>
         </span>
       </div>
@@ -35,6 +35,7 @@ export default {
   name: "HeaderTop",
   props:{
     leftIconType : String, // leftMenu / back / none
+    pageCase : String,// normal / game
   },
   data () {
     return {
@@ -61,9 +62,9 @@ export default {
     autoFill(ele_fill){
       let ele=ele_fill.ele
       if(ele){
-        ele_fill.width=ele.parentNode.parentNode.clientWidth - ele.parentNode.offsetLeft -1 +"px"
+        ele_fill.width=ele.parentNode.parentNode.clientWidth - ele.parentNode.offsetLeft -5 +"px"
       }
-    }
+    },
   }
 }
 </script>
@@ -72,58 +73,77 @@ export default {
   @import "../../assets/style/index.styl"
   header-font-size = 1.5rem
   header-text-pt   = 0.5rem
+  header-height    = 2.2rem
 
   .header
-    background-color $blbl-pink
-    position static
+    position relative
     z-index 100
     left 0
     top 0
     width 100%
     height 3.5rem
     font-size 2rem
-    color #fff
     // padding 0.5rem
     outline 0
     *
-      margin 0
-      border 0
-      padding 0
-      height 100%
+      background-color rgba(0,0,0,0)
+      // border 0.2px solid #888
+    //&.header-normal-page //debug
+    background-color $blbl-pink
+    color #fff
+    *
+      color #fff
+    &.header-game-page
+      position fixed
+      background-color #fff
+      color $game-blue
+      *
+        color $game-blue
+    //全局icon
     .iconfont
       font-size $com-iconsize
       margin 0 0.3rem
+    //一级子类 大类
     &>*
       float left
       margin-top 0.7rem
-      &>*
+      &>*//二级子类
         float left
         display: table-cell;
         vertical-align: middle;
-      &.left-icon.left-menu
-        position relative
-        left -1rem
-        .head-img
-          width 2rem
-          height 2rem
-          border-radius 50%
-          margin-left  0 0.3rem
-          overflow hidden
-          border 1.5px solid #fff
+        //.......
+        margin 0
+        border 0
+        padding 0
+        height 100%
+      &.left-icon
+        height header-height
+        &.left-menu
           position relative
-          left 0.5rem
-          img
-            width 100%
-            height 100%
+          left -1rem
+          .head-img
+            width 2rem
+            height 2rem
+            border-radius 50%
+            margin-left  0 0.3rem
+            overflow hidden
+            border 1.5px solid #fff
+            position relative
+            left 0.5rem
+            img
+              width 100%
+              height 100%
       &.centerContent
         position absolute
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top header-text-pt + @margin-top
+        left 50%
+        transform translate(-50%, -50%)
         font-size header-font-size
-        padding-top header-text-pt+@margin-top
+        height header-height
+        padding-top @height*0.2
       &.divisions-prosition//用来定位 计算宽度
         width 1px
+        height header-height
         .divisions
           position relative//使用非static定位作为absolute的基准
           .div-section2

@@ -6,6 +6,7 @@ import Activity from "../pages/Activity/Activity.vue"
 import Channel from "../pages/Channel/Channel.vue"
 import MainPage from "../pages/MainPage/MainPage.vue"
 import Shop from "../pages/Shop/Shop.vue"
+import Game from "../pages/Game/Game.vue"
 
 
 Vue.use(Router)
@@ -43,6 +44,12 @@ export default new Router({
       component: Shop,
       meta: {
         showFooter: true
+      }
+    },
+    {
+      path: '/game',
+      component: Game,
+      meta: {
       }
     },
   ]

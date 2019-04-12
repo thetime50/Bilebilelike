@@ -8,9 +8,9 @@
             <i class="iconfont icon-sousuo"></i>
           </div>
         </span>
-        <span class="m-game"><!-- game -->
+        <router-link class="m-game" :to="'/game'"><!-- game -->
           <i class="iconfont icon-youxifull"></i>
-        </span>
+        </router-link>
         <span class="m-offline-cache"><!-- offline-cache -->
           <i class="iconfont icon-xiazai"></i>
         </span>

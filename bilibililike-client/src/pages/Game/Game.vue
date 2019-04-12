@@ -1,21 +1,23 @@
 <template>
-<div class="page-activity">
-  <header-top left-icon-type="leftMenu">
+<div class="page-Game">
+  <header-top left-icon-type="back" page-case="game">
     <template v-slot:centerContent>
       <div class="header-slot-cc">
-        <p>动态</p>
+        <p>首页</p>
       </div>
     </template>
     <template v-slot:rightContent>
       <div class="header-slot-rc">
-        <span class="m-bianji"><!-- bianji -->
-            <i class="iconfont icon-bianji"></i>
+        <span class="m-tixing"><!-- tixing -->
+            <i class="iconfont icon-tixing"></i>
+        </span>
+        <span class="m-sousuo"><!-- sousuo -->
+            <i class="iconfont icon-sousuo"></i>
         </span>
       </div>
     </template>
   </header-top>
-
-Activity
+  Game
 </div>
 </template>
 
@@ -23,10 +25,11 @@ Activity
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 
 export default {
-  name: "Activity",
+  name: "Game",
   components: {
     HeaderTop,
   },
+
   data () {
 	 return {
 	 };
@@ -35,10 +38,4 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
-  @import "../../assets/style/index.styl"
-
-  .page-activity
-    .header-slot-rc .iconfont
-      font-size $com-iconsize*1.1
-
 </style>

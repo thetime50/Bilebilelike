@@ -1,6 +1,6 @@
 <template>
 <div class="page-shop">
-  <header-top left-icon-type="back">
+  <header-top left-icon-type="leftMenu">
     <template v-slot:centerContent>
       <div class="header-slot-cc">
         <p>会员购</p>

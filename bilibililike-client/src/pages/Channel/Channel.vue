@@ -1,6 +1,6 @@
 <template>
 <div class="page-channel">
-  <header-top left-icon-type="back">
+  <header-top left-icon-type="leftMenu">
     <template v-slot:centerContent>
       <div class="header-slot-cc">
         <p>频道</p>
