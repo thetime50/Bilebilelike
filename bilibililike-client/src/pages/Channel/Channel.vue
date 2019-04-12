@@ -1,17 +1,21 @@
 <template>
-<div>
-    <header-top left-icon-type="back">
-    <template v-slot:leftContent>
-      l
-    </template>
+<div class="page-channel">
+  <header-top left-icon-type="back">
     <template v-slot:centerContent>
-      <p>ccccc</p>
+      <div class="header-slot-cc">
+        <p>频道</p>
+      </div>
     </template>
     <template v-slot:rightContent>
-      rr
+      <div class="header-slot-rc">
+        <span class="m-offline-cache"><!-- offline-cache -->
+          <i class="iconfont icon-xiazai"></i>
+        </span>
+        <span class="m-search"><!-- search -->
+            <i class="iconfont icon-sousuo"></i>
+        </span>
+      </div>
     </template>
-    <!-- v-slot:default -->
-    d
   </header-top>
 
 Channel
