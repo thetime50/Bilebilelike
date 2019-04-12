@@ -70,6 +70,8 @@ export default {
 
 <style lang="stylus"  rel="stylesheet/stylus">
   @import "../../assets/style/index.styl"
+  header-font-size = 1.5rem
+  header-text-pt   = 0.5rem
 
   .header
     background-color $blbl-pink
@@ -118,6 +120,8 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      font-size header-font-size
+      padding-top header-text-pt
     .divisions-prosition//用来定位 计算宽度
       width 1px
       .divisions
@@ -125,12 +129,18 @@ export default {
         .div-section2
           position absolute
           top 0
+          font-size header-font-size
+          padding-top header-text-pt
         .div-section1
           width 100%
           position relative
           .leftContent
             float left
+            font-size header-font-size
+            padding-top header-text-pt
           .rightContent
             float right
+            font-size header-font-size
+            padding-top header-text-pt
 
 </style>

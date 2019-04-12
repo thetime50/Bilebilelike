@@ -60,7 +60,7 @@ export default {
           width auto
           height $com-iconsize*1.6
           position relative
-          top @height*0.1
+          top -@height*0.15
           margin-left 0.4rem
           margin-right 0.2rem
           background-color $blbl-search-pink
@@ -70,7 +70,7 @@ export default {
           .iconfont
             margin 0
             position relative
-            top -@height*0.15
+            top @height*0.095
             opaticy 0.1
       .m-game
         flex 1
