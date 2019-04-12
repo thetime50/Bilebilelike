@@ -16,10 +16,10 @@ export default {
   data () {
     return {
       guide_item:[
-        {path:"/mainpage"  ,icon:"icon-zhuye",text:"主页"},
+        {path:"/mainpage" ,icon:"icon-zhuye",text:"主页"},
         {path:"/channel"  ,icon:"icon-pindao",text:"频道"},
         {path:"/activity" ,icon:"icon-dongtai",text:"动态"},
-        {path:"/shop"     ,icon:"icon-gouwu",text:"购物"},
+        {path:"/shop"     ,icon:"icon-gouwu",text:"会员购"},
       ],
     };
   },
