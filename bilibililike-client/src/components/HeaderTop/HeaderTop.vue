@@ -90,57 +90,57 @@ export default {
       border 0
       padding 0
       height 100%
-    >*
-      float left
-      margin-top 0.7rem
-      >*
-        float left
-        display: table-cell;
-        vertical-align: middle;
     .iconfont
       font-size $com-iconsize
       margin 0 0.3rem
-    .left-icon.left-menu
-      position relative
-      left -1rem
-      .head-img
-        width 2rem
-        height 2rem
-        border-radius 50%
-        margin-left  0 0.3rem
-        overflow hidden
-        border 1.5px solid #fff
+    &>*
+      float left
+      margin-top 0.7rem
+      &>*
+        float left
+        display: table-cell;
+        vertical-align: middle;
+      &.left-icon.left-menu
         position relative
-        left 0.5rem
-        img
-          width 100%
-          height 100%
-    .centerContent
-      position absolute
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size header-font-size
-      padding-top header-text-pt
-    .divisions-prosition//用来定位 计算宽度
-      width 1px
-      .divisions
-        position relative//使用非static定位作为absolute的基准
-        .div-section2
-          position absolute
-          top 0
-          font-size header-font-size
-          padding-top header-text-pt
-        .div-section1
-          width 100%
+        left -1rem
+        .head-img
+          width 2rem
+          height 2rem
+          border-radius 50%
+          margin-left  0 0.3rem
+          overflow hidden
+          border 1.5px solid #fff
           position relative
-          .leftContent
-            float left
+          left 0.5rem
+          img
+            width 100%
+            height 100%
+      &.centerContent
+        position absolute
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size header-font-size
+        padding-top header-text-pt+@margin-top
+      &.divisions-prosition//用来定位 计算宽度
+        width 1px
+        .divisions
+          position relative//使用非static定位作为absolute的基准
+          .div-section2
+            position absolute
+            top 0
             font-size header-font-size
             padding-top header-text-pt
-          .rightContent
-            float right
-            font-size header-font-size
-            padding-top header-text-pt
+          .div-section1
+            width 100%
+            position relative
+            .leftContent
+              float left
+              font-size header-font-size
+              padding-top header-text-pt
+            .rightContent
+              float right
+              font-size header-font-size
+              padding-top header-text-pt
 
 </style>
