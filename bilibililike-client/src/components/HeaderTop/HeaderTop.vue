@@ -1,13 +1,13 @@
 <template>
   <div class="header-div">
     <header class="header">
-      <div class="lift-icon lift-menu" v-if="liftIconType=='liftMenu'"><!-- src -->
+      <div class="left-icon left-menu" v-if="leftIconType=='leftMenu'"><!-- src -->
         <span class="icon_span">
           <i class="iconfont icon-caidan"></i>
         </span>
         <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
       </div>
-      <div class="lift-icon back" v-if="liftIconType=='back'">
+      <div class="left-icon back" v-if="leftIconType=='back'">
         <span class="icon_span">
           <i class="iconfont icon-fanhui"></i>
         </span>
@@ -17,7 +17,7 @@
       <div class="divisions-prosition">
         <div class="divisions" ref="divisions" :style="{width: divisions_fill.width}">
           <div class="div-section1">
-            <div class="liftContent">   <slot name="liftContent"/>   </div> 
+            <div class="leftContent">   <slot name="leftContent"/>   </div> 
             <div class="rightContent">  <slot name="rightContent"/>  </div>
           </div>
           <div class="div-section2">
@@ -34,7 +34,7 @@
 export default {
   name: "HeaderTop",
   props:{
-    liftIconType : String, // liftMenu / back / none
+    leftIconType : String, // leftMenu / back / none
   },
   data () {
     return {
@@ -98,7 +98,7 @@ export default {
     .iconfont
       font-size $com-iconsize
       margin 0 0.3rem
-    .lift-icon.lift-menu
+    .left-icon.left-menu
       position relative
       left -1rem
       .head-img
@@ -128,7 +128,7 @@ export default {
         .div-section1
           width 100%
           position relative
-          .liftContent
+          .leftContent
             float left
           .rightContent
             float right

@@ -1,7 +1,7 @@
 <template>
 <div>
-    <header-top lift-icon-type="back">
-    <template v-slot:liftContent>
+    <header-top left-icon-type="back">
+    <template v-slot:leftContent>
       l
     </template>
     <template v-slot:centerContent>

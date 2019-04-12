@@ -1,6 +1,6 @@
 <template>
 <div class="main-page">
-  <header-top lift-icon-type="liftMenu">
+  <header-top left-icon-type="leftMenu">
     <template>
       <div class="heater-v-slot">
         <span class="m-search"><!-- search -->
