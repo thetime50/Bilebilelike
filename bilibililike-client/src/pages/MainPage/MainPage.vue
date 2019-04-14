@@ -11,9 +11,9 @@
         <router-link class="m-game" :to="'/game'"><!-- game -->
           <i class="iconfont icon-youxifull"></i>
         </router-link>
-        <span class="m-offline-cache"><!-- offline-cache -->
+        <router-link class="m-offline-cache" :to="'/offlinecache'"><!-- offline-cache -->
           <i class="iconfont icon-xiazai"></i>
-        </span>
+        </router-link>
         <span class="m-message"><!-- message -->
           <i class="iconfont icon-xiaoxi"></i>
         </span>
@@ -74,7 +74,7 @@ export default {
             opaticy 0.1
       .m-game
         flex 1
-      .m-offline
+      .m-offline-cache
         flex 1
       .m-message
         flex 1

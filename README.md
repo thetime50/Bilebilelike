@@ -129,3 +129,38 @@ https://thetime50.github.io/Bilebilelike
 [深度掌握SVG路径path的贝塞尔曲线指令](https://www.zhangxinxu.com/wordpress/2014/06/deep-understand-svg-path-bezier-curves-command/)  
 
 ![log-2019-04-11-0.png](docs/imgs/README/log-2019-04-11-0.png) ![log-2019-04-11-1.png](docs/imgs/README/log-2019-04-11-1.png)
+
+### 2019年4月12-13日
+
+定位全局用float flex position left/top 加上stylus的计算还是比较好用的  
+盒子模型的逻辑太复杂容易出问题只在最小的单元里用，height 100%都容易溢出，还不好定位  
+样式不要随便用通配符，不然很容易影响到外面，比如用插槽的时候  
+icon太大了加载很慢
+
+添加了游戏页面
+
+
+面了个试，看了下公司介绍 能动手就不逼逼，看一眼技术要求出门赶紧翻了下neact入门教程。到那是个HR面，对面一直在说我没经验，一说没经验 我就想聊技术，一聊技术对面就没兴趣。咋就不行了 缺哪了说嘛，奇妙的循环，反正过程emmmmm。  
+回来路上review了一下，你知道吗日圆大桥上有一边 写的全是日啊
+
+### 2019年4月13日
+[vue-lazyload插件](https://segmentfault.com/a/1190000012865122)  
+[vue-lazyload使用图片路径的坑](https://segmentfault.com/q/1010000009722557)  
+
+> 放在模版里(的图片)是会被 webpack 打包出来，在 js 里写图片路径 webpack 不会处理
+你可以把图片放在最外层的 static 文件夹，或者使用 import require 引入：
+import logo from './assets/logo.png'  
+vue-cli 目录中，只有static 目录放置的静态文件可以被外部访问。如果想在JSON（static/mock/index.json） 中引入图片地址，必须把图片放在static 目录下。然后JSON 中的图片地址，是你的vue 组件引入图片的地址。我是在src/component/home/home.vue中引入 static/img/1.jpg 图片，图片地址为："../../../static/img/1.jpg"。 在JSON 中的地址也要这样写。如果配置JSON 时不确定图片地址，可以在你对应的VUE组件中 直接 引入一张图片测试下地址，然后再放在JSON 中。
+
+js文件中引入图片，不会被webpack进行编译，需要通过import、require引用或将图片放在static下面  
+模板中的路径会被webpack解析  
+
+使用会import引入文件以base64的形式引入  
+在vue里(loading v-lazy)  
+	引入摸版里的文件(src路径下)使用require + 相对路径引用  
+	引入根目录下static文件可用require或直接用路引入
+
+[在不同的模块页面设置不同的error图片](https://segmentfault.com/q/1010000014469054)  
+```javascript
+v-lazy="{src:item.img,loading:require('../images/loading.png'),error:require('../images/error.png')}"
+```

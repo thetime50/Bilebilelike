@@ -16,8 +16,7 @@ let baseExtend = Vue.extend(myContent)
 //挂载组件
 new baseExtend().$mount('#app')
 let app = new baseExtend({ el: '#app' })
-new baseExtend().$mount('custom-element')著作权归作者所有。
-商业转载请联系作者获得授权,非商业转载请注明出处。
+new baseExtend().$mount('custom-element')
 
 //使用子类构造函数创建组件
 var MyComponent = Vue.extend({ template: '一个自定义的组件!' }) // 使用`id:my-component`注册构造函数 
@@ -43,6 +42,9 @@ Vue.component('my-component', MyComponent)
 又是toast,另一种创建消息提醒的方法
 
 ## vue-router
+### router-link
+router-link replace模式跳转 (不需要back记录路径)
+
 ## vuex
 ## mint-ui
 ui组件库：mint-ui
@@ -148,3 +150,7 @@ if unless
 - 错误报告(Error Reporting)
 - 连接中间件(Connect Middleware)
 - 自检API(Introspection API)
+
+技术资源：各种技术栈，从前到后的各种技术实现，各种功能  
+产品框架：不同的产品业务逻辑和技术实现方案  
+一紧张起来就会在各种细枝末节的地方被拘束纠缠不清  

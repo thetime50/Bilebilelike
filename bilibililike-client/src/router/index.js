@@ -2,11 +2,18 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 
-import Activity from "../pages/Activity/Activity.vue"
-import Channel from "../pages/Channel/Channel.vue"
-import MainPage from "../pages/MainPage/MainPage.vue"
-import Shop from "../pages/Shop/Shop.vue"
+// import Activity from "../pages/Activity/Activity.vue"
+// import Channel from "../pages/Channel/Channel.vue"
+// import MainPage from "../pages/MainPage/MainPage.vue"
+// import Shop from "../pages/Shop/Shop.vue"
+
+const Activity = () => import("../pages/Activity/Activity.vue")
+const Channel  = () => import("../pages/Channel/Channel.vue")
+const MainPage = () => import("../pages/MainPage/MainPage.vue")
+const Shop     = () => import("../pages/Shop/Shop.vue")
+
 import Game from "../pages/Game/Game.vue"
+import OfflineCache from "../pages/OfflineCache/OfflineCache.vue"
 
 
 Vue.use(Router)
@@ -49,6 +56,12 @@ export default new Router({
     {
       path: '/game',
       component: Game,
+      meta: {
+      }
+    },
+    {
+      path: '/offlinecache',
+      component: OfflineCache,
       meta: {
       }
     },

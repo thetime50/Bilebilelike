@@ -11,7 +11,7 @@
         <span class="m-tixing"><!-- tixing -->
             <i class="iconfont icon-tixing"></i>
         </span>
-        <span class="m-sousuo"><!-- sousuo -->
+        <span class="m-search"><!-- search -->
             <i class="iconfont icon-sousuo"></i>
         </span>
       </div>
