@@ -15,7 +15,7 @@
 
       <div class="centerContent"> <slot name="centerContent"/> </div>
       <div class="divisions-prosition">
-        <div class="divisions" ref="divisions" :style="{width: divisions_fill.width}">
+        <div class="divisions" ref="divisions">
           <div class="div-section1">
             <div class="leftContent">   <slot name="leftContent"/>   </div> 
             <div class="rightContent">  <slot name="rightContent"/>  </div>
@@ -45,27 +45,6 @@ export default {
       }
     };
   },
-  mounted: function (){
-    this.divisions_fill.ele=this.$refs.divisions
-    this.autoFill(this.divisions_fill)
-  },
-  created: function (){
-      window.addEventListener('resize', this.handleResize)
-  },
-  beforeDestroy: function () {
-      window.removeEventListener('resize', this.handleResize)
-  },
-  methods: {
-    handleResize (event) {
-      this.autoFill(this.divisions_fill)
-    },
-    autoFill(ele_fill){
-      let ele=ele_fill.ele
-      if(ele){
-        ele_fill.width=ele.parentNode.parentNode.clientWidth - ele.parentNode.offsetLeft -5 +"px"
-      }
-    },
-  }
 }
 </script>
 
@@ -77,6 +56,7 @@ export default {
 
   .header
     position relative
+    display flex
     z-index 100
     left 0
     top 0
@@ -144,8 +124,12 @@ export default {
       &.divisions-prosition//用来定位 计算宽度
         width 1px
         height header-height
+        flex 1
+        margin-left header-height*0.1
+        margin-right @margin-left
         .divisions
           position relative//使用非static定位作为absolute的基准
+          width 100%
           .div-section2
             position absolute
             top 0
