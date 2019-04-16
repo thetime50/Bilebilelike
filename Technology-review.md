@@ -41,6 +41,13 @@ Vue.component('my-component', MyComponent)
 [Vue.js 插件开发详解 ](https://www.cnblogs.com/linxin/p/6637904.html)  
 又是toast,另一种创建消息提醒的方法
 
+### 拖拽
+clientY 距离窗口左上角的距离
+pageY 距离文档左上角的距离(不受页面滚动影响)(非IE)
+screenY 距离屏幕左上角的距离
+layerY 找到它或它父级元素中最近具有定位的左上角距离
+offsetY 相对于事件源元素的坐标(IE)
+
 ## vue-router
 ### router-link
 router-link replace模式跳转 (不需要back记录路径)
