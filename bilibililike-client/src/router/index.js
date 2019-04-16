@@ -14,6 +14,8 @@ const Shop     = () => import("../pages/Shop/Shop.vue")
 
 import Game from "../pages/Game/Game.vue"
 import OfflineCache from "../pages/OfflineCache/OfflineCache.vue"
+import Message from"../pages/Message/Message.vue"
+import Search from"../pages/Search/Search.vue"
 
 
 Vue.use(Router)
@@ -62,6 +64,18 @@ export default new Router({
     {
       path: '/offlinecache',
       component: OfflineCache,
+      meta: {
+      }
+    },
+    {
+      path: '/message',
+      component: Message,
+      meta: {
+      }
+    },
+    {
+      path: '/search',
+      component: Search,
       meta: {
       }
     },

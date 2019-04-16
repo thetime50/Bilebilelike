@@ -45,6 +45,76 @@ Vue.component('my-component', MyComponent)
 ### router-link
 router-link replace模式跳转 (不需要back记录路径)
 
+&ltrouter-view>用keep-ailve包裹缓存路由组件
+
+#### 路由传参
+[Vue路由传参的几种方式](https://blog.csdn.net/zhouzuoluo/article/details/81259298)  
+[编程式的导航](https://router.vuejs.org/zh/guide/essentials/navigation.html)  
+
+```html
+<script>
+// /router/index.js
+export default new Router({
+  mode: 'history',
+  routes: [
+    {
+      path: '/one',
+      name: 'ChildOne',
+      component: ChildOne,
+      children:[
+        {
+          path:'/one/log/:para_a/.../:para_b',
+          component:Log,
+        },
+      ],
+    },
+])
+
+</script>
+
+<!--  1. 通过动态路由匹配 -->
+<!-- (匹配路径中对应的分段) -->
+<!-- parent.vue -->
+<router-link :to="{path: '/one/login/a/.../b'}">link</router-link>
+<router-link to="/one/login/a/.../b">link</router-link>
+
+<!-- 组件内通过this.$route.params.num引用参数 -->
+<!-- template.vue -->
+<script>
+this.$route.params.para_a
+</script>
+
+<!-- 2. url中不显示 -->
+<!-- 路由使用name命名 path中不提供变量标识 -->
+<script>
+// /router/index.js
+export default new Router({
+  mode: 'history',
+  routes: [
+    {
+      path: '/one',
+      name: 'ChildOne',
+      component: ChildOne,
+    },
+])
+</script>
+
+<!-- 使用name-params跳转 -->
+<router-link :to="{name:'Log',params:{num:666}}">link</router-link>
+
+<!-- 和上面同样的方式引用参数，刷新后参数丢失 -->
+
+<!-- 3. 使用query传参 -->
+<!-- 普通的router配置 -->
+<!-- url上会产生?key=vul -->
+<router-link :to="{path:'/one/log',query:{num:123}}">显示登录页面</router-link>
+<!-- 使用this.$route.query.num -->
+<script>
+this.$route.query.num
+</script>
+
+```
+
 ## vuex
 ## mint-ui
 ui组件库：mint-ui

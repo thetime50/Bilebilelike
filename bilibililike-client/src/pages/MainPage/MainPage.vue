@@ -3,20 +3,20 @@
   <header-top left-icon-type="leftMenu">
     <template>
       <div class="heater-v-slot">
-        <span class="m-search"><!-- search -->
+        <router-link class="m-search" :to="{path:'/search',query:{page:'MainPage'}}"><!-- search -->
           <div class="search-back-div">
             <i class="iconfont icon-sousuo"></i>
           </div>
-        </span>
+        </router-link>
         <router-link class="m-game" :to="'/game'"><!-- game -->
           <i class="iconfont icon-youxifull"></i>
         </router-link>
         <router-link class="m-offline-cache" :to="'/offlinecache'"><!-- offline-cache -->
           <i class="iconfont icon-xiazai"></i>
         </router-link>
-        <span class="m-message"><!-- message -->
+        <router-link class="m-message" :to="'/message'"><!-- message -->
           <i class="iconfont icon-xiaoxi"></i>
-        </span>
+        </router-link>
       </div>
     </template>
   </header-top>
@@ -73,11 +73,9 @@ export default {
             top @height*0.095
             opaticy 0.1
       .m-game
-        flex 1
       .m-offline-cache
-        flex 1
       .m-message
-        flex 1
+        margin 0 $com-iconsize*0.1
     .m-game .iconfont.icon-youxifull
       font-size $com-iconsize*1.2
   .emmm

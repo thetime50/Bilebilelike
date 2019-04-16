@@ -143,7 +143,7 @@ icon太大了加载很慢
 面了个试，看了下公司介绍 能动手就不逼逼，看一眼技术要求出门赶紧翻了下neact入门教程。到那是个HR面，对面一直在说我没经验，一说没经验 我就想聊技术，一聊技术对面就没兴趣。咋就不行了 缺哪了说嘛，奇妙的循环，反正过程emmmmm。  
 回来路上review了一下，你知道吗日圆大桥上有一边 写的全是日啊
 
-### 2019年4月13日
+### 2019年4月14-15日
 [vue-lazyload插件](https://segmentfault.com/a/1190000012865122)  
 [vue-lazyload使用图片路径的坑](https://segmentfault.com/q/1010000009722557)  
 
@@ -164,3 +164,15 @@ js文件中引入图片，不会被webpack进行编译，需要通过import、re
 ```javascript
 v-lazy="{src:item.img,loading:require('../images/loading.png'),error:require('../images/error.png')}"
 ```
+
+~~height @height~~ ×  
+height @height  √  
+line-height @height  
+stylus赛高
+
+- [ ] 解决icon加载问题
+- [ ] 路由缓存
+
+- 添加离线缓存页
+- 添加search页面
+- 消息页面
