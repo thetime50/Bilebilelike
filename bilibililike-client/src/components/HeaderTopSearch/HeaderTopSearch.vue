@@ -1,6 +1,6 @@
 <template>
 <div class="page-header-top-search">
-  <header-top v-if="searchPage==='MainPage'" left-icon-type="none">
+  <header-top v-if="searchPage==='MainPage'||searchPage==='Channel'" left-icon-type="none">
     <div class="header-slot-d">
       <div class="import-container">
         <div class="import-container-icon">
@@ -13,6 +13,20 @@
       <div class="text" @click="$router.go(-1)">取消</div>
     </div>
   </header-top>
+
+  <header-top v-if="searchPage==='Game'" left-icon-type="back" page-case="game">
+    <div class="header-slot-d">
+      <div class="import-container">
+        <div class="import-container-input">
+          <input type="text" placeholder="搜索游戏...">
+        </div>
+      </div>
+      <div>
+        <i class="iconfont icon-sousuo"></i>
+      </div>
+    </div>
+  </header-top>
+
 </div>
 </template>
 
@@ -38,6 +52,10 @@ export default {
   .page-header-top-search
     // *
     //   border 0.2px solid #088
+    .header-game-page
+      bottom-border-1px(#dcdcdc)
+      input
+        caret-color $blbl-pink
     .div-section2
       width 100%
       .header-slot-d
@@ -65,6 +83,8 @@ export default {
             input
               width 100%
               color #000
+              &:focus
+                outline none
         &>div.text
           margin 0 0.4rem
           font-size 1.4rem

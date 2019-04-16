@@ -11,9 +11,9 @@
         <span class="m-tixing"><!-- tixing -->
             <i class="iconfont icon-tixing"></i>
         </span>
-        <span class="m-search"><!-- search -->
+        <router-link class="m-search" :to="{path:'/search',query:{page:'Game'}}"><!-- search -->
             <i class="iconfont icon-sousuo"></i>
-        </span>
+        </router-link>
       </div>
     </template>
   </header-top>

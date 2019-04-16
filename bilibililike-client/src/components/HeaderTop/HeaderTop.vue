@@ -74,7 +74,7 @@ export default {
     *
       color #fff
     &.header-game-page
-      position fixed
+      position sticky
       background-color #fff
       color $game-blue
       *

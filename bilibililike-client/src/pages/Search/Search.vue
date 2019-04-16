@@ -1,7 +1,7 @@
 <template>
 <div class="page-Search">
-  <HeaderTopSearch :search-page="this.$route.query.page"/>
-  Search
+  <HeaderTopSearch :search-page="$route.query.page"/>
+  {{$route.query.page}} Search
 </div>
 </template>
 

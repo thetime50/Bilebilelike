@@ -11,9 +11,9 @@
         <span class="m-offline-cache"><!-- offline-cache -->
           <i class="iconfont icon-xiazai"></i>
         </span>
-        <span class="m-search"><!-- search -->
+        <router-link class="m-search" :to="{path:'/search',query:{page:'Channel'}}"><!-- search -->
             <i class="iconfont icon-sousuo"></i>
-        </span>
+        </router-link>
       </div>
     </template>
   </header-top>
