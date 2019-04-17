@@ -190,3 +190,22 @@ css不支持修改光标样式(颜色可以改) 后面考虑Bootstrap
 directives里边不能用this，闭包return fun也不行，好像执行也会比bind慢一点  
 
 [vue-drawer-layout for github](https://github.com/hjl19911127/vue-drawer-layout)
+
+一着急就想上天，啥都要做，然后啥都做不了  
+touch和click事件不一样  
+bili的左侧菜单其实是一个侧边很窄的区域点击事件，不需要考虑区分滑动方向和拦截事件  
+然后加蒙版/动画/位置跟踪就好了 状态恢复??  
+打包成组件直接加在header里边，也不用考虑做成插件  
+之前考虑太多了。。。
+
+left-menu  
+	|- drawer  
+	|	|- event process  
+	|- menu content  
+绑定事件，统一的滑动判断逻辑(用document事件?)(不用 加了蒙版就都覆盖到了)  
+长按/滑动-产生摸版
+设置scroll标志 (滑出和触碰到菜单时设置)
+
+[移动端，触摸事件 touchstart、touchmove、touchend、touchcancel ](https://www.cnblogs.com/bugong/p/3942988.html)  
+需要确认移动端click/非click判定和拦截逻辑，存在link时的影响
+

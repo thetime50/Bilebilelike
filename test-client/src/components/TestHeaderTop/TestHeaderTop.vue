@@ -59,7 +59,7 @@ export default {
   .header
     position relative
     display flex
-    z-index 100
+    z-index 0
     left 0
     top 0
     width 100%
