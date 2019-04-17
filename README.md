@@ -184,3 +184,9 @@ css不支持修改光标样式(颜色可以改) 后面考虑Bootstrap
 脾气一上来啥都想要做，根本来不及啊
 
 忙着处理问题忘记整理图片了
+
+### 2019年4月17日
+[基于Vue实现拖拽效果](https://segmentfault.com/a/1190000014572113)  
+directives里边不能用this，闭包return fun也不行，好像执行也会比bind慢一点  
+
+[vue-drawer-layout for github](https://github.com/hjl19911127/vue-drawer-layout)
