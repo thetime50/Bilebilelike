@@ -6,6 +6,7 @@
           <i class="iconfont icon-caidan"></i>
         </span>
         <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
+        <left-menu-drawer></left-menu-drawer>
       </div>
       <div class="left-icon back" v-if="leftIconType=='back'">
         <span class="icon_span" @click="$router.go(-1)">
@@ -31,11 +32,15 @@
 </template>
 
 <script>
+import LeftMenuDrawer from "../LeftMenuDrawer/LeftMenuDrawer.vue"
 export default {
   name: "HeaderTop",
   props:{
     leftIconType : String, // leftMenu / back / none
     pageCase : String,// normal / game
+  },
+  components: {
+    LeftMenuDrawer
   },
   data () {
     return {
