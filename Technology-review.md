@@ -127,6 +127,130 @@ this.$route.query.num
 ui组件库：mint-ui
 ## better-scroll
 滑动组件：better-scroll
+[better-scroll zh](https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/)
+```js
+startX//起始位置
+startY
+scrollX//允许滑动
+scrollY
+freeScroll
+directionLockThreshold//方向锁定阈值
+eventPassthrough//原生滚动
+click//原生click
+dblclick//生成双击事件
+tap//tap 事件?
+bounce//回弹
+bounceTime
+momentum//动量
+momentumLimitTime//触发阈值
+momentumLimitDistance
+swipeTime
+swipeBounceTime
+deceleration
+flickLimitTime//轻拂
+flickLimitDistance
+resizePolling//resize重计算延迟
+probeType//scroll事件
+preventDefault//阻止浏览器默认行为
+preventDefaultException//默认行为白名单
+HWCompositing//硬件加速
+useTransition//CSS3 transition 动画(否则为requestAnimationFrame动画)
+useTransform// CSS3 transform 做位移
+bindToWrapper//false[default]:document事件 true:wrapper事件
+disableMouse//屏蔽鼠标事件
+disableTouch//屏蔽触摸事件
+observeDOM//检测 scroller 内部 DOM自动 refresh (现在不用手动refresh了)
+autoBlur//滚动时取消焦点
+stopPropagation//阻止冒泡
+//选项 / 高级
+wheel//Picker 组件(滚动选择器)
+snap//Slide 组件(滑动展示)
+scrollbar//滚动条样式
+pullDownRefresh//下拉刷新样式
+pullUpLoad//上拉加载
+mouseWheel//PC 滚轮操作
+zoom//缩放
+infinity//长列表滚动或者是无限滚动
+//方法 / 通用
+refresh//重新计算 better-scroll DOM变化是用
+scrollTo//滚动到指定的位置
+scrollBy//从当前位置偏移滚动
+scrollToElement//滚动到指定的目标元素
+stop//停止滚动
+enable//使能
+disable//禁用
+destroy//销毁 better-scroll，解绑事件
+on//事件监听
+once//监听单次事件
+off//移除事件
+//方法 / 定制
+goToPage//slide 组件滚动到指定页面
+next//滚动到下一个页面
+prev//滚动到上一个页面
+getCurrentPage//获取当前页面的信息
+wheelTo//picker 组件 滚动到指定选项
+getSelectedIndex//当前选中的索引值
+finishPullDown//下拉刷新数据后需要调用此方法
+openPullDown//开启下拉刷新
+closePullDown//关闭下拉刷新
+autoPullDownRefresh//触发下拉刷新
+finishPullUp//上拉加载数据后需要调用此方法
+openPullUp//开启上拉加载
+closePullUp//关闭上拉加载
+zoomTo//放到指定的大小
+//事件
+beforeScrollStart
+scrollStart
+scroll
+scrollCancel
+scrollEnd
+touchEnd
+flick//轻拂
+refresh//refresh调用后
+destroy//destroy后
+pullingDown
+pullingUp
+zoomStart
+zoomEnd
+//属性
+x
+y
+maxScrollX
+maxScrollY
+movingDirectionX//当前滑动方向
+movingDirectionY
+directionX//整体滑动方向
+directionY
+enabled//is enabled
+isInTransition//否处于Transition 动画过程中
+isAnimating//否处于Animation 动画过程中
+```
+## vue-scroller
+```javascript
+//Scroller component attributes
+onRefresh        //拉动刷新回调
+onInfinite       //无限加载回调
+refreshText	     //pull-to-refresh提示
+noDataText       //no-more-data提示
+width	           //捕捉模式
+height	         //
+snapping         //捕捉模式
+snappingWidth    //对齐宽度
+snappingHeight   //对齐高度
+refreshLayerColor//pull-to-refresh文字颜色
+loadingLayerColor//infinite-loading文字颜色
+minContentHeight //scroll-content 最小高度
+//Scroller vm instance methods
+resize()               //调整滚动条内容的大小(不建议使用)
+triggerPullToRefresh() //触发拖动刷新
+finishPullToRefresh()  //停止拖动刷新
+finishInfinite()       //停止无限加载
+scrollTo()             //滚动到指定位置
+scrollBy()             //滚动指定量
+getPosition :Object    //当前位置
+```
+## Vonic UI
+[Vonic UI zh](https://wangdahoo.github.io/vonic-documents/#/)
 ## vue-lazyload
 懒加载：vue-lazyload
 # 前后台交互

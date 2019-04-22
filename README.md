@@ -207,5 +207,33 @@ left-menu
 设置scroll标志 (滑出和触碰到菜单时设置)
 
 [移动端，触摸事件 touchstart、touchmove、touchend、touchcancel ](https://www.cnblogs.com/bugong/p/3942988.html)  
+[移动端前端常见的触摸相关事件touch、tap、swipe等整理](https://www.cnblogs.com/imwtr/p/5882166.html)  
 需要确认移动端click/非click判定和拦截逻辑，存在link时的影响
 
+### 2019年4月20日
+vue-touch
+better-scroll
+
+### 2019年4月22日
+vue-touchjs遇到报错
+```
+[Intervention] Unable to preventDefault inside passive event listener due to target being treated as passive. See https://www.chromestatus.com/features/5093566007214080
+```
+vue-touch正常使用
+
+better-scroll  
+正常使用
+
+vue-scroller  
+默认全屏使用 会比较麻烦感觉
+
+swiper  
+全屏捕捉的  
+移动端正常使用不知道有没报错  
+360网页版正常移模拟动端报错  
+chrome网页版正常移模拟动端没报错行为很奇怪
+```
+[Intervention] Ignored attempt to cancel a touchmove event with cancelable=false, for example because scrolling is in progress and cannot be interrupted.
+```
+<small>ps:今天断网了 webpack项目IP不对会报错</small><br>
+<small>开着服务切wifi直接挂掉电脑重启</small>

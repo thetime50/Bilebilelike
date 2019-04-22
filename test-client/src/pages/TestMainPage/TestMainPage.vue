@@ -10,6 +10,15 @@
         layerY   {{layerY }}<br>
         offsetY  {{offsetY}}<br>
       </div>
+      <v-touch
+        @pan="touch_swipe_cb" @panstart="touch_swipe_cb" @panend="touch_swipe_cb">
+        <div class="move touch" :class="{'back-origin':touch.backOrigin}">
+          clientY  {{clientY}}<br>
+        </div>
+      </v-touch>
+      <!-- <div class="move touchjs" :class="{'back-origin':touch.backOrigin}" v-touch:swiperight="touchjs_swipe_cb">
+        clientY  {{clientY}}<br>
+      </div> -->
       <p>
         clientY  {{clientY}}<br>
         pageY    {{pageY  }}<br>
@@ -26,7 +35,7 @@
 export default {
   name: "MainPage",
   data () {
-    console.log("data",this)
+    //console.log("data",this)
     return {
       clientY :0,
       pageY   :0,
@@ -36,6 +45,11 @@ export default {
       positionX:0,
       positionY:0,
       backOrigin:false,
+      touch:{
+        backOrigin:false,
+        originX:0,
+        originY:0,
+      }
     };
   },
   methods:{
@@ -72,7 +86,24 @@ export default {
         this.backOrigin=true
         odiv.style=''
       };
-    }
+    },
+    touch_swipe_cb:function(e){
+      // console.log("touch",e.type,e)
+      if(e.type=="panstart"){
+        this.touch.originX = e.target.offsetLeft
+        this.touch.originY = e.target.offsetTop
+        this.touch.backOrigin=false
+      }else if(e.type=="panend"){
+         e.target.style=""
+         this.touch.backOrigin=true
+      }else{
+        e.target.style.left=this.touch.originX+e.deltaX+"px"
+        e.target.style.top=this.touch.originY+e.deltaY+"px"
+      }
+    },
+    touchjs_swipe_cb:function(el, e){
+      console.log("touchjs",e)
+    },
   },
 }
 </script>
@@ -92,7 +123,7 @@ export default {
       text-align center
       .move
         position absolute
-        width 7rem
+        width 6.5rem
         height 6rem
         text-align left
         line-height 1rem
@@ -102,6 +133,10 @@ export default {
         user-select none
         &.back-origin
           transition: top 2s, left 2s ,cubic-bezier(0.32, 0.86, 0.21, 1.15) 1s
+        &.touch
+          left 150px
+        &.touchjs
+          left 200px
       p
         line-height: 1.5;
         display: inline-block;
