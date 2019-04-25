@@ -1,23 +1,33 @@
 <template>
-<v-touch
-  @panstart="touchEvent"
-  @panmove="touchEvent"
-  @panend="touchEvent"
-  @press="touchEvent" :press-options='{time:400}'>
-  <div class="component-drawer-map" :style="{zIndex : zIndex}">
-    <div class="drawer-mask" ref="drawer-mask"
-    :style="{backgroundColor : mapBackgroundColor}">
+<div class="component-drawer-map" :style="{zIndex : zIndex}" 
+  @click="componentRootEvent"
+  @mousedown="componentRootEvent"
+  @mousemove="componentRootEvent"
+  @mouseup="componentRootEvent"
+  @touchstart="componentRootEvent"
+  @touchmove="componentRootEvent"
+  @touchend="componentRootEvent">
+  <v-touch
+    @panstart="touchEvent"
+    @panmove="touchEvent"
+    @panend="touchEvent"
+    @press="touchEvent" :press-options='{time:400}'>
+    <div class="drawer-container"
+      @click="touchEvent">
+      <div class="drawer-mask" ref="drawer-mask"
+      :style="{backgroundColor : mapBackgroundColor}">
 
+      </div>
+      <div class="drawer-content" ref="drawer-content"
+      :style="{width:drawerW+'px'}">
+        <slot/>
+      </div>
+      <div class="debug">
+        a{{dbg.overallVelocityX}}
+      </div>
     </div>
-    <div class="drawer-content" ref="drawer-content"
-    :style="{width:drawerW+'px'}">
-      <slot/>
-    </div>
-    <div class="debug">
-      a{{dbg.overallVelocityX}}
-    </div>
-  </div>
-</v-touch>
+  </v-touch>
+</div>
 </template>
 
 <script>
@@ -33,6 +43,7 @@ export default {
     pressWidth         :{type: String,default:"0.5rem"},
     time               :{type: String,default:"0.6s"},
     zIndex             :{type: Number},
+    eventStop          :{type: Boolean,default:true},
   },
   data () {
     return {
@@ -90,6 +101,13 @@ export default {
     }
   },
   methods:{
+    componentRootEvent: function(e){
+      //stop
+      // console.log("componentRootEvent",event.type)
+      if(this.eventStop){
+        event.stopPropagation() 
+      }
+    },
     touchEvent: function(e){
       //flick
       let eType=e.type
@@ -128,6 +146,10 @@ export default {
         if((eType==="panstart")||(eType==="panmove")){
           if(e.target!=this.maskEle)
             this.setState('swipe')
+        }else if(eType==="click"){
+          if(e.target===this.maskEle){
+            this.setState('off')
+          }
         }
       }else{
         console.error('state error'+this.state)
@@ -149,7 +171,7 @@ export default {
         this.curShow=false
         this.out.animation =true
         this.out.x         =0
-        this.setMaping(false)
+        this.setMaping(false)//动画结束 //关闭时用动画事件操作
       }
       this.setPosition()
       this.setStyle()
@@ -181,26 +203,34 @@ export default {
   *
     border 0.2px solid #088
   position fixed
-  color #2c3e50
-  .debug
-    // display none
+  top 0
+  left 0
+  height 0
+  width 0
+  padding 0
+  margin 0
+  .drawer-container
     position fixed
-    color #888
-    top 20%
-  .drawer-mask
-    position fixed
-    top 0
-    left 0
-    height 100%
-    padding 0
-    margin 0
-  .drawer-content
-    position fixed
-    top 0
-    left 0
-    height 100%
-    padding 0
-    margin 0
-    background-color #fff
+    color #2c3e50
+    .debug
+      // display none
+      position fixed
+      color #888
+      top 20%
+    .drawer-mask
+      position fixed
+      top 0
+      left 0
+      height 100%
+      padding 0
+      margin 0
+    .drawer-content
+      position fixed
+      top 0
+      left 0
+      height 100%
+      padding 0
+      margin 0
+      background-color #fff
 
 </style>

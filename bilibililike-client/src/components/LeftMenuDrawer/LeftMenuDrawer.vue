@@ -1,6 +1,6 @@
 <template>
 <div class="component-left-menu-drawer">
-  <DrawerMap :show.sync="curShow">
+  <DrawerMap :show.sync="curShow" time="2s">
     <left-menu/>
   </DrawerMap>
 </div>
