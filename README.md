@@ -237,3 +237,56 @@ chrome网页版正常移模拟动端没报错行为很奇怪
 ```
 <small>ps:今天断网了 webpack项目IP不对会报错</small><br>
 <small>开着服务切wifi直接挂掉电脑重启</small>
+
+### 2019年4月23日
+[WEB动画的几种实现方式](https://chuchur.com/article/web-animation)  
+
+1. GIF动画
+2. APNG (可能不够标准 Chrome 59之后 IE不支持 http://littlesvr.ca/apng/)
+3. Video
+4. FLASH动画 / SilverLight (插件)
+5. SMIL (只支持IE)
+6. JS + HTML
+7. *CSS3 transition/animation*
+8. *JS + Canvas*
+9. *JS + SVG*
+
+```
+动画
+  |- 交互和布局
+  |  |- css
+  |  |- ui
+  |
+  |- 特效
+  |  |- AE + Bodymovin/Lottie
+  |
+  |- 动画制作
+  |  |- Spirit
+  |
+  |- frame
+     |- webGL
+     |- tree.js
+```
+《H5 Animatoin》  
+《html + javascript 动画基础》
+
+[10 个非常有用的 SVG 动画的 JavaScript 库](https://www.jianshu.com/p/20bfeda0ba3b)  
+[推荐15款制作 SVG 动画的 JavaScript 库](https://www.cnblogs.com/i7758/p/5254352.html)  
+anime.js  
+[有了css3之后，我们还需要canvas还有svg吗？](https://segmentfault.com/q/1010000000459364)
+
+CSS3用于网页渲染  
+svg 矢量图 交互 脚本+css 适合大面积少元素  
+canvas 大量数据 大量重绘 底层支持 webGL 保存图片
+
+### 2019年4月24日
+- 滑动弹出
+- 长按弹出
+- 轻抚展开
+- 滑动过半展开
+- 轻抚收回
+- 滑动过半收回
+- 点击蒙版收回
+
+[JS获取子节点、父节点和兄弟节点的若干种方式](https://blog.csdn.net/laok_/article/details/75760572)  
+[深入了解canvas在移动端绘制模糊的问题](https://juejin.im/post/5cbdda7bf265da036504fb46) window.devicePixelRatio (dpr) 解决canvas保存图片模糊问题

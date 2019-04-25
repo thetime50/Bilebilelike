@@ -1,6 +1,6 @@
 <template>
 <div class="component-left-menu-drawer">
-  <DrawerMap>
+  <DrawerMap :show.sync="curShow" time="2s">
     <left-menu/>
   </DrawerMap>
 </div>
@@ -16,10 +16,23 @@ export default {
      DrawerMap,
      LeftMenu,
   },
+  props:{
+    show:{default:false},
+  },
   data () {
     return {
+      curShow:false,
     };
-  }
+  },
+  watch: {
+    show : function(newVal, oldVal){
+      this.curShow = newVal;
+    },
+    curShow : function(newVal, oldVal){
+      this.$emit("update:show", newVal);
+    }
+  },
+
 }
 </script>
 

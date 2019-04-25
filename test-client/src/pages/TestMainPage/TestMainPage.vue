@@ -100,10 +100,23 @@ export default {
         e.target.style.left=this.touch.originX+e.deltaX+"px"
         e.target.style.top=this.touch.originY+e.deltaY+"px"
       }
+      // console.log('val',e.type,e.target)
+      // console.log('obj',e)
+      // for(let ele=e.target,i=0;ele;(ele=ele.parentNode),(i++)){
+      //   console.log(i,ele)
+      // }
+      // console.log(e.srcEvent.path)
     },
     touchjs_swipe_cb:function(el, e){
       console.log("touchjs",e)
     },
+    // isChildren(parent,child,top=document){
+    //   if(child===parent)
+    //     return 0
+    //   for(;child&&(child!=parent)&&(child!=top);child=child.parentNode) {}
+    //   if(child===parent) return 1
+    //   else return 0
+    // },
   },
 }
 </script>

@@ -6,14 +6,17 @@ import router from './router'
 
 import './assets/style/main-index.styl'
 
-import VueLazyload from 'vue-lazyload'
+import vueTouch from 'vue-touch'
+import vueLazyload from 'vue-lazyload'
 import loadingImg from './assets/imgs/sobot_dialog_load_1.png'
 import errorImg from './assets/imgs/img_tips_error_banner_tv.png'
 // import loadingImg from './assets/imgs/loading.gif'
 
 Vue.config.productionTip = false
 
-Vue.use(VueLazyload, {
+Vue.use(vueTouch)
+
+Vue.use(vueLazyload, {
   preLoad: 1.3,
   loading:loadingImg,
   error: errorImg,//loadingImg,//

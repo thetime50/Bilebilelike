@@ -1,12 +1,13 @@
 <template>
   <div class="header-div">
     <header class="header" :class="{'header-game-page': pageCase==='game'}">
-      <div class="left-icon left-menu" v-if="leftIconType=='leftMenu'"><!-- src -->
+      <div class="left-icon left-menu" v-if="leftIconType=='leftMenu'" 
+        @click="leftMenuShow=!leftMenuShow"><!-- src -->
         <span class="icon_span">
           <i class="iconfont icon-caidan"></i>
         </span>
         <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
-        <left-menu-drawer></left-menu-drawer>
+        <left-menu-drawer :show.sync="leftMenuShow"></left-menu-drawer>
       </div>
       <div class="left-icon back" v-if="leftIconType=='back'">
         <span class="icon_span" @click="$router.go(-1)">
@@ -47,7 +48,8 @@ export default {
       divisions_fill:{
         ele:false,
         width:""
-      }
+      },
+      leftMenuShow:false,
     };
   },
 }
