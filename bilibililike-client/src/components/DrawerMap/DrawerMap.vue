@@ -44,15 +44,18 @@ export default {
     time               :{type: String,default:"0.6s"},
     zIndex             :{type: Number},
     eventStop          :{type: Boolean,default:true},
+    //threshold
   },
   data () {
     return {
-      curShow:false,//prop 副本 用于内部操作和同步
-      maskEle     :{},
+      curShow    :false,//prop 副本 用于内部操作和同步
+      originX    :0,
+      startX     :0,
+      maskEle    :{},
       contentEle :{},
 
       //state
-      state:'off',//off on swipe
+      state:'',//off on swipe
       drawerW:0,
       mapDisplayW:0,
       pressW:0,
@@ -117,7 +120,7 @@ export default {
         this.dbg.overallVelocityX=e.overallVelocityX
       }
       // console.log('val',e.type,this.dbg.overallVelocityX)
-      console.log('obj',e)
+      //console.log('obj',e)
       // if(eType==="flick"){
       //   if(this.state==="off" && e.overallVelocityX>0){
       //     this.state="on"
@@ -130,22 +133,22 @@ export default {
           this.out.x=this.pressW
           this.setPosition()
         }else if(eType==="panstart"){
-          this.setState('swipe')
+          this.setState('swipe',e)
         }
       }else if(this.state==="swipe"){
         if(eType==="panmove"){
-          //set state swipe
+          this.setState('swipe',e)
         }else if(eType==="panend"){
-          //if x>this.drawerW/2
-          //set state on
-          //else
-          //set state off
+          if(this.out.x>this.drawerW/2){
+            this.setState('on')
+          }else{
+            this.setState('off')
+          }
         }
       }else if(this.state==="on"){
-        //click
         if((eType==="panstart")||(eType==="panmove")){
           if(e.target!=this.maskEle)
-            this.setState('swipe')
+            this.setState('swipe',e)
         }else if(eType==="click"){
           if(e.target===this.maskEle){
             this.setState('off')
@@ -155,26 +158,37 @@ export default {
         console.error('state error'+this.state)
       }
     },
-    setState: function(state){
-      this.state=state
+    setState: function(state,e){
       let map     =this.out.map
       let content =this.out.content
-      if(state==="on"){
-        this.curShow=true
-        this.out.animation =true
-        this.out.x         =this.drawerW
-        this.setMaping(true)
-      }else if(state==="swipe"){
-        this.out.animation=false
-        this.setMaping(true)
-      }else if(state==="off"){
-        this.curShow=false
-        this.out.animation =true
-        this.out.x         =0
-        this.setMaping(false)//动画结束 //关闭时用动画事件操作
+      console.log("set state",state,this.originX)
+      if(state!=this.state){
+        if(state==="on"){
+          this.curShow=true
+          this.out.animation =true
+          this.out.x         =this.drawerW
+          this.setMaping(true)
+        }else if(state==="swipe"&&e){
+          this.out.animation =false
+          this.originX       =this.contentEle.offsetLeft+this.drawerW
+          this.startX        =e.deltaX
+          this.setMaping(true)
+        }else if(state==="off"){
+          this.curShow=false
+          this.out.animation =true
+          this.out.x         =0
+          this.setMaping(false)//动画结束 //关闭时用动画事件操作
+        }
+      }else if(state==="swipe"&&e){
+        this.out.x= (this.deltaX(e)+this.originX<this.drawerW) ? 
+          this.deltaX(e)+this.originX : this.drawerW
       }
+      this.state=state
       this.setPosition()
       this.setStyle()
+    },
+    deltaX: function(e){
+      return e.deltaX-this.startX
     },
     setPosition: function(){
       this.maskEle.style.opacity=this.out.x/this.drawerW*this.mapOpacity

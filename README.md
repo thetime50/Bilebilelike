@@ -279,7 +279,7 @@ CSS3用于网页渲染
 svg 矢量图 交互 脚本+css 适合大面积少元素  
 canvas 大量数据 大量重绘 底层支持 webGL 保存图片
 
-### 2019年4月24日
+### 2019年4月24-25日
 - 滑动弹出
 - 长按弹出
 - 轻抚展开
@@ -290,3 +290,11 @@ canvas 大量数据 大量重绘 底层支持 webGL 保存图片
 
 [JS获取子节点、父节点和兄弟节点的若干种方式](https://blog.csdn.net/laok_/article/details/75760572)  
 [深入了解canvas在移动端绘制模糊的问题](https://juejin.im/post/5cbdda7bf265da036504fb46) window.devicePixelRatio (dpr) 解决canvas保存图片模糊问题
+
+编辑器提示
+```
+Argument of type '{ name: string; props: { show: { default: boolean; }; drawerWidth: { type: StringConstructor; default: string; }; mapOpacity: { type: NumberConstructor; default: number; }; mapDisplayWidth: { type: StringConstructor; default: string; }; mapBackgroundColor: { ...; }; pressWidth: { ...; }; time: { ...; }; zIndex: { .....' is not assignable to parameter of type 'new (...args: any[]) => any'.
+  Type '{ name: string; props: { show: { default: boolean; }; drawerWidth: { type: StringConstructor; default: string; }; mapOpacity: { type: NumberConstructor; default: number; }; mapDisplayWidth: { type: StringConstructor; default: string; }; mapBackgroundColor: { ...; }; pressWidth: { ...; }; time: { ...; }; zIndex: { .....' provides no match for the signature 'new (...args: any[]): any'.Vetur(2345)
+```
+
+- [] 左侧菜单有触摸卡死现象
