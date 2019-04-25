@@ -78,7 +78,7 @@ export default {
     //&.header-normal-page //debug
     background-color $blbl-pink
     color #fff
-    *
+    a
       color #fff
     &.header-game-page
       position sticky

@@ -1,6 +1,6 @@
 <template>
 <div class="component-left-menu-drawer">
-  <DrawerMap :show.sync="curShow" time="2s">
+  <DrawerMap :show.sync="curShow">
     <left-menu/>
   </DrawerMap>
 </div>
@@ -37,4 +37,6 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+  .component-left-menu-drawer
+    position fixed
 </style>

@@ -4,8 +4,11 @@
   @panmove="touchEvent"
   @panend="touchEvent"
   @press="touchEvent" :press-options='{time:400}'>
-  <div class="component-drawer-map" ref="component-drawer-map"
+  <div class="component-drawer-map" :style="{zIndex : zIndex}">
+    <div class="drawer-mask" ref="drawer-mask"
     :style="{backgroundColor : mapBackgroundColor}">
+
+    </div>
     <div class="drawer-content" ref="drawer-content"
     :style="{width:drawerW+'px'}">
       <slot/>
@@ -23,16 +26,19 @@ export default {
   name: "DrawerMap",
   props: {
     show:{default:false},//显示开关
-    drawerWidth:{default:"8rem"},
-    mapOpacity:{default:0.7},
-    mapDisplayWidth:{default:"0.2rem"},
-    mapBackgroundColor:{default:"#444"},
-    pressWidth:{default:"0.5rem"},
-    time:{default:"0.5s"},
+    drawerWidth        :{type: String,default:"18rem"},
+    mapOpacity         :{type: Number,default:0.5},
+    mapDisplayWidth    :{type: String,default:"0.2rem"},
+    mapBackgroundColor :{type: String,default:"#222"},
+    pressWidth         :{type: String,default:"0.5rem"},
+    time               :{type: String,default:"0.6s"},
+    zIndex             :{type: Number},
   },
   data () {
     return {
       curShow:false,//prop 副本 用于内部操作和同步
+      maskEle     :{},
+      contentEle :{},
 
       //state
       state:'off',//off on swipe
@@ -53,7 +59,7 @@ export default {
   created () {
     this.drawerW=tool.length2px(this.drawerWidth)
     if(!this.drawerW) 
-      this.drawerW=tool.length2px('8rem')
+      this.drawerW=tool.length2px('18rem')
     this.mapDisplayW=tool.length2px(this.mapDisplayWidth)
     if(!this.mapDisplayW) 
       this.mapDisplayW=tool.length2px('0.2rem')
@@ -63,6 +69,8 @@ export default {
   },
   mounted () {
     //resize
+    this.maskEle     =this.$refs["drawer-mask"]
+    this.contentEle =this.$refs["drawer-content"]
     if(this.curShow)
       this.setState('on')
     else
@@ -118,7 +126,7 @@ export default {
       }else if(this.state==="on"){
         //click
         if((eType==="panstart")||(eType==="panmove")){
-          if(e.target!=this.$refs["component-drawer-map"])
+          if(e.target!=this.maskEle)
             this.setState('swipe')
         }
       }else{
@@ -147,27 +155,22 @@ export default {
       this.setStyle()
     },
     setPosition: function(){
-      let mapEle  =this.$refs["component-drawer-map"]
-      let contentEle  =this.$refs["drawer-content"]
-      mapEle.style.opacity=this.out.x/this.drawerW*this.mapOpacity
-      contentEle.style.left=-this.drawerW+this.out.x+"px"
+      this.maskEle.style.opacity=this.out.x/this.drawerW*this.mapOpacity
+      this.contentEle.style.left=-this.drawerW+this.out.x+"px"
     },
     setStyle: function(){
       let map     =this.out.map
       let content =this.out.content
-      let mapEle  =this.$refs["component-drawer-map"]
-      let contentEle  =this.$refs["drawer-content"]
       if(this.out.animation){
-        mapEle.style.transition="opacity "+this.time+",ease-out "+this.time
-        contentEle.style.transition="left "+this.time+",ease-out "+this.time
+        this.maskEle.style.transition="opacity "+this.time+" ease-out"
+        this.contentEle.style.transition="left "+this.time+" ease-out"
       }else{
-        mapEle.style.transition=""
-        contentEle.style.transition=""
+        this.maskEle.style.transition=""
+        this.contentEle.style.transition=""
       }
     },
     setMaping: function(sw){
-      this.$refs["component-drawer-map"].style.width=
-        sw?"100%":this.mapDisplayW+"px"
+      this.maskEle.style.width =sw?"100%":this.mapDisplayW+"px"
     }
   },
 }
@@ -177,20 +180,27 @@ export default {
 .component-drawer-map
   *
     border 0.2px solid #088
+  position fixed
+  color #2c3e50
   .debug
     // display none
     position fixed
     color #888
     top 20%
-  position fixed
-  top 0
-  left 0
-  height 100%
-  padding 0
-  margin 0
+  .drawer-mask
+    position fixed
+    top 0
+    left 0
+    height 100%
+    padding 0
+    margin 0
   .drawer-content
     position fixed
+    top 0
+    left 0
     height 100%
+    padding 0
+    margin 0
     background-color #fff
 
 </style>
