@@ -11,7 +11,8 @@
     @panstart="touchEvent"
     @panmove="touchEvent"
     @panend="touchEvent"
-    @press="touchEvent" :press-options='{time:400}'>
+    @press="touchEvent" :press-options='{time:400}'
+    @pressup="touchEvent">
     <div class="drawer-container"
       @click="touchEvent">
       <div class="drawer-mask" ref="drawer-mask"
@@ -128,7 +129,7 @@ export default {
         // eType='flick'
         this.dbg.overallVelocityX=e.overallVelocityX
       }
-      // console.log('val',e.type,this.dbg.overallVelocityX)
+      //console.log('val',e.type,this.dbg.overallVelocityX)
       //console.log('obj',e)
       // if(eType==="flick"){
       //   if(this.state==="off" && e.overallVelocityX>0){
@@ -139,8 +140,13 @@ export default {
       // }
       if(this.state==="off"){
         if(eType==="press"){
-          this.out.x=this.pressW
-          this.setPosition()
+          this.setState('press')
+        }else if(eType==="panstart"){
+          this.setState('swipe',e)
+        }
+      }else if(this.state==="press"){
+        if(eType==="pressup"){
+          this.setState("off")
         }else if(eType==="panstart"){
           this.setState('swipe',e)
         }
@@ -177,6 +183,10 @@ export default {
           this.out.animation =true
           this.out.x         =this.drawerW
           this.setMaping(true)
+        }else if(state==="press"){
+          this.out.animation =true
+          this.out.x         =this.pressW
+          this.setMaping(true)
         }else if(state==="swipe"&&e){
           this.out.animation =false
           this.originX       =this.contentEleOffset()
@@ -194,7 +204,7 @@ export default {
       }
       this.state=state
       if(!init){
-        this.setStyle()
+        this.setAnimation()
       }
       this.setPosition()
     },
@@ -206,17 +216,16 @@ export default {
     },
     setPosition: function(){
       this.maskEle.style.opacity=this.out.x/this.drawerW*this.mapOpacity
-        +this.dbg.animationOffset?this.dbg.animationOffset:0
+        +(this.dbg.animationOffset?this.dbg.animationOffset:0)
       this.contentEle.style.left=-this.drawerW+this.out.x+"px"
     },
-    setStyle: function(){
+    setAnimation: function(){
       let map     =this.out.map
       let content =this.out.content
       if(this.out.animation){
         let time=0,distance=0
         if(this.velocity&&this.inVelocity){
-          distance=(this.out.x>this.thresholdW ? 
-            this.drawerW-this.contentEleOffset() : this.contentEleOffset())
+          distance=Math.abs(this.out.x-this.contentEleOffset())
           time=distance/this.inVelocity+"s"
         }else{
           time=this.time
