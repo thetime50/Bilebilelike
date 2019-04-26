@@ -36,15 +36,16 @@ export default {
   name: "DrawerMap",
   props: {
     show:{default:false},//显示开关
-    drawerWidth        :{type: String,default:"18rem"},
-    mapOpacity         :{type: Number,default:0.5},
-    mapDisplayWidth    :{type: String,default:"0.2rem"},
-    mapBackgroundColor :{type: String,default:"#222"},
-    pressWidth         :{type: String,default:"0.5rem"},
-    time               :{type: String,default:"0.6s"},
-    zIndex             :{type: Number},
+    drawerWidth        :{type: String ,default:"18rem"},
+    mapOpacity         :{type: Number ,default:0.5},
+    mapDisplayWidth    :{type: String ,default:"0.6rem"},
+    mapBackgroundColor :{type: String ,default:"#222"},
+    pressWidth         :{type: String ,default:"2rem"},
+    time               :{type: String ,default:"0.6s"},
+    velocity           :{type: Boolean,default:true},
+    zIndex             :{type: Number },
     eventStop          :{type: Boolean,default:true},
-    //threshold
+    threshold          :{type: Number ,default:0.5},
   },
   data () {
     return {
@@ -59,6 +60,8 @@ export default {
       drawerW:0,
       mapDisplayW:0,
       pressW:0,
+      inVelocity:0,
+      inThreshold:0,
 
       //out
       out:{
@@ -67,28 +70,34 @@ export default {
       },
 
       //debug
-      dbg:{overallVelocityX:0}
+      dbg:{
+        overallVelocityX:0,
+        animationOffset:0.1,
+      }
     };
   },
   created () {
     this.drawerW=tool.length2px(this.drawerWidth)
     if(!this.drawerW) 
-      this.drawerW=tool.length2px('18rem')
+      this.drawerW=tool.length2px("18rem")
     this.mapDisplayW=tool.length2px(this.mapDisplayWidth)
     if(!this.mapDisplayW) 
-      this.mapDisplayW=tool.length2px('0.2rem')
+      this.mapDisplayW=tool.length2px("0.6rem")
     this.pressW=tool.length2px(this.pressWidth)
     if(!this.pressW) 
-      this.pressW=tool.length2px('0.5rem')
+      this.pressW=tool.length2px("2rem")
+    this.inVelocity=this.drawerW/tool.timeStr2s(this.time)
+    this.thresholdW = this.drawerW * (
+      (this.threshold>=0 && this.threshold<=1) ? this.threshold : 0.5)
   },
   mounted () {
     //resize
     this.maskEle     =this.$refs["drawer-mask"]
     this.contentEle =this.$refs["drawer-content"]
     if(this.curShow)
-      this.setState('on')
+      this.setState('on',null,true)
     else
-      this.setState('off')
+      this.setState('off',null,true)
   },
   watch: {
     show : function(newVal, oldVal){
@@ -116,7 +125,7 @@ export default {
       let eType=e.type
       if(eType==="panend" && 
         e.deltaTime<300 && Math.abs(e.overallVelocityX) >0.32){
-        eType='flick'
+        // eType='flick'
         this.dbg.overallVelocityX=e.overallVelocityX
       }
       // console.log('val',e.type,this.dbg.overallVelocityX)
@@ -139,7 +148,7 @@ export default {
         if(eType==="panmove"){
           this.setState('swipe',e)
         }else if(eType==="panend"){
-          if(this.out.x>this.drawerW/2){
+          if(this.out.x>this.thresholdW){
             this.setState('on')
           }else{
             this.setState('off')
@@ -158,7 +167,7 @@ export default {
         console.error('state error'+this.state)
       }
     },
-    setState: function(state,e){
+    setState: function(state,e,init=false){
       let map     =this.out.map
       let content =this.out.content
       console.log("set state",state,this.originX)
@@ -170,7 +179,7 @@ export default {
           this.setMaping(true)
         }else if(state==="swipe"&&e){
           this.out.animation =false
-          this.originX       =this.contentEle.offsetLeft+this.drawerW
+          this.originX       =this.contentEleOffset()
           this.startX        =e.deltaX
           this.setMaping(true)
         }else if(state==="off"){
@@ -184,22 +193,36 @@ export default {
           this.deltaX(e)+this.originX : this.drawerW
       }
       this.state=state
+      if(!init){
+        this.setStyle()
+      }
       this.setPosition()
-      this.setStyle()
     },
     deltaX: function(e){
       return e.deltaX-this.startX
     },
+    contentEleOffset: function(){
+      return this.contentEle.offsetLeft+this.drawerW
+    },
     setPosition: function(){
       this.maskEle.style.opacity=this.out.x/this.drawerW*this.mapOpacity
+        +this.dbg.animationOffset?this.dbg.animationOffset:0
       this.contentEle.style.left=-this.drawerW+this.out.x+"px"
     },
     setStyle: function(){
       let map     =this.out.map
       let content =this.out.content
       if(this.out.animation){
-        this.maskEle.style.transition="opacity "+this.time+" ease-out"
-        this.contentEle.style.transition="left "+this.time+" ease-out"
+        let time=0,distance=0
+        if(this.velocity&&this.inVelocity){
+          distance=(this.out.x>this.thresholdW ? 
+            this.drawerW-this.contentEleOffset() : this.contentEleOffset())
+          time=distance/this.inVelocity+"s"
+        }else{
+          time=this.time
+        }
+        this.maskEle.style.transition="opacity "+time+" ease-out"
+        this.contentEle.style.transition="left "+time+" ease-out"
       }else{
         this.maskEle.style.transition=""
         this.contentEle.style.transition=""

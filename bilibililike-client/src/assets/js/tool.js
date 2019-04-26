@@ -24,5 +24,18 @@ export default{
       return per100*ivalue/100
     }
     return NaN
-  }
+  },
+  timeStr2s: function(tim){
+    let isMs= (s)=>{return /^\d+\.?\d*ms$/.test(s)}
+    let isM= (s)=>{return /^\d+\.?\d*s$/.test(s)}
+    if(typeof(tim)!="string")
+      return NaN
+    tim=tim.toLowerCase()
+    if(isMs(tim)){
+      return parseFloat(tim.slice(0,-2))/1000
+    }else if(isM(tim)){
+      return parseFloat(tim.slice(0,-1))
+    }
+    return NaN
+  },
 }
