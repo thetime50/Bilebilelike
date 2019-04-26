@@ -123,7 +123,7 @@ export default {
     },
     touchEvent: function(e){
       //flick
-      let eType=e.type
+      let eType=e.type,touchX=e.deltaX
       if(eType==="panend" && 
         e.deltaTime<300 && Math.abs(e.overallVelocityX) >0.32){
         // eType='flick'
@@ -142,17 +142,17 @@ export default {
         if(eType==="press"){
           this.setState('press')
         }else if(eType==="panstart"){
-          this.setState('swipe',e)
+          this.setState('swipe',touchX)
         }
       }else if(this.state==="press"){
         if(eType==="pressup"){
           this.setState("off")
         }else if(eType==="panstart"){
-          this.setState('swipe',e)
+          this.setState('swipe',touchX)
         }
       }else if(this.state==="swipe"){
         if(eType==="panmove"){
-          this.setState('swipe',e)
+          this.setState('swipe',touchX)
         }else if(eType==="panend"){
           if(this.out.x>this.thresholdW){
             this.setState('on')
@@ -163,17 +163,17 @@ export default {
       }else if(this.state==="on"){
         if((eType==="panstart")||(eType==="panmove")){
           if(e.target!=this.maskEle)
-            this.setState('swipe',e)
+            this.setState('swipe',touchX)
         }else if(eType==="click"){
           if(e.target===this.maskEle){
             this.setState('off')
           }
         }
-      }else{
+      }else{//if on or off is animation to swipe
         console.error('state error'+this.state)
       }
     },
-    setState: function(state,e,init=false){
+    setState: function(state,touchX,init=false){
       let map     =this.out.map
       let content =this.out.content
       console.log("set state",state,this.originX)
@@ -187,10 +187,10 @@ export default {
           this.out.animation =true
           this.out.x         =this.pressW
           this.setMaping(true)
-        }else if(state==="swipe"&&e){
+        }else if(state==="swipe"&&typeof(touchX)==="number"){
           this.out.animation =false
           this.originX       =this.contentEleOffset()
-          this.startX        =e.deltaX
+          this.startX        =touchX
           this.setMaping(true)
         }else if(state==="off"){
           this.curShow=false
@@ -198,9 +198,10 @@ export default {
           this.out.x         =0
           this.setMaping(false)//动画结束 //关闭时用动画事件操作
         }
-      }else if(state==="swipe"&&e){
-        this.out.x= (this.deltaX(e)+this.originX<this.drawerW) ? 
-          this.deltaX(e)+this.originX : this.drawerW
+      }
+      if(state==="swipe"&&typeof(touchX)==="number"){
+        this.out.x= (this.deltaX(touchX)+this.originX<this.drawerW) ? 
+          this.deltaX(touchX)+this.originX : this.drawerW
       }
       this.state=state
       if(!init){
@@ -208,8 +209,8 @@ export default {
       }
       this.setPosition()
     },
-    deltaX: function(e){
-      return e.deltaX-this.startX
+    deltaX: function(touchX){
+      return touchX-this.startX
     },
     contentEleOffset: function(){
       return this.contentEle.offsetLeft+this.drawerW
