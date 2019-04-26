@@ -21,7 +21,7 @@
 
       </div>
       <div class="drawer-content" ref="drawer-content"
-      :style="{width:drawerW+'px'}">
+      :style="{width:drawerW+'px'}" @transitionend="animationEvent">
         <slot/>
       </div>
       <div class="debug">
@@ -97,10 +97,13 @@ export default {
     //resize
     this.maskEle     =this.$refs["drawer-mask"]
     this.contentEle =this.$refs["drawer-content"]
-    if(this.curShow)
+    if(this.curShow){
       this.setState('on',null,true)
-    else
+      this.setMaping(true)
+    }else{
       this.setState('off',null,true)
+      this.setMaping(false)
+    }
   },
   watch: {
     show : function(newVal, oldVal){
@@ -186,21 +189,17 @@ export default {
           this.curShow=true
           this.out.animation =true
           this.out.x         =this.drawerW
-          this.setMaping(true)
         }else if(state==="press"){
           this.out.animation =true
           this.out.x         =this.pressW
-          this.setMaping(true)
         }else if(state==="swipe"&&typeof(touchX)==="number"){
           this.out.animation =false
           this.originX       =this.contentEleOffset()
           this.startX        =touchX
-          this.setMaping(true)
         }else if(state==="off"){
           this.curShow=false
           this.out.animation =true
           this.out.x         =0
-          this.setMaping(false)//动画结束 //关闭时用动画事件操作
         }
       }
       if(state==="swipe"&&typeof(touchX)==="number"){
@@ -227,20 +226,28 @@ export default {
     setAnimation: function(){
       let map     =this.out.map
       let content =this.out.content
-      if(this.out.animation){
-        let time=0,distance=0
+      let distance=Math.abs(this.out.x-this.contentEleOffset())
+      if(this.out.animation&&distance){
+        let time=0
         if(this.velocity&&this.inVelocity){
-          distance=Math.abs(this.out.x-this.contentEleOffset())
           time=distance/this.inVelocity+"s"
         }else{
           time=this.time
         }
         this.maskEle.style.transition="opacity "+time+" ease-out"
         this.contentEle.style.transition="left "+time+" ease-out"
+        this.animationEvent({type:'start'})
       }else{
         this.maskEle.style.transition=""
         this.contentEle.style.transition=""
+        this.animationEvent({type:'end'})
       }
+    },
+    animationEvent: function(e){
+      if(e.type.indexOf("end")>=0&&this.state==="off")
+        this.setMaping(false)
+      else
+        this.setMaping(true)
     },
     setMaping: function(sw){
       this.maskEle.style.width =sw?"100%":this.mapDisplayW+"px"
