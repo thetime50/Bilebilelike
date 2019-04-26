@@ -8,9 +8,10 @@
   @touchmove="componentRootEvent"
   @touchend="componentRootEvent">
   <v-touch
-    @panstart="touchEvent"
+    @panstart="touchEvent" :pan-options="{threshold:5}"
     @panmove="touchEvent"
     @panend="touchEvent"
+    @pancancel="touchEvent"
     @press="touchEvent" :press-options='{time:400}'
     @pressup="touchEvent">
     <div class="drawer-container"
@@ -79,15 +80,16 @@ export default {
   },
   created () {
     this.drawerW=tool.length2px(this.drawerWidth)
-    if(!this.drawerW) 
+    if(!tool.isNumber(this.drawerW))
       this.drawerW=tool.length2px("18rem")
     this.mapDisplayW=tool.length2px(this.mapDisplayWidth)
-    if(!this.mapDisplayW) 
+    if(!tool.isNumber(this.mapDisplayW))
       this.mapDisplayW=tool.length2px("0.6rem")
     this.pressW=tool.length2px(this.pressWidth)
-    if(!this.pressW) 
+    if(!tool.isNumber(this.pressW))
       this.pressW=tool.length2px("2rem")
-    this.inVelocity=this.drawerW/tool.timeStr2s(this.time)
+    this.inVelocity=tool.timeStr2s(this.time) ?
+      this.drawerW/tool.timeStr2s(this.time) : NaN
     this.thresholdW = this.drawerW * (
       (this.threshold>=0 && this.threshold<=1) ? this.threshold : 0.5)
   },
@@ -124,20 +126,16 @@ export default {
     touchEvent: function(e){
       //flick
       let eType=e.type,touchX=e.deltaX
+      if(eType==="pancancel"){
+        eType="panend"
+      }
       if(eType==="panend" && 
         e.deltaTime<300 && Math.abs(e.overallVelocityX) >0.32){
-        // eType='flick'
+        eType='flick'
         this.dbg.overallVelocityX=e.overallVelocityX
       }
       //console.log('val',e.type,this.dbg.overallVelocityX)
       //console.log('obj',e)
-      // if(eType==="flick"){
-      //   if(this.state==="off" && e.overallVelocityX>0){
-      //     this.state="on"
-      //   }else if(this.state==="on" && e.overallVelocityX<0){
-      //     this.state="off"
-      //   }
-      // }
       if(this.state==="off"){
         if(eType==="press"){
           this.setState('press')
@@ -157,6 +155,12 @@ export default {
           if(this.out.x>this.thresholdW){
             this.setState('on')
           }else{
+            this.setState('off')
+          }
+        }else if(eType==="flick"){
+          if(e.overallVelocityX>0){
+            this.setState('on')
+          }else if(e.overallVelocityX<0){
             this.setState('off')
           }
         }

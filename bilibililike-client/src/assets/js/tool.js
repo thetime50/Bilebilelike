@@ -38,4 +38,7 @@ export default{
     }
     return NaN
   },
+  isNumber: function(obj) {
+    return obj === +obj
+  },
 }
