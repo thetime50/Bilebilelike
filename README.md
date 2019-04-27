@@ -297,4 +297,25 @@ Argument of type '{ name: string; props: { show: { default: boolean; }; drawerWi
   Type '{ name: string; props: { show: { default: boolean; }; drawerWidth: { type: StringConstructor; default: string; }; mapOpacity: { type: NumberConstructor; default: number; }; mapDisplayWidth: { type: StringConstructor; default: string; }; mapBackgroundColor: { ...; }; pressWidth: { ...; }; time: { ...; }; zIndex: { .....' provides no match for the signature 'new (...args: any[]): any'.Vetur(2345)
 ```
 
-- [] 左侧菜单有触摸卡死现象
+- [x] 左侧菜单有触摸卡死现象
+
+### 2019年4月26日
+- 左侧菜单卡死是由于flick未处理照成的
+
+- [x] 添加velocity
+- [x] 添加threshold
+- [x] 修复flick未处理菜单卡死
+- [x] 修复菜单闪烁bug
+- [x] flick处理
+- [x] 修复切换到off时的蒙版效果
+- [x] 动画过程中按下暂停
+
+- [ ] 拖拽mapDisplayWidth边缘会触发pancancel导致拖拽失败  
+但是pancancel并不是由touchcancel产生的 源码中没有找到对应的代码  
+[Dragging An Element With Hammer.Js Fails On Mobile](https://stackanswers.net/questions/dragging-an-element-with-hammer-js-fails-on-mobile)  
+确认表现：拖拽覆盖小于触摸半径时会先触发panstart，距离超出半径超出后产生pancancel触摸失败  
+之后估计写一个类似的库来替换
+
+- [ ] z-index的行为还是很奇怪，难道要把mask放到footer同一层？
+![log-2019-04-10.png](docs/imgs/README/log-2019-04-26.png)
+

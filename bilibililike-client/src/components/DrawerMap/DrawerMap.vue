@@ -15,7 +15,8 @@
     @press="touchEvent" :press-options='{time:400}'
     @pressup="touchEvent">
     <div class="drawer-container"
-      @click="touchEvent">
+      @click="touchEvent"
+      @touchstart="touchEvent">
       <div class="drawer-mask" ref="drawer-mask"
       :style="{backgroundColor : mapBackgroundColor}">
 
@@ -64,6 +65,7 @@ export default {
       pressW:0,
       inVelocity:0,
       inThreshold:0,
+      animating:false,
 
       //out
       out:{
@@ -143,7 +145,12 @@ export default {
         if(eType==="press"){
           this.setState('press')
         }else if(eType==="panstart"){
-          this.setState('swipe',touchX)
+          if(!this.animating || e.target!=this.maskEle)
+            this.setState('swipe',touchX)
+        }else if(eType==="touchstart"){
+          if(e.target!=this.maskEle && this.animating){
+            this.setState('swipe',0)//touchX)//这个本来是给滑动跨边界用的
+          }
         }
       }else if(this.state==="press"){
         if(eType==="pressup"){
@@ -175,7 +182,11 @@ export default {
           if(e.target===this.maskEle){
             this.setState('off')
           }
-        }
+        }else if(eType==="touchstart"){
+            if(e.target!=this.maskEle && this.animating){
+              this.setState('swipe',0)//touchX)
+            }
+          }
       }else{//if on or off is animation to swipe
         console.error('state error'+this.state)
       }
@@ -244,6 +255,7 @@ export default {
       }
     },
     animationEvent: function(e){
+      this.animating=e.type.indexOf("end")<0?true:false
       if(e.type.indexOf("end")>=0&&this.state==="off")
         this.setMaping(false)
       else
