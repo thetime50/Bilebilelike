@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 
 import './assets/style/main-index.styl'
 
@@ -28,6 +29,7 @@ Vue.use(vueLazyload, {
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
