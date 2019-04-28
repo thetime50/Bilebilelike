@@ -317,5 +317,25 @@ Argument of type '{ name: string; props: { show: { default: boolean; }; drawerWi
 之后估计写一个类似的库来替换
 
 - [ ] z-index的行为还是很奇怪，难道要把mask放到footer同一层？
-![log-2019-04-10.png](docs/imgs/README/log-2019-04-26.png)
 
+![log-2019-04-26.png](docs/imgs/README/log-2019-04-26.png)
+
+### 2019年4月27日
+- [ ] CP端拖动打开菜单会自动关闭  
+还有一些其他事件也不太兼容
+
+### 2019年4月28日
+- [x] 处理z-index堆叠问题  
+[子元素的z-index如何高于父元素的兄弟元素的z-index值](https://segmentfault.com/q/1010000009843297)  
+把LeftMenuDrawer反在top里是因为逻辑结构上是这样的  
+但是DOM的堆叠规则中堆叠上下文中间是被父元素控制的  
+LeftMenuDrawer放在外层，控制显示和绑定数据
+
+- [x] 完成vuex控制LeftMenuDrawer
+
+在HeaderTop.vue中 和菜单按钮同步Drawer-en  
+menu中触发action 关闭menu传递src 动画完成回调执行disable和跳转src
+
+还是再考虑一下beforEach触发??
+
+![log-2019-04-28.jpg](docs/imgs/README/log-2019-04-28.jpg)
