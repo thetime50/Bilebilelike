@@ -2,12 +2,11 @@
   <div class="header-div">
     <header class="header" :class="{'header-game-page': pageCase==='game'}">
       <div class="left-icon left-menu" v-if="leftIconType=='leftMenu'" 
-        @click="leftMenuShow=!leftMenuShow"><!-- src -->
+        @click="setLeftMenuShow(!getLeftMenuShow)"><!-- src -->
         <span class="icon_span">
           <i class="iconfont icon-caidan"></i>
         </span>
         <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
-        <left-menu-drawer :show.sync="leftMenuShow"></left-menu-drawer>
       </div>
       <div class="left-icon back" v-if="leftIconType=='back'">
         <span class="icon_span" @click="$router.go(-1)">
@@ -33,7 +32,7 @@
 </template>
 
 <script>
-import LeftMenuDrawer from "../LeftMenuDrawer/LeftMenuDrawer.vue"
+import {mapState,mapMutations} from "vuex"
 export default {
   name: "HeaderTop",
   props:{
@@ -41,7 +40,6 @@ export default {
     pageCase : String,// normal / game
   },
   components: {
-    LeftMenuDrawer
   },
   data () {
     return {
@@ -49,9 +47,18 @@ export default {
         ele:false,
         width:""
       },
-      leftMenuShow:false,
     };
   },
+  computed: {
+    ...mapState("localState",{
+      getLeftMenuShow: state => state.leftMenuState.show
+    })
+  },
+  methods: {
+    ...mapMutations('localState', {
+      setLeftMenuShow: "setLeftMenuState_show"
+    })
+  }
 }
 </script>
 

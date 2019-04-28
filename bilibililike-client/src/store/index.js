@@ -13,4 +13,23 @@ export default new Vuex.Store({
   mutations,
   actions,
   getters,
+  modules:{
+    localState:{
+      namespaced:true,
+      state:{
+        leftMenuState:{
+          enable:false,
+          show:false,
+        }
+      },
+      mutations:{
+        setLeftMenuState_enable (state,en){
+          state.leftMenuState.enable=en
+        },
+        setLeftMenuState_show (state,sh){
+          state.leftMenuState.show=sh
+        },
+      },
+    }
+  }
 })

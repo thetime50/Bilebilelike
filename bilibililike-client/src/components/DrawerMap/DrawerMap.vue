@@ -1,5 +1,5 @@
 <template>
-<div class="component-drawer-map" :style="{zIndex : zIndex}" 
+<div class="component-drawer-map" v-if="enable" :style="{zIndex : zIndex}"
   @click="componentRootEvent"
   @mousedown="componentRootEvent"
   @mousemove="componentRootEvent"
@@ -38,17 +38,18 @@ import tool from "@/assets/js/tool.js"
 export default {
   name: "DrawerMap",
   props: {
-    show:{default:false},//显示开关
-    drawerWidth        :{type: String ,default:"18rem"},
-    mapOpacity         :{type: Number ,default:0.5},
-    mapDisplayWidth    :{type: String ,default:"0.6rem"},
-    mapBackgroundColor :{type: String ,default:"#222"},
-    pressWidth         :{type: String ,default:"2rem"},
-    time               :{type: String ,default:"0.6s"},
-    velocity           :{type: Boolean,default:true},
-    zIndex             :{type: Number },
-    eventStop          :{type: Boolean,default:true},
-    threshold          :{type: Number ,default:0.5},
+    enable             :{type: Boolean,default:true},   //是否使用组件
+    show               :{default:false},                //显示开关
+    drawerWidth        :{type: String ,default:"18rem"},//显示区域宽度
+    mapOpacity         :{type: Number ,default:0.5},    //mask透明度
+    mapDisplayWidth    :{type: String ,default:"0.6rem"},//mask边缘宽度
+    mapBackgroundColor :{type: String ,default:"#222"}, //mask颜色
+    pressWidth         :{type: String ,default:"2rem"}, //长按弹出宽度
+    threshold          :{type: Number ,default:0.5},    //on/off 比例
+    time               :{type: String ,default:"0.6s"}, //动画时长
+    velocity           :{type: Boolean,default:false},   //使用速度模式 动画时间与滑动距离有关
+    zIndex             :{type: Number },//这个可能没什么用 业务被父级DOM控制
+    eventStop          :{type: Boolean,default:true},   //true 阻止事件冒泡
   },
   data () {
     return {
@@ -194,7 +195,7 @@ export default {
     setState: function(state,touchX,init=false){
       let map     =this.out.map
       let content =this.out.content
-      console.log("set state",state,this.originX)
+      // console.log("set state",state,this.originX)
       if(state!=this.state){
         if(state==="on"){
           this.curShow=true
