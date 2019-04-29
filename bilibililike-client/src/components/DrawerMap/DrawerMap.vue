@@ -163,8 +163,8 @@ export default {
         eType='flick'
         this.dbg.overallVelocityX=e.overallVelocityX
       }
-      console.log('val',e.type,e.timeStamp)//,this.dbg.overallVelocityX)
-      console.log('obj',e)
+      // console.log('val',e.type,e.timeStamp)//,this.dbg.overallVelocityX)
+      // console.log('obj',e)
       if(eType==="click" && e.timeStamp===this.timeStamp)
         return
       this.timeStamp=e.timeStamp

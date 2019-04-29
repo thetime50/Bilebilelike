@@ -345,7 +345,9 @@ menu中触发action 关闭menu传递src 动画完成回调执行disable和跳转
 1. 响应式布局  
 了解过响应式布局的概念但是没有系统的学习过处理方法，布局适应不同客户端的尺寸调整显示效果。  
 rem display-grid float之类的也尝试过，获取客户端状态调整布局也不太难，其他更深入的没有了解过  
-这个答得不好，对面也不太满意
+这个答得不好，对面也不太满意  
+  
+行吧，还有media
 2. webapp  
 这不会要回头再看
 3. 作品太简单，数据都没有  
@@ -356,4 +358,16 @@ rem display-grid float之类的也尝试过，获取客户端状态调整布局�
 
 ---
 
+- bootstrap和响应式布局 +bootstrapvalidator +jNotify
+- PhoneGap混合开发
+- Ionic webapp
+- cordova/Apache Cordova
+
+fastclick？？
+---
 今天还再处理一下左侧菜单组件的问题，然后把菜单lay好
+
+- [x] 左菜单组件使能缓存和更新机制
+- [x] 处理动画中点击鼠标没有移动时的抬起事件
+- [x] 屏蔽反复触发的click事件
+
