@@ -1,6 +1,6 @@
 <template>
 <div class="component-left-menu-drawer">
-  <DrawerMap :show.sync="show" time="2s">
+  <DrawerMap :enable="getLeftMenuEnable" :show.sync="show" time="2s">
     <left-menu/>
   </DrawerMap>
 </div>
@@ -32,7 +32,8 @@ export default {
   },
   computed: {
     ...mapState("localState",{
-      getLeftMenuShow: state => state.leftMenuState.show
+      getLeftMenuShow: state => state.leftMenuState.show,
+      getLeftMenuEnable: state => state.leftMenuState.enable
     })
   },
   methods: {

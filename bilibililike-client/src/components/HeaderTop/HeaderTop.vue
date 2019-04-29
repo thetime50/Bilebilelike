@@ -49,6 +49,11 @@ export default {
       },
     };
   },
+  created () {
+    if(this.leftIconType=='leftMenu'){
+      this.setLeftMenuEnable(true)
+    }
+  },
   computed: {
     ...mapState("localState",{
       getLeftMenuShow: state => state.leftMenuState.show
@@ -56,7 +61,8 @@ export default {
   },
   methods: {
     ...mapMutations('localState', {
-      setLeftMenuShow: "setLeftMenuState_show"
+      setLeftMenuShow: "setLeftMenuState_show",
+      setLeftMenuEnable: "setLeftMenuState_enable"
     })
   }
 }

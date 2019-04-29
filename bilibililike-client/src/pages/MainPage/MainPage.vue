@@ -37,8 +37,8 @@ export default {
     HeaderTop,
   },
   data () {
-	 return {
-	 };
+    return {
+    };
   }
 }
 </script>

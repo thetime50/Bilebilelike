@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex"
 import LeftMenuDrawer from "./components/LeftMenuDrawer/LeftMenuDrawer.vue"
 import FooterGuide from "./components/FooterGuide/FooterGuide.vue"
 
@@ -17,7 +18,18 @@ export default {
   components: {
     LeftMenuDrawer,
     FooterGuide
+  },
+  watch: {
+    "$route.fullPath":function(to, from){
+      this.setLeftMenuEnable(false)
+    }
+  },
+  methods: {
+    ...mapMutations('localState', {
+      setLeftMenuEnable: "setLeftMenuState_enable"
+    })
   }
+
 }
 </script>
 

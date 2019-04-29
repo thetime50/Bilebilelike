@@ -1,5 +1,5 @@
 <template>
-<div class="component-drawer-map" v-if="enable" :style="{zIndex : zIndex}"
+<div class="component-drawer-map" v-show="compEnable" :style="{zIndex : zIndex}"
   @click="componentRootEvent"
   @mousedown="componentRootEvent"
   @mousemove="componentRootEvent"
@@ -25,7 +25,7 @@
       :style="{width:drawerW+'px'}" @transitionend="animationEvent">
         <slot/>
       </div>
-      <div class="debug">
+      <div class="debug" v-if="dbg">
         a{{dbg.overallVelocityX}}
       </div>
     </div>
@@ -53,6 +53,7 @@ export default {
   },
   data () {
     return {
+      compEnable :true, //动画中延迟隐藏组件
       curShow    :false,//prop 副本 用于内部操作和同步
       originX    :0,
       startX     :0,
@@ -67,12 +68,13 @@ export default {
       inVelocity:0,
       inThreshold:0,
       animating:false,
+      updataCompEnable:true,
 
       //out
-      out:{
-        animation:false,
-        x:0,
-      },
+      // out:{
+      //   animation:false,
+      //   x:0,
+      // },
 
       //debug
       dbg:{
@@ -82,6 +84,7 @@ export default {
     };
   },
   created () {
+    this.compEnable=this.enable
     this.drawerW=tool.length2px(this.drawerWidth)
     if(!tool.isNumber(this.drawerW))
       this.drawerW=tool.length2px("18rem")
@@ -119,6 +122,17 @@ export default {
       }else if(!newVal && this.state==="on"){
         this.setState('off')
       }
+    },
+    //"$route.fullPath"
+    enable:function (to, from) {
+      //如果on 或者动画状态 动画结束同步 否则立即同步
+      if(this.animating || this.state==="on"){
+        this.updataCompEnable=true
+      }else{
+        this.compEnable=to
+        this.updataCompEnable=false
+      }
+      this.curShow=false
     }
   },
   methods:{
@@ -142,6 +156,8 @@ export default {
       }
       //console.log('val',e.type,this.dbg.overallVelocityX)
       //console.log('obj',e)
+      if(!this.enable || !this.compEnable)//切换过程禁止交互
+        return
       if(this.state==="off"){
         if(eType==="press"){
           this.setState('press')
@@ -257,10 +273,15 @@ export default {
     },
     animationEvent: function(e){
       this.animating=e.type.indexOf("end")<0?true:false
-      if(e.type.indexOf("end")>=0&&this.state==="off")
+      if(e.type.indexOf("end")>=0&&this.state==="off"){
         this.setMaping(false)
-      else
+        if(this.updataCompEnable){
+          this.compEnable=this.enable
+          this.updataCompEnable=false
+        }
+      }else{
         this.setMaping(true)
+      }
     },
     setMaping: function(sw){
       this.maskEle.style.width =sw?"100%":this.mapDisplayW+"px"
