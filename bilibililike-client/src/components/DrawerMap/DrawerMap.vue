@@ -108,10 +108,10 @@ export default {
     this.maskEle     =this.$refs["drawer-mask"]
     this.contentEle =this.$refs["drawer-content"]
     if(this.curShow){
-      this.setState('on',null,true)
+      this.setState('on',0,null,true)
       this.setMaping(true)
     }else{
-      this.setState('off',null,true)
+      this.setState('off',0,null,true)
       this.setMaping(false)
     }
   },
@@ -165,65 +165,63 @@ export default {
       }
       // console.log('val',e.type,e.timeStamp)//,this.dbg.overallVelocityX)
       // console.log('obj',e)
-      if(eType==="click" && e.timeStamp===this.timeStamp)
-        return
-      this.timeStamp=e.timeStamp
       if(!this.enable || !this.compEnable)//切换过程禁止交互
         return
       if(this.state==="off"){
         if(eType==="press"){
-          this.setState('press')
+          this.setState('press',e.timeStamp)
         }else if(eType==="panstart"){
           if(!this.animating || e.target!=this.maskEle)
-            this.setState('swipe',touchX)
+            this.setState('swipe',e.timeStamp,touchX)
         }else if(eType==="touchstart"){
           if(e.target!=this.maskEle && this.animating){
-            this.setState('swipe',0)//touchX)//这个本来是给滑动跨边界用的
+            this.setState('swipe',e.timeStamp,0)//touchX)//这个本来是给滑动跨边界用的
           }
         }
       }else if(this.state==="press"){
         if(eType==="pressup"){
-          this.setState("off")
+          this.setState("off",e.timeStamp)
         }else if(eType==="panstart"){
-          this.setState('swipe',touchX)
+          this.setState('swipe',e.timeStamp,touchX)
         }
       }else if(this.state==="swipe"){
         if(eType==="panmove"){
-          this.setState('swipe',touchX)
+          this.setState('swipe',e.timeStamp,touchX)
         }else if(eType==="panend"){
           if(this.out.x>this.thresholdW){
-            this.setState('on')
+            this.setState('on',e.timeStamp)
           }else{
-            this.setState('off')
+            this.setState('off',e.timeStamp)
           }
         }else if(eType==="flick"){
           if(e.overallVelocityX>0){
-            this.setState('on')
+            this.setState('on',e.timeStamp)
           }else if(e.overallVelocityX<0){
-            this.setState('off')
+            this.setState('off',e.timeStamp)
           }
         }
       }else if(this.state==="on"){
         if((eType==="panstart")||(eType==="panmove")){
           if(e.target!=this.maskEle)
-            this.setState('swipe',touchX)
-        }else if(eType==="click"){
+            this.setState('swipe',e.timeStamp,touchX)
+        }else if(eType==="click" && e.timeStamp!=this.timeStamp){
           if(e.target===this.maskEle){
-            this.setState('off')
+            this.setState('off',e.timeStamp)
           }
         }else if(eType==="touchstart"){
           if(e.target!=this.maskEle && this.animating){
-            this.setState('swipe',0)//touchX)
+            this.setState('swipe',e.timeStamp,0)//touchX)
           }
         }
       }else{//if on or off is animation to swipe
         console.error('state error'+this.state)
       }
     },
-    setState: function(state,touchX,init=false){
+    setState: function(state,timeStamp,touchX,init=false){
       let map     =this.out.map
       let content =this.out.content
       // console.log("set state",state,this.originX)
+      this.timeStamp=timeStamp
       if(state!=this.state){
         if(state==="on"){
           this.curShow=true
