@@ -16,7 +16,10 @@
     @pressup="touchEvent">
     <div class="drawer-container"
       @click="touchEvent"
-      @touchstart="touchEvent">
+      @touchstart="touchEvent"
+      @mousedown="touchEvent"
+      @touchend="touchEvent"
+      @mouseup="touchEvent">
       <div class="drawer-mask" ref="drawer-mask"
       :style="{backgroundColor : mapBackgroundColor}">
 
@@ -25,9 +28,9 @@
       :style="{width:drawerW+'px'}" @transitionend="animationEvent">
         <slot/>
       </div>
-      <div class="debug" v-if="dbg">
+      <!-- <div class="debug" v-if="dbg">
         a{{dbg.overallVelocityX}}
-      </div>
+      </div> -->
     </div>
   </v-touch>
 </div>
@@ -69,12 +72,13 @@ export default {
       inThreshold:0,
       animating:false,
       updataCompEnable:true,
+      timeStamp:0,
 
       //out
-      // out:{
-      //   animation:false,
-      //   x:0,
-      // },
+      out:{
+        animation:false,
+        x:0,
+      },
 
       //debug
       dbg:{
@@ -146,16 +150,24 @@ export default {
     touchEvent: function(e){
       //flick
       let eType=e.type,touchX=e.deltaX
-      if(eType==="pancancel"){
-        eType="panend"
+      let strMap={
+        "pancancel" :"panend",
+        "mousedown" :"touchstart",
+        "mouseup"   :"panend",
+        "touchend"  :"panend",}
+      if(strMap.hasOwnProperty(eType)){
+        eType=strMap[eType]
       }
       if(eType==="panend" && 
         e.deltaTime<300 && Math.abs(e.overallVelocityX) >0.32){
         eType='flick'
         this.dbg.overallVelocityX=e.overallVelocityX
       }
-      //console.log('val',e.type,this.dbg.overallVelocityX)
-      //console.log('obj',e)
+      console.log('val',e.type,e.timeStamp)//,this.dbg.overallVelocityX)
+      console.log('obj',e)
+      if(eType==="click" && e.timeStamp===this.timeStamp)
+        return
+      this.timeStamp=e.timeStamp
       if(!this.enable || !this.compEnable)//切换过程禁止交互
         return
       if(this.state==="off"){
@@ -200,10 +212,10 @@ export default {
             this.setState('off')
           }
         }else if(eType==="touchstart"){
-            if(e.target!=this.maskEle && this.animating){
-              this.setState('swipe',0)//touchX)
-            }
+          if(e.target!=this.maskEle && this.animating){
+            this.setState('swipe',0)//touchX)
           }
+        }
       }else{//if on or off is animation to swipe
         console.error('state error'+this.state)
       }
@@ -248,7 +260,7 @@ export default {
     },
     setPosition: function(){
       this.maskEle.style.opacity=this.out.x/this.drawerW*this.mapOpacity
-        +(this.dbg.animationOffset?this.dbg.animationOffset:0)
+        +(this.dbg?this.dbg.animationOffset:0)
       this.contentEle.style.left=-this.drawerW+this.out.x+"px"
     },
     setAnimation: function(){
