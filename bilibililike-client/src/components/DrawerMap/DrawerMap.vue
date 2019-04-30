@@ -150,6 +150,7 @@ export default {
     touchEvent: function(e){
       //flick
       let eType=e.type,touchX=e.deltaX
+      let timeStamp=e.srcEvent?e.srcEvent.timeStamp:e.timeStamp
       let strMap={
         "pancancel" :"panend",
         "mousedown" :"touchstart",
@@ -163,54 +164,54 @@ export default {
         eType='flick'
         this.dbg.overallVelocityX=e.overallVelocityX
       }
-      // console.log('val',e.type,e.timeStamp)//,this.dbg.overallVelocityX)
+      // console.log('val',e.type,timeStamp)//,this.dbg.overallVelocityX)
       // console.log('obj',e)
       if(!this.enable || !this.compEnable)//切换过程禁止交互
         return
       if(this.state==="off"){
         if(eType==="press"){
-          this.setState('press',e.timeStamp)
+          this.setState('press',timeStamp)
         }else if(eType==="panstart"){
           if(!this.animating || e.target!=this.maskEle)
-            this.setState('swipe',e.timeStamp,touchX)
+            this.setState('swipe',timeStamp,touchX)
         }else if(eType==="touchstart"){
           if(e.target!=this.maskEle && this.animating){
-            this.setState('swipe',e.timeStamp,0)//touchX)//这个本来是给滑动跨边界用的
+            this.setState('swipe',timeStamp,0)//touchX)//这个本来是给滑动跨边界用的
           }
         }
       }else if(this.state==="press"){
         if(eType==="pressup"){
-          this.setState("off",e.timeStamp)
+          this.setState("off",timeStamp)
         }else if(eType==="panstart"){
-          this.setState('swipe',e.timeStamp,touchX)
+          this.setState('swipe',timeStamp,touchX)
         }
       }else if(this.state==="swipe"){
         if(eType==="panmove"){
-          this.setState('swipe',e.timeStamp,touchX)
+          this.setState('swipe',timeStamp,touchX)
         }else if(eType==="panend"){
           if(this.out.x>this.thresholdW){
-            this.setState('on',e.timeStamp)
+            this.setState('on',timeStamp)
           }else{
-            this.setState('off',e.timeStamp)
+            this.setState('off',timeStamp)
           }
         }else if(eType==="flick"){
           if(e.overallVelocityX>0){
-            this.setState('on',e.timeStamp)
+            this.setState('on',timeStamp)
           }else if(e.overallVelocityX<0){
-            this.setState('off',e.timeStamp)
+            this.setState('off',timeStamp)
           }
         }
       }else if(this.state==="on"){
         if((eType==="panstart")||(eType==="panmove")){
           if(e.target!=this.maskEle)
-            this.setState('swipe',e.timeStamp,touchX)
-        }else if(eType==="click" && e.timeStamp!=this.timeStamp){
+            this.setState('swipe',timeStamp,touchX)
+        }else if(eType==="click" && timeStamp!=this.timeStamp){
           if(e.target===this.maskEle){
-            this.setState('off',e.timeStamp)
+            this.setState('off',timeStamp)
           }
         }else if(eType==="touchstart"){
           if(e.target!=this.maskEle && this.animating){
-            this.setState('swipe',e.timeStamp,0)//touchX)
+            this.setState('swipe',timeStamp,0)//touchX)
           }
         }
       }else{//if on or off is animation to swipe
@@ -302,8 +303,8 @@ export default {
 
 <style lang="stylus"  rel="stylesheet/stylus">
 .component-drawer-map
-  *
-    border 0.2px solid #088
+  // *
+  //   border 0.2px solid #088
   position fixed
   top 0
   left 0
