@@ -134,7 +134,7 @@ export default {
     //"$route.fullPath"
     enable:function (to, from) {
       //如果on 或者动画状态 动画结束同步 否则立即同步
-      if(this.animating || this.state==="on"){
+      if(this.compEnable &&( this.animating || this.state==="on")){
         this.updataCompEnable=true
       }else{
         this.compEnable=to
@@ -232,7 +232,7 @@ export default {
     setState: function(state,timeStamp,touchX,init=false){
       let map     =this.out.map
       let content =this.out.content
-      this.dbgPut("set state",state,this.originX)
+      // this.dbgPut("set state",state,this.originX)
       this.timeStamp=timeStamp
       if(state!=this.state){
         if(state==="on"){
