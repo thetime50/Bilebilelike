@@ -1,6 +1,6 @@
 <template>
 <div class="component-left-menu-drawer">
-  <DrawerMap :enable="getLeftMenuEnable" :show.sync="show" time="2s">
+  <DrawerMap :enable="getLeftMenuEnable" :show.sync="show">
     <left-menu/>
   </DrawerMap>
 </div>
@@ -19,8 +19,11 @@ export default {
   },
   data () {
     return {
-      show:false,
+      show:true,
     };
+  },
+  created () {
+    this.setLeftMenuShow(this.show)
   },
   watch: {
     show : function(newVal, oldVal){

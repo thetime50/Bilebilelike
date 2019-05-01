@@ -16,6 +16,7 @@ import Game from "../pages/Game/Game.vue"
 import OfflineCache from "../pages/OfflineCache/OfflineCache.vue"
 import Message from"../pages/Message/Message.vue"
 import Search from"../pages/Search/Search.vue"
+import DefPage from"../pages/DefPage/DefPage.vue"
 
 
 Vue.use(Router)
@@ -76,6 +77,12 @@ export default new Router({
     {
       path: '/search',
       component: Search,
+      meta: {
+      }
+    },
+    {
+      path: '/defpage',
+      component: DefPage,
       meta: {
       }
     },

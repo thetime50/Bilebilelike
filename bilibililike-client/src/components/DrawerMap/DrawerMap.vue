@@ -29,7 +29,8 @@
         <slot/>
       </div>
       <!-- <div class="debug" v-if="dbg">
-        a{{dbg.overallVelocityX}}
+        <p>a{{dbg.overallVelocityX}} </p>
+        <p v-html="dbg.str"></p>
       </div> -->
     </div>
   </v-touch>
@@ -73,6 +74,7 @@ export default {
       animating:false,
       updataCompEnable:true,
       timeStamp:0,
+      moved:false,
 
       //out
       out:{
@@ -84,11 +86,13 @@ export default {
       dbg:{
         overallVelocityX:0,
         animationOffset:0.1,
+        str:"",
       }
     };
   },
   created () {
     this.compEnable=this.enable
+    this.curShow=this.show
     this.drawerW=tool.length2px(this.drawerWidth)
     if(!tool.isNumber(this.drawerW))
       this.drawerW=tool.length2px("18rem")
@@ -142,7 +146,7 @@ export default {
   methods:{
     componentRootEvent: function(e){
       //stop
-      // console.log("componentRootEvent",event.type)
+      // this.dbgPut("componentRootEvent",event.type)
       if(this.eventStop){
         event.stopPropagation() 
       }
@@ -154,8 +158,7 @@ export default {
       let strMap={
         "pancancel" :"panend",
         "mousedown" :"touchstart",
-        "mouseup"   :"panend",
-        "touchend"  :"panend",}
+        "mouseup"   :"touchend",}
       if(strMap.hasOwnProperty(eType)){
         eType=strMap[eType]
       }
@@ -164,8 +167,8 @@ export default {
         eType='flick'
         this.dbg.overallVelocityX=e.overallVelocityX
       }
-      // console.log('val',e.type,timeStamp)//,this.dbg.overallVelocityX)
-      // console.log('obj',e)
+      // this.dbgPut('val',e.type,eType,this.moved)//,this.dbg.overallVelocityX)
+      // this.dbgPut('obj',e)
       if(!this.enable || !this.compEnable)//切换过程禁止交互
         return
       if(this.state==="off"){
@@ -180,7 +183,7 @@ export default {
           }
         }
       }else if(this.state==="press"){
-        if(eType==="pressup"){
+        if(eType==="pressup"||eType==="touchend"){
           this.setState("off",timeStamp)
         }else if(eType==="panstart"){
           this.setState('swipe',timeStamp,touchX)
@@ -193,6 +196,14 @@ export default {
             this.setState('on',timeStamp)
           }else{
             this.setState('off',timeStamp)
+          }
+        }else if(eType==="touchend"){
+          if(!this.moved){
+            if(this.out.x>this.thresholdW){
+              this.setState('on',timeStamp)
+            }else{
+              this.setState('off',timeStamp)
+            }
           }
         }else if(eType==="flick"){
           if(e.overallVelocityX>0){
@@ -221,7 +232,7 @@ export default {
     setState: function(state,timeStamp,touchX,init=false){
       let map     =this.out.map
       let content =this.out.content
-      // console.log("set state",state,this.originX)
+      this.dbgPut("set state",state,this.originX)
       this.timeStamp=timeStamp
       if(state!=this.state){
         if(state==="on"){
@@ -240,9 +251,11 @@ export default {
           this.out.animation =true
           this.out.x         =0
         }
+        this.moved=false
       }
       if(state==="swipe"&&typeof(touchX)==="number"){
-        this.out.x= (this.deltaX(touchX)+this.originX<this.drawerW) ? 
+        this.moved = this.moved||(this.deltaX(touchX)!=0)
+        this.out.x = (this.deltaX(touchX)+this.originX<this.drawerW) ? 
           this.deltaX(touchX)+this.originX : this.drawerW
       }
       this.state=state
@@ -296,6 +309,26 @@ export default {
     },
     setMaping: function(sw){
       this.maskEle.style.width =sw?"100%":this.mapDisplayW+"px"
+    },
+
+    dbgPut(){
+      console.log(...arguments)
+      if(!this.dbg)
+        return
+      this.dbg.str+=
+        [...arguments].reduce((total, num)=> {return total+" "+num}) + "<br>"
+
+      let isBr=/<br>/igm
+      let cnt=this.dbg.str.match(isBr).length
+      let search
+      console.log(cnt)
+      if(cnt>15){
+        for(let i=15;i<cnt;i++){
+          search=isBr.exec(this.dbg.str)
+        }
+        console.log(search,search[0].index)
+        this.dbg.str=this.dbg.str.slice(search.index+4)
+      }
     }
   },
 }
@@ -320,6 +353,7 @@ export default {
       position fixed
       color #888
       top 20%
+      text-align left
     .drawer-mask
       position fixed
       top 0
