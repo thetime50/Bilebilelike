@@ -140,7 +140,8 @@ export default {
         this.compEnable=to
         this.updataCompEnable=false
       }
-      this.curShow=false
+      if(!to)
+        this.curShow=false
     }
   },
   methods:{
