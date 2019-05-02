@@ -1,6 +1,13 @@
 <template>
 <div class="component-left-menu">
   <!-- scroll -->
+  <div class="left-menu-scroll" ref="left-menu-scroll">
+    <div class="scroll-container">
+      <div v-for="(item,index) in mainMenu" :key="index">
+        {{item}}
+      </div>
+    </div>
+  </div>
   <div class="menu-footer">
     <div class="menu-footer-item" v-for="(item,index) in footerItem" :key="index">
       <router-link :to="item.path?item.path:{path:'/defpage',query:{text:item.text}}">
@@ -17,17 +24,25 @@
 </template>
 
 <script>
+import BScroll from "better-scroll"
+
 export default {
   name: "LeftMenu",
   data () {
     return {
+      mainMenu:"123fsagwgxcfd".repeat(3),
       footerItem:[
         {path:"" ,icon:"icon-shezhi",text:"设置"},
         {path:"" ,icon:"icon-zhuti",text:"主题"},
         {path:"" ,icon:"icon-yejianmoshi",text:"夜间"},
       ],
     };
-  }
+  },
+  mounted () {
+    this.$nextTick(() =>{
+      this.scroll = new BScroll(this.$refs["left-menu-scroll"],{ click: true})
+    })
+  },
 }
 </script>
 
@@ -37,6 +52,9 @@ export default {
 .component-left-menu
   *
     border 0.2px solid #088
+  .left-menu-scroll
+    height 20rem
+    overflow hidden
   .menu-footer
     position absolute
     bottom 0

@@ -53,7 +53,7 @@ export default {
     time               :{type: String ,default:"0.6s"}, //动画时长
     velocity           :{type: Boolean,default:false},   //使用速度模式 动画时间与滑动距离有关
     zIndex             :{type: Number },//这个可能没什么用 业务被父级DOM控制
-    eventStop          :{type: Boolean,default:true},   //true 阻止事件冒泡
+    eventStop          :{type: Boolean,default:false},   //true 阻止事件冒泡
   },
   data () {
     return {
