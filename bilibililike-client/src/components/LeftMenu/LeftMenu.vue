@@ -114,13 +114,17 @@ export default {
 @import "../../assets/style/index.styl"
 
 .component-left-menu
-  // *
-  //   border 0.2px solid #088
+  *
+    border 0.2px solid #088
   display grid
   grid-template-columns 1fr
   grid-template-rows 1fr 4rem
   place-items stretch stretch
   height 100%
+  .item-icon *
+    color $def-font-color
+  .item-text
+    color $def-char-color
   .left-menu-scroll
     overflow hidden
     .left-menu
@@ -132,41 +136,43 @@ export default {
         height 5rem
       .left-menu-groups
         .left-menu-group
+          hr
+            background-color $def-line-color
+            height 1px
+            border 0
           .left-menu-item
-            display table
+            display grid
+            place-items center stretch
             height 3.5rem
-            width 100%
             .item-container
-              position relative
-              display table-cell
-              vertical-align middle
-              text-align left
+              display grid
+              grid-template-columns 4.2rem 1fr
+              grid-template-rows 1fr
+              justify-items center start
+              align-items center
+              height 2.8rem
               .item-icon
-                display inline-block
-                position absolute
-                left 1.5rem
                 .iconfont
-                  font-size 1.4rem
+                  font-size 1.5rem
               .item-text
-                display inline-block
-                position absolute
-                left 4rem
                 font-size 1.1rem
+                margin-left 0.8rem
+                text-align left
   .menu-footer
     display grid
     grid-template-columns repeat(3,1fr)
-    grid-template-rows 1rm
+    grid-template-rows 1fr
     place-items center center
     background-color #fff
+    border-top 1px solid $def-line-color
     .menu-footer-item
-      color $def-color
       .item-container
         .item-icon
           display inline-block
           vertical-align: middle
           width 2rem
           height 2rem
-          border 1px solid $def-color
+          border 1px solid $def-font-color
           border-radius 50%
           i
             display: inline-block

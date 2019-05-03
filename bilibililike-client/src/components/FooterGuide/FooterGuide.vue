@@ -40,7 +40,7 @@ export default {
 @import "../../assets/style/index.styl"
 .footer_guide
   // 顶部有白色的边框
-  top-border-1px(#dcdcdc)
+  top-border-1px($def-line-color)
   position fixed
   z-index 100
   left 0
