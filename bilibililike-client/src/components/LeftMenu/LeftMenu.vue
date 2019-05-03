@@ -114,8 +114,8 @@ export default {
 @import "../../assets/style/index.styl"
 
 .component-left-menu
-  *
-    border 0.2px solid #088
+  // *
+  //   border 0.2px solid #088
   display grid
   grid-template-columns 1fr
   grid-template-rows 1fr 4rem
