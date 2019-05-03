@@ -54,6 +54,7 @@ export default {
     velocity           :{type: Boolean,default:false},   //使用速度模式 动画时间与滑动距离有关
     zIndex             :{type: Number },//这个可能没什么用 业务被父级DOM控制
     eventStop          :{type: Boolean,default:false},   //true 阻止事件冒泡
+    directionLock      :{type: Boolean,default:false},   //true 锁定起始方向
   },
   data () {
     return {
@@ -74,7 +75,8 @@ export default {
       animating:false,
       updataCompEnable:true,
       timeStamp:0,
-      moved:false,
+      moved:false,//在swipe后移动过
+      moving:false,//在动画或移动过程中
 
       //out
       out:{
@@ -142,7 +144,13 @@ export default {
       }
       if(!to)
         this.curShow=false
-    }
+    },
+    moving:function (to, from) {
+      if(to)
+        this.$emit('drawerMapEvent', {type:"movestart"})
+      else
+        this.$emit('drawerMapEvent', {type:"moveend"})
+    },
   },
   methods:{
     componentRootEvent: function(e){
@@ -168,7 +176,7 @@ export default {
         eType='flick'
         this.dbg.overallVelocityX=e.overallVelocityX
       }
-      // this.dbgPut('val',e.type,eType,this.moved)//,this.dbg.overallVelocityX)
+      // this.dbgPut('val',e.type,eType,this.moved,e.deltaX,e.deltaY)//,this.dbg.overallVelocityX)
       // this.dbgPut('obj',e)
       if(!this.enable || !this.compEnable)//切换过程禁止交互
         return
@@ -214,9 +222,10 @@ export default {
           }
         }
       }else if(this.state==="on"){
-        if((eType==="panstart")||(eType==="panmove")){
-          if(e.target!=this.maskEle)
-            this.setState('swipe',timeStamp,touchX)
+        if((eType==="panstart")){//||(eType==="panmove")){
+          if(!this.directionLock||Math.abs(e.deltaX)>Math.abs(e.deltaY))//未锁定或者deltaX更大
+            if(e.target!=this.maskEle)
+              this.setState('swipe',timeStamp,touchX)
         }else if(eType==="click" && timeStamp!=this.timeStamp){
           if(e.target===this.maskEle){
             this.setState('off',timeStamp)
@@ -298,7 +307,7 @@ export default {
     },
     animationEvent: function(e){
       this.animating=e.type.indexOf("end")<0?true:false
-      if(e.type.indexOf("end")>=0&&this.state==="off"){
+      if(!this.animating&&this.state==="off"){
         this.setMaping(false)
         if(this.updataCompEnable){
           this.compEnable=this.enable
@@ -307,6 +316,7 @@ export default {
       }else{
         this.setMaping(true)
       }
+      this.moving=this.animating||this.state==="swipe"
     },
     setMaping: function(sw){
       this.maskEle.style.width =sw?"100%":this.mapDisplayW+"px"
@@ -322,12 +332,10 @@ export default {
       let isBr=/<br>/igm
       let cnt=this.dbg.str.match(isBr).length
       let search
-      console.log(cnt)
       if(cnt>15){
         for(let i=15;i<cnt;i++){
           search=isBr.exec(this.dbg.str)
         }
-        console.log(search,search[0].index)
         this.dbg.str=this.dbg.str.slice(search.index+4)
       }
     }

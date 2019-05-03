@@ -28,19 +28,39 @@ import BScroll from "better-scroll"
 
 export default {
   name: "LeftMenu",
+  props: {
+    scrollEn:{type: Boolean,default:true},
+  },
   data () {
     return {
+      //data
       mainMenu:"123fsagwgxcfd".repeat(3),
       footerItem:[
         {path:"" ,icon:"icon-shezhi",text:"设置"},
         {path:"" ,icon:"icon-zhuti",text:"主题"},
         {path:"" ,icon:"icon-yejianmoshi",text:"夜间"},
       ],
+
+      //state
+      scrolling:false,
     };
+  },
+  watch: {
+    scrollEn: function (to, from) {
+      if(to)
+        this.scroll.enable()
+      else
+        this.scroll.disable()
+    }
   },
   mounted () {
     this.$nextTick(() =>{
-      this.scroll = new BScroll(this.$refs["left-menu-scroll"],{ click: true})
+      this.scroll = new BScroll(this.$refs["left-menu-scroll"],{ 
+        click: true,
+        bounce:false,
+        bindToWrapper:true,
+        // stopPropagation:true,
+      })
     })
   },
 }

@@ -1,7 +1,8 @@
 <template>
 <div class="component-left-menu-drawer">
-  <DrawerMap :enable="getLeftMenuEnable" :show.sync="show">
-    <left-menu/>
+  <DrawerMap :enable="getLeftMenuEnable" :show.sync="show" 
+    :directionLock="true" @drawerMapEvent="DMEvent">
+    <left-menu :scrollEn="scrollEn"/>
   </DrawerMap>
 </div>
 </template>
@@ -20,6 +21,7 @@ export default {
   data () {
     return {
       show:true,
+      scrollEn:true,
     };
   },
   created () {
@@ -40,6 +42,13 @@ export default {
     })
   },
   methods: {
+    DMEvent(e){
+      if(e.type==="movestart"){
+        this.scrollEn=false
+      }else if(e.type==="moveend"){
+        this.scrollEn=true
+      }
+    },
     ...mapMutations('localState', {
       setLeftMenuShow: "setLeftMenuState_show"
     })
