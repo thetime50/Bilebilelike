@@ -4,13 +4,23 @@
   <div class="left-menu-scroll" ref="left-menu-scroll">
     <div class="left-menu">
       <div class="left-menu-header">
+        <img src="../../assets/imgs/bili_drawerbg_logined.png" alt="" class="backimg">
         header
       </div>
       <div class="left-menu-bigvip">
-        大会员
+        <div class="item-icon">
+          <i class="iconfont icon-wodedahuiyuan"></i>
+        </div>
       </div>
       <div class="left-menu-wrapper">
-        wrapper
+        <div class="menu-wrapper-item" v-for="(item,index) in wrapperItem" :key="index">
+            <div class="item-container" @click="pushItem(item)">
+              <div class="item-number">
+                {{item.number}}
+              </div>
+              <div class="item-text">{{item.text}}</div>
+            </div>
+        </div>
       </div>
       <div class="left-menu-groups">
         <div class="left-menu-group" v-for="(group,gindex) in mainMenuGroup" :key="gindex">
@@ -53,6 +63,11 @@ export default {
   data () {
     return {
       //data
+      wrapperItem:[
+          {text:"动态"  ,number:6,    path:""},
+          {text:"关注"  ,number:345,  path:""},
+          {text:"粉丝"  ,number:12,   path:""},
+      ],
       mainMenuGroup:[
         [
           {text:"首页"      ,icon:"icon-zhuye",path:""},
@@ -129,11 +144,41 @@ export default {
     overflow hidden
     .left-menu
       .left-menu-header
+        position relative
+        background-color $blbl-pink
         height 9rem
+        overflow hidden
+        .backimg
+          position absolute
+          filter drop-shadow(1000px 0 0 #f4577d)//#f8668d)
+          border-right: 1px solid transparent
+          height 95%
+          bottom 0
+          right 1000px - 1px
       .left-menu-bigvip
         height 3rem
       .left-menu-wrapper
+        display grid
+        grid-template-columns repeat(3,1fr)
+        grid-template-rows 1fr
+        place-items stretch stretch
+        border-top 1px solid $def-line-color
+        border-bottom 1px solid $def-line-color
         height 5rem
+        .menu-wrapper-item
+          .item-container
+            width 100%
+            height 100%
+            *
+              margin 0.6rem
+              text-align center
+            .item-text
+              font-size 0.95rem
+            .item-number
+              position relative
+              margin-top 1.6rem
+              left -0.1rem
+              font-size 1.1rem
       .left-menu-groups
         .left-menu-group
           hr
