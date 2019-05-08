@@ -17,6 +17,7 @@ import OfflineCache from "../pages/OfflineCache/OfflineCache.vue"
 import Message from"../pages/Message/Message.vue"
 import Search from"../pages/Search/Search.vue"
 import DefPage from"../pages/DefPage/DefPage.vue"
+import Login from"../pages/Login/Login.vue"
 
 
 Vue.use(Router)
@@ -83,6 +84,12 @@ export default new Router({
     {
       path: '/defpage',
       component: DefPage,
+      meta: {
+      }
+    },
+    {
+      path: '/login',
+      component: Login,
       meta: {
       }
     },

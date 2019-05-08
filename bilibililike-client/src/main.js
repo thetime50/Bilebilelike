@@ -12,6 +12,7 @@ import vueLazyload from 'vue-lazyload'
 import loadingImg from './assets/imgs/sobot_dialog_load_1.png'
 import errorImg from './assets/imgs/img_tips_error_banner_tv.png'
 // import loadingImg from './assets/imgs/loading.gif'
+import './mock/mockServer.js'
 
 Vue.config.productionTip = false
 

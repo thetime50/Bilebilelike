@@ -1,7 +1,7 @@
 <template>
 <div class="component-left-menu-drawer">
   <DrawerMap :enable="getLeftMenuEnable" :show.sync="show" 
-    :directionLock="true" @drawerMapEvent="DMEvent">
+    :directionLock="true" :velocity="true" @drawerMapEvent="DMEvent">
     <left-menu :scrollEn="scrollEn"/>
   </DrawerMap>
 </div>
@@ -20,7 +20,7 @@ export default {
   },
   data () {
     return {
-      show:true,
+      show:false,
       scrollEn:true,
     };
   },
