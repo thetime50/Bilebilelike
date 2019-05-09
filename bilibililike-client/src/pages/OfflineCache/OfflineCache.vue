@@ -43,11 +43,6 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
-  @keyframes animated_div {
-    0%		{transform: rotate(0deg);}
-    100%		{transform: rotate(360deg);}
-  }
-
   .page-offline-cache
     .header-slot-lc
       padding-left 1.5rem
@@ -60,14 +55,6 @@ export default {
         line-height @height
         img
           vertical-align middle
-          &[lazy=error]//[lazy=loading]//居中
-            width 2.5rem
-            animation:animated_div 2s infinite linear;
-            -moz-animation:animated_div 2s infinite linear;
-            -webkit-animation:animated_div 2s infinite linear;
-            -o-animation:animated_div 2s infinite linear;
-          // &[lazy=error]//居中
-          //   //
           &[lazy=loaded]
             height 100%
       p

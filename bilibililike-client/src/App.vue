@@ -43,3 +43,22 @@ export default {
   margin-top: 0;
 }
 </style>
+<style lang="stylus"  rel="stylesheet/stylus">
+@keyframes animated_div {
+  0%		{transform: rotate(0deg);}
+  100%		{transform: rotate(360deg);}
+}
+
+img
+  &[lazy=loading]//居中
+    width 2.5rem
+    animation:animated_div 2s infinite linear;
+    -moz-animation:animated_div 2s infinite linear;
+    -webkit-animation:animated_div 2s infinite linear;
+    -o-animation:animated_div 2s infinite linear;
+  // &[lazy=error]//居中
+  //   //
+  // &[lazy=loaded]
+  //   //
+</style>
+

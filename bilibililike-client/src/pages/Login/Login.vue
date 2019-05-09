@@ -36,7 +36,8 @@
           </section>
           <section class="login_message">
             <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
-            <img class="get_verification" src="" alt="captcha" @click="getCaptcha" ref="captcha">
+            <!-- <img class="get_verification" src="" alt="captcha" @click="getCaptcha" ref="captcha"> -->
+            <img class="get_verification" v-lazy="captchaSrc" :key="captchaSrc" @click="refreshCaptcha" ref="captcha">
           </section>
         </section>
       </div>
@@ -63,11 +64,11 @@ export default {
       captcha: '',
       // alertText: '',
       // alertShow: false,
+      captchaSrc:''
     };
   },
-  async mounted () {
+  mounted () {
     this.getUserInfo()
-    this.$refs.captcha.src = await reqCaptcha()
   },
   computed: {
     rightPhone () {
@@ -134,13 +135,19 @@ export default {
         this.$store.dispatch('recordUser', user)//获取user
         this.$router.replace('/profile')
       } else {
-        this.getCaptcha()//更新图片验证码
+        this.refreshCaptcha()//更新图片验证码
         const msg = result.msg
         // this.showAlert(msg)
       }
     },
+    // async getCaptcha () {
+    //   this.$refs.captcha.src = await reqCaptcha()
+    // },
     async getCaptcha () {
-      this.$refs.captcha.src = await reqCaptcha()
+      return await reqCaptcha()
+    },
+    async refreshCaptcha () {
+      this.captchaSrc = await reqCaptcha()
     },
     ...mapActions(["getUserInfo"]),
   }
