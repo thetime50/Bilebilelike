@@ -12,7 +12,7 @@ export const reqPwdLogin = ({name, pwd, captcha}) => ajax(BASE_URL + '/login_pwd
 /**
  * 获取短信验证码
  */
-export const reqSendCode = phone => ajax(BASE_URL + '/sendcode', {phone})
+export const reqSendCode = phone => ajax(BASE_URL + '/sendcode', {phone}, 'POST')
 /**
  * 手机号验证码登录
  */
@@ -25,3 +25,7 @@ export const reqUserInfo = () => ajax(BASE_URL + '/userinfo')
  * 请求登出
  */
 export const reqLogout = () => ajax(BASE_URL + '/logout')
+
+
+
+export const reqCaptcha = () => ajax(BASE_URL + '/captcha?time=' + {time:Date.now()})
