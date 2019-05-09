@@ -38,6 +38,7 @@
             <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
             <!-- <img class="get_verification" src="" alt="captcha" @click="getCaptcha" ref="captcha"> -->
             <img class="get_verification" v-lazy="captchaSrc" :key="captchaSrc" @click="refreshCaptcha" ref="captcha">
+            <div>点击刷新</div>
           </section>
         </section>
       </div>
@@ -66,6 +67,9 @@ export default {
       // alertShow: false,
       captchaSrc:''
     };
+  },
+  created () {
+    this.refreshCaptcha()
   },
   mounted () {
     this.getUserInfo()
