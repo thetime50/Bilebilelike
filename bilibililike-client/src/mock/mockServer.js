@@ -1,5 +1,8 @@
-import Mock from "mockjs"
+// import mockDb from "./mockDb.js"
 import data from "./data.json"
 
-Mock.mock("/userinfo",{code:0, data: data.userinfo})
-  
+export default{
+  userinfo(){
+    return data.userinfo
+  }
+}
