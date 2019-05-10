@@ -30,6 +30,18 @@ export default new Vuex.Store({
           state.leftMenuState.show=sh
         },
       },
+    },
+
+    dbgState:{
+      namespaced:true,
+      state:{
+        phonMsg:"",
+      },
+      mutations:{
+        setpPhonMsg (state,msg){
+          state.phonMsg=msg
+        },
+      },
     }
   }
 })

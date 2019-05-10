@@ -2,18 +2,19 @@ import Mock from "mockjs"
 import mockServer from "./mockServer.js"
 
 // // 账号密码登录
-// Mock.mock("/login_pwd",mockServer.userinfo(options))
-// // 获取短信验证码
-// Mock.mock("/sendcode",mockServer.userinfo(options))
+// Mock.mock("/login_pwd",mockServer.userinfo)
+// 获取短信验证码
+Mock.mock("/sendcode","post",mockServer.sendcode)
 // // 手机号验证码登录
-// Mock.mock("/login_sms",mockServer.userinfo(options))
+Mock.mock("/login_sms",mockServer.login_sms)
 // 获取用户信息(根据会话)
 Mock.mock("/userinfo",mockServer.userinfo)
 // // 请求登出
-// Mock.mock("/logout",mockServer.userinfo(options))
+// Mock.mock("/logout",mockServer.userinfo)
 
 Mock.mock(/^\/captcha($|(\?))/,mockServer.captcha)
 
+// Mock.mock(/.*/,mockServer.unknownPath)
 
 
 // export const reqPwdLogin = ({name, pwd, captcha}) => ajax(BASE_URL + '/login_pwd', {name, pwd, captcha}, 'POST')

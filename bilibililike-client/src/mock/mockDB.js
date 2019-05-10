@@ -41,6 +41,7 @@ function setCookie(c_name,value,time,path){
     (path ? "": ";path="+path)
 }
 function getCookie(c_name){
+  let c_start,c_end
   if (document.cookie.length>0){
     c_start=document.cookie.indexOf(c_name + "=")
     if (c_start!=-1){ 
@@ -85,7 +86,7 @@ function mockDBGetCookie(name){
   let temp=getCookie(COOKIE_NAME)
   temp=JSON.parse(temp?temp:"{}")
   if(name)
-    return objectGetProp(temp,name)
+    return objectGetProp(temp,name)[0]
   else
     return temp
 }
@@ -107,13 +108,10 @@ function mockDBSet(name,value,type="session",time){
 }
 
 export default{
-  save(data,type="data"){
-
-    const TYPES=["data","session"]
-    if(TYPES.indexOf(type)!=true)
-      return
-    
-
+  get(name,type="session"){
+    return mockDBGet(name,type)
   },
-
+  set(name,value,type="session",time){
+    mockDBSet(name,value,type,time)
+  },
 }

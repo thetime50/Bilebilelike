@@ -1,6 +1,10 @@
 <template>
 <div class="component-login">
   {{userInfo}}
+  <div class="dbg-phonmsg">
+    {{phonMsg}}
+    {{dbgStr}}
+  </div>
   <div class="login_header">
     <h2 class="login_logo">BiliBili</h2>
     <div class="login_header_title">
@@ -17,7 +21,7 @@
             @click.prevent="getCode">{{computeTime>0 ? `(${computeTime}s)已发送` : '获取验证码'}}</button>
         </section>
         <section class="login_verification">
-          <input type="tel" maxlength="8" placeholder="验证码" v-model="code">
+          <input type="tel" maxlength="4" placeholder="验证码" v-model="code">
         </section>
       </div>
 
@@ -55,7 +59,7 @@ export default {
   name: "Login",
   data () {
     return {
-      loginWay: false,
+      loginWay: true,
       phone: '',
       computeTime: 0,
       showPwd: false,
@@ -65,7 +69,9 @@ export default {
       captcha: '',
       // alertText: '',
       // alertShow: false,
-      captchaSrc:''
+      captchaSrc:'',
+
+      dbgStr:"",
     };
   },
   created () {
@@ -79,11 +85,12 @@ export default {
       return /^1\d{10}$/.test(this.phone)
     },
     ...mapState(["userInfo"]),
+    ...mapState("dbgState",["phonMsg"]),
   },
   methods: {
     async getCode () {
       if (!this.computeTime) {
-        this.computeTime = 30
+        this.computeTime = 5
         this.intervalId = setInterval(() => {
           this.computeTime--
           if (this.computeTime <= 0) {
@@ -108,7 +115,7 @@ export default {
         if (!this.rightPhone) {
           // this.showAlert('请检查手机号')
           return
-        } else if (!/^\d{6}$/.test(code)) {
+        } else if (!/^\d{4}$/.test(code)) {
           // this.showAlert('验证必须是6位数字')
           return
         }
@@ -129,19 +136,21 @@ export default {
       }
 
       if (result.code === 0) {//登录成功
-        const user = result.data
+        // const user = result.data
         // 停止计时
         if (this.computeTime) {
           this.computeTime = 0
           clearInterval(this.intervalId)
           this.intervalId = undefined
         }
-        this.$store.dispatch('recordUser', user)//获取user
-        this.$router.replace('/profile')
+        // this.$store.dispatch('recordUser', user)//获取user
+        // this.$router.replace('/profile')
+        this.dbgStr="登录成功"
       } else {
         this.refreshCaptcha()//更新图片验证码
-        const msg = result.msg
+        // const msg = result.msg
         // this.showAlert(msg)
+        this.dbgStr="登录失败"
       }
     },
     // async getCaptcha () {
