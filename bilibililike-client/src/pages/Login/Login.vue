@@ -2,7 +2,6 @@
 <div class="component-login">
   {{userInfo}}
   <div class="dbg-phonmsg">
-    {{phonMsg}}
     {{dbgStr}}
   </div>
   <div class="login_header">
@@ -82,7 +81,6 @@ export default {
       return /^1\d{10}$/.test(this.phone)
     },
     ...mapState(["userInfo"]),
-    ...mapState("dbgState",["phonMsg"]),
   },
   methods: {
     async getCode () {

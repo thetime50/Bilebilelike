@@ -2,6 +2,7 @@
   <div id="app">
     <!-- <p style="color : #fb7299 ; font-size : 25px"><b>Hello Bilibililike </b></p>
     <div><i class="iconfont icon-pindao" style="font-size:100px;color:#fb7299"></i></div> -->
+    <DbgMsg/>
     <left-menu-drawer></left-menu-drawer>
     <router-view/>
     <FooterGuide v-show="$route.meta.showFooter"/>
@@ -12,12 +13,14 @@
 import {mapMutations} from "vuex"
 import LeftMenuDrawer from "./components/LeftMenuDrawer/LeftMenuDrawer.vue"
 import FooterGuide from "./components/FooterGuide/FooterGuide.vue"
+import DbgMsg from "./components/DbgMsg/DbgMsg.vue"
 
 export default {
   name: 'App',
   components: {
     LeftMenuDrawer,
-    FooterGuide
+    FooterGuide,
+    DbgMsg,
   },
   watch: {
     "$route.fullPath":function(to, from){

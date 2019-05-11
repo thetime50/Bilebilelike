@@ -38,7 +38,7 @@ export default{
     let code=Random.string('number',4)
     let phone=JSON.parse(options.body).phone
     mockDb.set("login_sms",{phone:phone,code:code})
-    store.commit('dbgState/setpPhonMsg', '验证码：'+code)
+    store.commit('dbgState/setpPhonMsg',code)
     return {code: 0}
   },
   login_sms(options){
