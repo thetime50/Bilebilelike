@@ -13,6 +13,7 @@ import loadingImg from './assets/imgs/sobot_dialog_load_1.png'
 import errorImg from './assets/imgs/img_tips_error_banner_tv.png'
 // import loadingImg from './assets/imgs/loading.gif'
 import './mock'
+import {mapState,mapActions} from "vuex"
 
 Vue.config.productionTip = false
 
@@ -26,11 +27,29 @@ Vue.use(vueLazyload, {
   // throttleWait:4000000
 })
 
+router.beforeEach((to, from, next) => {
+  let isLogin = false//store.state.isLogin
+  let redirectPage=['/mypage']
+  if (!isLogin && redirectPage.includes(to.path)) {
+      return next({path: '/login' })
+  }
+  next()
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  created () {
+    this.getUserInfo()
+  },
+  computed: {
+    ...mapState(["userInfo"]),
+  },
+  methods: {
+    ...mapActions(["getUserInfo"]),
+  },
 })

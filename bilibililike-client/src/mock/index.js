@@ -1,8 +1,8 @@
 import Mock from "mockjs"
 import mockServer from "./mockServer.js"
 
-// // 账号密码登录
-// Mock.mock("/login_pwd",mockServer.userinfo)
+// 账号密码登录
+Mock.mock("/login_pwd",mockServer.login_pwd)
 // 获取短信验证码
 Mock.mock("/sendcode","post",mockServer.sendcode)
 // // 手机号验证码登录

@@ -1,5 +1,12 @@
 {
-  "userinfo":{
-    "name":"@name()"
-  }
+  "users":[
+    {
+      "_id":"5a9cd9c6ad5b2d34d42b385d",
+      "name":"cxk",
+      "phone":"11111111111",
+      "pwd":"666233",
+      "headImg":"",
+      "description":"练习2年半 喜欢唱跳REP篮球"
+    }
+  ]
 }

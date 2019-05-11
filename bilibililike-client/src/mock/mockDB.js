@@ -99,12 +99,12 @@ function mockDBSetCookie(name,value,time){
 function mockDBGet(name,type="session"){
   if(!MOCKDB_TYPE.includes(type))
     return
-  return mockDBGetCookie(type+"."+name)
+  return mockDBGetCookie(type+(name? "."+name : ""))
 }
 function mockDBSet(name,value,type="session",time){
   if(!MOCKDB_TYPE.includes(type))
     return
-  mockDBSetCookie(type+"."+name,value,time)
+  mockDBSetCookie(type+(name? "."+name : ""),value,time)
 }
 
 export default{

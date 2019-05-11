@@ -6,26 +6,94 @@ import store from '@/store'
 
 var Random=Mock.Random
 export default{
+  login_pwd(options){
+    let captcha=mockDb.get("captcha")
+    let loginInfo=JSON.parse(options.body)
+    let users=mockDb.get("users","db")
+    let i=0,userCheck=false
+    for(i=0;i<users.length;i++){
+      if(users[i].name==loginInfo.name && users[i].pwd==loginInfo.pwd){
+        userCheck=true
+        break
+      }
+    }
+    if(loginInfo.captcha==captcha && userCheck){
+      mockDb.set("user",users[i])
+      return {
+        "code": 0,
+        "data": {
+          "_id": users[i]._id,
+          "name": users[i].name,
+        }
+      }
+    }else{
+      mockDb.set("user","")
+      return {
+        "code": 1,
+        "msg": "用户名或密码不正确"
+      }
+    }
+  },
   sendcode(options){
-    let phon_captcha=Random.string('number',4)
-    mockDb.set("phon_captcha",phon_captcha)
-    store.commit('dbgState/setpPhonMsg', '验证码：'+phon_captcha)
+    let code=Random.string('number',4)
+    let phone=JSON.parse(options.body).phone
+    mockDb.set("login_sms",{phone:phone,code:code})
+    store.commit('dbgState/setpPhonMsg', '验证码：'+code)
     return {code: 0}
   },
   login_sms(options){
-    let s_code=mockDb.get("phon_captcha")
-    if(JSON.parse(options.body).code==s_code)
-      return {code: 0}
-    else
-      return {code: 1}
+    let login_sms_db=JSON.stringify(mockDb.get("login_sms"))
+    let loginInfo=JSON.parse(options.body)
+    let users=mockDb.get("users","db")
+    let i=0,userCheck=false
+    for(i=0;i<users.length;i++){
+      if(users[i].phone==loginInfo.phone){
+        userCheck=true
+        break
+      }
+    }
+    if(login_sms_db==options.body && userCheck){
+      mockDb.set("user",users[i])
+      return {
+        "code": 0,
+        "data": {
+          "_id": users[i]._id,
+          "phone": users[i].phone
+        }
+      }
+    }else{
+      mockDb.set("user","")
+      return {
+        "code": 1,
+        "msg": "手机号或验证码不正确"
+      }
+    }
   },
   userinfo(options){
-    return {code:0, data: Random.name()}
+    let session_user=mockDb.get("user")
+    if(session_user){
+      return {code:0, data: session_user}
+    }else{
+      return {
+        "code": 1,
+        "msg": "请先登陆"
+      }
+    }
   },
   captcha(options){
-    return Random.image('100x50', Random.color(), Random.color(), Random.word(4))
+    let captcha=Random.word(4)
+    mockDb.set("captcha",captcha)
+    return Random.image('100x50', Random.color(), Random.color(), captcha)
   },
   unknownPath(options){
     console.log("unknownPath",options)
   }
 }
+
+function initData(){
+  if(mockDb.get("","db")==undefined){
+    console.log("mockDB init data...")
+    mockDb.set("",data,"db")
+  }
+}
+initData()

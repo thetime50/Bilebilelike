@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import {mapState,mapActions} from "vuex"
+import {mapState,mapActions,mapMutations} from "vuex"
 import {reqSendCode, reqSmsLogin, reqPwdLogin,reqCaptcha} from '../../api'
 export default {
   name: "Login",
@@ -76,9 +76,6 @@ export default {
   },
   created () {
     this.refreshCaptcha()
-  },
-  mounted () {
-    this.getUserInfo()
   },
   computed: {
     rightPhone () {
@@ -152,6 +149,8 @@ export default {
         // this.showAlert(msg)
         this.dbgStr="登录失败"
       }
+      this.receive_user_info("")
+      this.getUserInfo()
     },
     // async getCaptcha () {
     //   this.$refs.captcha.src = await reqCaptcha()
@@ -163,6 +162,7 @@ export default {
       this.captchaSrc = await reqCaptcha()
     },
     ...mapActions(["getUserInfo"]),
+    ...mapMutations(["receive_user_info"])
   }
 }
 </script>
