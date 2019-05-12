@@ -5,6 +5,18 @@
     {{dbgStr}}
   </div> -->
   <!-- headtop -->
+  <header-top left-icon-type="back">
+    <template v-slot:leftContent>
+      <div class="header-slot-lc">
+        <p>登录</p>
+      </div>
+    </template>
+    <template v-slot:rightContent>
+      <div class="header-slot-rc">
+        <p>忘记密码？</p>
+      </div>
+    </template>
+  </header-top>
   <div class="ic2233">
     <img :src="ic22Src" alt="ic22" class="ic22">
     <div class="bilidiv"><img :src="biliSrc" alt="bili" class="bili"></div>
@@ -63,6 +75,7 @@
 <script>
 import {mapState,mapActions,mapMutations} from "vuex"
 import {reqSendCode, reqSmsLogin, reqPwdLogin,reqCaptcha} from '../../api'
+import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 import IC22IMG from "@/assets/imgs/ic_22.png"
 import IC33IMG from "@/assets/imgs/ic_33.png"
 import IC22HIMG from "@/assets/imgs/ic_22_hide.png"
@@ -90,6 +103,9 @@ export default {
 
       dbgStr:"",
     };
+  },
+  components: {
+    HeaderTop,
   },
   created () {
     this.refreshCaptcha()
@@ -195,9 +211,12 @@ export default {
   width 100%
   height 100%
   background #fff
+  .header-slot-rc
+    font-size 1rem
+    margin-top 0.2rem
   .ic2233
     position: relative
-    margin-top 2rem
+    margin-top 1rem
     height 5rem
     width 100%
     .ic22
@@ -223,7 +242,7 @@ export default {
     margin 0 auto
     .login_header
       .login_header_title
-        padding-top 3rem
+        padding-top 1rem
         text-align center
         >a
           color #666
