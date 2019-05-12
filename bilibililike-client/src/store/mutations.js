@@ -6,7 +6,7 @@ import {
  
 export default{
   [RECEIVE_USER_INFO] (state, {userInfo}) {
-    state.userInfo = userInfo
+    state.userInfo = JSON.stringify(userInfo)
   },
   [RESET_USER_INFO] (state) {
     state.userInfo = ""

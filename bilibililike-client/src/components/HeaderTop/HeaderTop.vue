@@ -6,7 +6,7 @@
         <span class="icon_span">
           <i class="iconfont icon-caidan"></i>
         </span>
-        <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
+        <div class="head-img"><img :src="headImgGetter" alt="head-img"></div>
       </div>
       <div class="left-icon back" v-if="leftIconType=='back'">
         <span class="icon_span" @click="$router.go(-1)">
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {mapState,mapMutations} from "vuex"
+import {mapState,mapMutations,mapGetters} from "vuex"
 export default {
   name: "HeaderTop",
   props:{
@@ -57,7 +57,8 @@ export default {
   computed: {
     ...mapState("localState",{
       getLeftMenuShow: state => state.leftMenuState.show
-    })
+    }),
+    ...mapGetters(["headImgGetter"]),
   },
   methods: {
     ...mapMutations('localState', {
@@ -128,6 +129,7 @@ export default {
             margin-left  0 0.3rem
             overflow hidden
             border 1.5px solid #fff
+            background-color #fff
             position relative
             left 0.5rem
             img

@@ -7,23 +7,27 @@
         <img src="../../assets/imgs/bili_drawerbg_logined.png" alt="" class="backimg">
         <div class="head-info">
           <div class="head-pendant" @click="gotoPath('mypage')">
-            <div class="head-img"><img src="../../../static/temp/imgs/head-img.jpg" alt="head-img"></div>
-            <div class="item-icon">
+            <div class="head-img"><img :src="headImgGetter" alt="head-img"></div>
+            <div class="item-icon" v-if="bigvipGetter">
               <i class="iconfont icon-wodedahuiyuan"></i>
             </div>
           </div>
-          <div class="name-content">
-            <div class="name" @click="gotoPath('mypage')">YouName</div>
+          <div class="name-content" v-if="userInfoGetter">
+            <div class="name" @click="gotoPath('mypage')">{{userInfoGetter.name}}</div>
             <div class="level"><div class="scale">LV5</div></div>
             <div class="yearbigvip"><div class="scale">年度大会员</div></div>
+            <div></div>
           </div>
-          <div class="property">
+          <div class="property" v-if="userInfoGetter">
             <div class="bbi">
               B币：5.0
             </div>
             <div class="yingbi">
               硬币：321.0
             </div>
+          </div>
+          <div class="name-content" :class="{unlogin:!userInfoGetter}" v-else>
+            点击头像登录
           </div>
         </div>
         <div class="right-icon">
@@ -85,6 +89,7 @@
 
 <script>
 import BScroll from "better-scroll"
+import {mapState,mapGetters} from "vuex"
 
 export default {
   name: "LeftMenu",
@@ -147,6 +152,9 @@ export default {
       //不知道为什么这里一定要重新刷新
       setTimeout(()=>this.scroll.refresh(),120)
     })
+  },
+  computed: {
+    ...mapGetters(["userInfoGetter","headImgGetter","bigvipGetter"]),
   },
   methods: {
     //跳转方法 mode="push" "replace"
@@ -224,6 +232,7 @@ export default {
           top 0
           left 0
           float left
+          width 10rem
           margin 1rem
           .head-pendant
             position relative
@@ -236,6 +245,7 @@ export default {
               height 100%
               border-radius 50%
               border 2.5px solid #fff
+              background-color #fff
               overflow hidden
               img
                 width 100%
@@ -257,6 +267,11 @@ export default {
             margin-top 1.4rem
             color #fff
             font-size 0
+            text-align left
+            >*
+              display inline-block
+            &.unlogin
+              font-size 1.3rem
             .name
               text-align left
               font-size 1.3rem

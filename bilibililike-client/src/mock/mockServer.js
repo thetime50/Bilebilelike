@@ -97,8 +97,10 @@ export default{
 }
 
 function initData(){
-  if(mockDb.get("","db")==undefined){
+  let db=mockDb.get("","db")
+  if(db==undefined||db.users[0]!=data.users[0]){
     console.log("mockDB init data...")
+    //清除session
     mockDb.set("",data,"db")
   }
 }

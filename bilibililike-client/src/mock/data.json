@@ -5,8 +5,9 @@
       "name":"cxk",
       "phone":"11111111111",
       "pwd":"666233",
-      "headImg":"",
-      "description":"练习2年半 喜欢唱跳REP篮球"
+      "headImg":"/static/temp/imgs/cxk.png",
+      "description":"练习2年半 喜欢唱跳Rap篮球",
+      "bigvip":true
     }
   ]
 }
