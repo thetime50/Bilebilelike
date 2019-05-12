@@ -18,6 +18,7 @@ import Message from"../pages/Message/Message.vue"
 import Search from"../pages/Search/Search.vue"
 import DefPage from"../pages/DefPage/DefPage.vue"
 import Login from"../pages/Login/Login.vue"
+import MyPage from"../pages/MyPage/MyPage.vue"
 
 
 Vue.use(Router)
@@ -90,6 +91,12 @@ export default new Router({
     {
       path: '/login',
       component: Login,
+      meta: {
+      }
+    },
+    {
+      path: '/mypage',
+      component: MyPage,
       meta: {
       }
     },

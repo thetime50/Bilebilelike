@@ -85,6 +85,12 @@ export default{
     mockDb.set("captcha",captcha)
     return Random.image('100x50', Random.color(), Random.color(), captcha)
   },
+  logout(options){
+    mockDb.set("user","")
+    return {code: 0}
+  },
+
+
   unknownPath(options){
     console.log("unknownPath",options)
   }

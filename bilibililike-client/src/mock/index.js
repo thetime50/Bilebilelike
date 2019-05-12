@@ -10,7 +10,7 @@ Mock.mock("/login_sms",mockServer.login_sms)
 // 获取用户信息(根据会话)
 Mock.mock("/userinfo",mockServer.userinfo)
 // // 请求登出
-// Mock.mock("/logout",mockServer.userinfo)
+Mock.mock("/logout",mockServer.logout)
 
 Mock.mock(/^\/captcha($|(\?))/,mockServer.captcha)
 

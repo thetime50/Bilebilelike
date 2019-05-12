@@ -138,8 +138,7 @@ export default {
           clearInterval(this.intervalId)
           this.intervalId = undefined
         }
-        // this.$store.dispatch('recordUser', user)//获取user
-        // this.$router.replace('/profile')
+        this.$router.replace('/')
         this.dbgStr="登录成功"
       } else {
         this.refreshCaptcha()//更新图片验证码

@@ -1,9 +1,11 @@
 //通过mutation更新state
 import {
-	reqUserInfo,
+  reqUserInfo,
+  reqLogout,
  } from '../api'
  import {
-	RECEIVE_USER_INFO,
+  RECEIVE_USER_INFO,
+  RESET_USER_INFO,
  } from './mutation-types'
  
  export default{
@@ -18,5 +20,10 @@ import {
       const userInfo = result.data
       commit(RECEIVE_USER_INFO, {userInfo})
     }
+  },
+  // 异步登出
+  async logout ({commit}) {
+    const result = await reqLogout()
+    if (result.code === 0) { commit(RESET_USER_INFO) }
   },
 }

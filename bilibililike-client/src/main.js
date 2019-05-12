@@ -28,7 +28,7 @@ Vue.use(vueLazyload, {
 })
 
 router.beforeEach((to, from, next) => {
-  let isLogin = false//store.state.isLogin
+  let isLogin = !!store.state.userInfo
   let redirectPage=['/mypage']
   if (!isLogin && redirectPage.includes(to.path)) {
       return next({path: '/login' })
@@ -47,7 +47,7 @@ new Vue({
     this.getUserInfo()
   },
   computed: {
-    ...mapState(["userInfo"]),
+    // ...mapState(["userInfo"]),
   },
   methods: {
     ...mapActions(["getUserInfo"]),
