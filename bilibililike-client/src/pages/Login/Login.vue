@@ -132,14 +132,15 @@ export default {
             clearInterval(this.intervalId)
           }
         }, 1000)
-      }
-      // 发送验证码
-      const result = await reqSendCode(this.phone)
-      if (result.code === 1) {//发送失败
-        if (this.computeTime) {
-          this.computeTime = 0
-          clearInterval(this.intervalId)
-          this.intervalId = undefined
+
+        // 发送验证码
+        const result = await reqSendCode(this.phone)
+        if (result.code === 1) {//发送失败
+          if (this.computeTime) {
+            this.computeTime = 0
+            clearInterval(this.intervalId)
+            this.intervalId = undefined
+          }
         }
       }
     },
@@ -211,6 +212,8 @@ export default {
   width 100%
   height 100%
   background #fff
+  button
+    outline: none
   .header-slot-rc
     font-size 1rem
     margin-top 0.2rem
@@ -349,4 +352,6 @@ export default {
           font-size 1.2rem
           line-height 2.8rem
           border 0
+          &:active
+            background-color $blbl-search-pink
 </style>
