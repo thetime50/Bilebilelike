@@ -1,52 +1,61 @@
 <template>
 <div class="component-login">
-  {{userInfo}}
+  <!-- {{userInfo}}
   <div class="dbg-phonmsg">
     {{dbgStr}}
+  </div> -->
+  <!-- headtop -->
+  <div class="ic2233">
+    <img :src="ic22Src" alt="ic22" class="ic22">
+    <div class="bilidiv"><img :src="biliSrc" alt="bili" class="bili"></div>
+    <img :src="ic33Src" alt="ic33" class="ic33">
   </div>
-  <div class="login_header">
-    <h2 class="login_logo">BiliBili</h2>
-    <div class="login_header_title">
-      <a href="javascript:;" :class="{on: loginWay}" @click="loginWay=true">短信登录</a>
-      <a href="javascript:;" :class="{on: !loginWay}" @click="loginWay=false">密码登录</a>
-    </div>
-  </div>
-  <div class="login_content">
-    <form @submit.prevent="login">
-      <div v-show="loginWay">
-        <section class="login_message">
-          <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
-          <button :disabled="!rightPhone" class="get_verification" :class="{right_phone:rightPhone}"
-            @click.prevent="getCode">{{computeTime>0 ? `(${computeTime}s)已发送` : '获取验证码'}}</button>
-        </section>
-        <section class="login_verification">
-          <input type="tel" maxlength="4" placeholder="验证码" v-model="code">
-        </section>
+  <div class="loginInner">
+    <div class="login_header">
+      <!-- <h2 class="login_logo">BiliBili</h2> --> <!-- img -->
+      <div class="login_header_title">
+        <a href="javascript:;" :class="{on: loginWay}" @click="loginWay=true">短信登录</a>
+        <a href="javascript:;" :class="{on: !loginWay}" @click="loginWay=false">密码登录</a>
       </div>
-
-      <div v-show="!loginWay">
-        <section>
+    </div>
+    <div class="login_content">
+      <form @submit.prevent="login">
+        <div :class="{on: loginWay}">
           <section class="login_message">
-            <input type="text" maxlength="11" placeholder="手机/邮箱/用户名" v-model="name">
+            <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
+            <button :disabled="!rightPhone" class="get_verification" :class="{right_phone:rightPhone}"
+              @click.prevent="getCode">{{computeTime>0 ? `(${computeTime}s)已发送` : '获取验证码'}}</button>
           </section>
           <section class="login_verification">
-            <input type="text" maxlength="8" placeholder="密码" v-if="showPwd" v-model="pwd">
-            <input type="password" maxlength="8" placeholder="密码" v-else v-model="pwd">
-            <div class="switch_button off" :class="showPwd?'on':'off'" @click="showPwd=!showPwd">
-              <div class="switch_circle" :class="{right: showPwd}"></div>
-              <span class="switch_text">{{showPwd ? 'abc' : '...'}}</span>
-            </div>
+            <input type="tel" maxlength="4" placeholder="验证码" v-model="code">
           </section>
-          <section class="login_message">
-            <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
-            <!-- <img class="get_verification" src="" alt="captcha" @click="getCaptcha" ref="captcha"> -->
-            <img class="get_verification" v-lazy="captchaSrc" :key="captchaSrc" @click="refreshCaptcha" ref="captcha">
-            <div>点击刷新</div>
+        </div>
+
+        <div :class="{on: !loginWay}">
+          <section>
+            <section class="login_message">
+              <input type="text" maxlength="11" placeholder="手机/邮箱/用户名" v-model="name">
+            </section>
+            <section class="login_verification">
+              <input type="text" maxlength="8" placeholder="密码" v-if="showPwd" v-model="pwd"
+                @focus="ic2233Src(0)" @blur="ic2233Src(1)">
+              <input type="password" maxlength="8" placeholder="密码" v-else v-model="pwd"
+                @focus="ic2233Src(0)" @blur="ic2233Src(1)">
+              <div class="switch_button off" :class="showPwd?'on':'off'" @click="showPwd=!showPwd">
+                <div class="switch_circle" :class="{right: showPwd}"></div>
+                <span class="switch_text">{{showPwd ? 'abc' : '...'}}</span>
+              </div>
+            </section>
+            <section class="login_message">
+              <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
+              <!-- <img class="get_verification" src="" alt="captcha" @click="getCaptcha" ref="captcha"> -->
+              <img class="get_verification" v-lazy="captchaSrc" :key="captchaSrc" @click="refreshCaptcha" ref="captcha">
+            </section>
           </section>
-        </section>
-      </div>
-      <button class="login_submit">登录</button>
-    </form>
+        </div>
+        <button class="login_submit">登录</button>
+      </form>
+    </div>
   </div>
 </div>
 </template>
@@ -54,6 +63,12 @@
 <script>
 import {mapState,mapActions,mapMutations} from "vuex"
 import {reqSendCode, reqSmsLogin, reqPwdLogin,reqCaptcha} from '../../api'
+import IC22IMG from "@/assets/imgs/ic_22.png"
+import IC33IMG from "@/assets/imgs/ic_33.png"
+import IC22HIMG from "@/assets/imgs/ic_22_hide.png"
+import IC33HIMG from "@/assets/imgs/ic_33_hide.png"
+import BILIIMG from "@/assets/imgs/ic_bili_logo.png"
+
 export default {
   name: "Login",
   data () {
@@ -69,12 +84,16 @@ export default {
       // alertText: '',
       // alertShow: false,
       captchaSrc:'',
+      ic22Src:"",
+      ic33Src:"",
+      biliSrc:BILIIMG,
 
       dbgStr:"",
     };
   },
   created () {
     this.refreshCaptcha()
+    this.ic2233Src(1)
   },
   computed: {
     rightPhone () {
@@ -83,6 +102,11 @@ export default {
     ...mapState(["userInfo"]),
   },
   methods: {
+    ic2233Src(num){
+      console.log(num)
+      this.ic22Src=num==0?IC22HIMG:IC22IMG
+      this.ic33Src=num==0?IC33HIMG:IC33IMG
+    },
     async getCode () {
       if (!this.computeTime) {
         this.computeTime = 5
@@ -165,8 +189,145 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+@import "../../assets/style/index.styl"
+
 .component-login
-  .login_content
-    &>form
-      //
+  width 100%
+  height 100%
+  background #fff
+  .ic2233
+    position: relative
+    margin-top 2rem
+    height 5rem
+    width 100%
+    .ic22
+      height 100%
+      float left
+    .ic33
+      height 100%
+      float right
+    .bilidiv
+      position absolute
+      top 0
+      width 10rem
+      left 50%
+      transform translateX(-50%)
+      .bili
+        position relative
+        width 100%
+        filter drop-shadow(1000px 0 0 $blbl-pink)
+        right 1000px
+  .loginInner
+    padding-top 0rem
+    width 80%
+    margin 0 auto
+    .login_header
+      .login_header_title
+        padding-top 3rem
+        text-align center
+        >a
+          color #666
+          font-weight 500
+          font-size 1rem
+          padding-bottom 0.3rem
+          &:first-child
+            margin-right 2.6rem
+          &.on
+            color $blbl-pink
+            font-weight 700
+            border-bottom 0.2rem solid $blbl-pink
+    .login_content
+      >form
+        >div
+          display none
+          &.on
+            display block
+          input
+            width 100%
+            height 100%
+            padding-left 0.7rem
+            box-sizing border-box
+            border 1px solid #ddd
+            border-radius 0.3rem
+            outline 0
+            font 400 1.2rem Arial
+            &:focus
+              border 1px solid $blbl-pink
+          .login_message
+            position relative
+            margin-top 1.2rem
+            height 3rem
+            font-size 0.9rem
+            background #fff
+            .get_verification
+              position absolute
+              top 50%
+              right 0rem
+              transform translateY(-50%)
+              border 0
+              color #ccc
+              font-size 1rem
+              background transparent
+              &.right_phone
+                color black
+            img.get_verification
+              &[lazy=loading]
+                display inline-block
+                width 2.5rem
+                top 0.4rem
+                right 1.6rem
+          .login_verification
+            position relative
+            margin-top 1.2rem
+            height 3rem
+            font-size 1rem
+            background #fff
+            .switch_button
+              font-size 0.9rem
+              border 1px solid #ddd
+              border-radius 0.9rem
+              transition background-color .3s,border-color .3s
+              padding 0 0.4rem
+              width 1.4rem
+              height 1rem
+              line-height 1.1rem
+              color #fff
+              position absolute
+              top 50%
+              right 0.7rem
+              transform translateY(-50%)
+              &.off
+                background #fff
+                .switch_text
+                  float right
+                  color #ddd
+              &.on
+                background $blbl-pink
+              >.switch_circle
+                //transform translateX(27px)
+                position absolute
+                top -1px
+                left -1px
+                width 1rem
+                height 1rem
+                border 1px solid #ddd
+                border-radius 50%
+                background #fff
+                box-shadow 0 2px 4px 0 rgba(0,0,0,.1)
+                transition transform .3s
+                &.right
+                  transform translateX(1.5rem)
+        .login_submit
+          display block
+          width 11rem
+          height 2.8rem
+          margin auto
+          margin-top 3rem
+          border-radius 4px
+          background $blbl-pink
+          color #fff
+          text-align center
+          font-size 1.2rem
+          line-height 2.8rem
+          border 0
 </style>
