@@ -12,13 +12,13 @@
               <i class="iconfont icon-wodedahuiyuan"></i>
             </div>
           </div>
-          <div class="name-content" v-if="userInfoGetter">
-            <div class="name" @click="gotoPath('mypage')">{{userInfoGetter.name}}</div>
+          <div class="name-content" v-if="userInfo">
+            <div class="name" @click="gotoPath('mypage')">{{userInfo.name}}</div>
             <div class="level"><div class="scale">LV5</div></div>
             <div class="yearbigvip"><div class="scale">年度大会员</div></div>
             <div></div>
           </div>
-          <div class="property" v-if="userInfoGetter">
+          <div class="property" v-if="userInfo">
             <div class="bbi">
               B币：5.0
             </div>
@@ -26,7 +26,7 @@
               硬币：321.0
             </div>
           </div>
-          <div class="name-content" :class="{unlogin:!userInfoGetter}" v-else>
+          <div class="name-content" :class="{unlogin:!userInfo}" v-else>
             点击头像登录
           </div>
         </div>
@@ -154,7 +154,8 @@ export default {
     })
   },
   computed: {
-    ...mapGetters(["userInfoGetter","headImgGetter","bigvipGetter"]),
+    ...mapState(["userInfo"]),
+    ...mapGetters(["headImgGetter","bigvipGetter"]),
   },
   methods: {
     //跳转方法 mode="push" "replace"
