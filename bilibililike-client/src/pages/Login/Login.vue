@@ -46,7 +46,7 @@
         <div :class="{on: !loginWay}">
           <section>
             <section class="login_message">
-              <input type="text" maxlength="11" placeholder="手机/邮箱/用户名" v-model="name">
+              <input type="text" maxlength="11" placeholder="用户名" v-model="name">
             </section>
             <section class="login_verification">
               <input type="text" maxlength="8" placeholder="密码" v-if="showPwd" v-model="pwd"
@@ -68,6 +68,11 @@
         <button class="login_submit">登录</button>
       </form>
     </div>
+  </div>
+  <div class="tips-msg">
+    用户名 cxk <br>
+    手机 1111 1111 111 <br>
+    密码 666233
   </div>
 </div>
 </template>
@@ -354,4 +359,12 @@ export default {
           border 0
           &:active
             background-color $blbl-search-pink
+  .tips-msg
+    margin auto
+    margin-top 2rem
+    border 1px solid #ddd
+    padding 1.5rem
+    width 10rem
+    color #ccc
+    border-radius 1rem
 </style>
