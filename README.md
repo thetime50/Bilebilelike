@@ -363,11 +363,56 @@ rem display-grid float之类的也尝试过，获取客户端状态调整布局�
 - Ionic webapp
 - cordova/Apache Cordova
 
-fastclick？？
+fastclick??
+
 ---
+
 今天还再处理一下左侧菜单组件的问题，然后把菜单lay好
 
 - [x] 左菜单组件使能缓存和更新机制
 - [x] 处理动画中点击鼠标没有移动时的抬起事件
 - [x] 屏蔽反复触发的click事件
 
+### 2019年5月3日
+```stylus
+.left-menu-item
+  display table
+  height 3.5rem
+  width 100%
+  .item-container
+    position relative
+    display table-cell
+    vertical-align middle
+    text-align left
+    .item-icon
+      display inline-block
+      position absolute
+      left 1.5rem
+      .iconfont
+        font-size 1.4rem
+    .item-text
+      display inline-block
+      position absolute
+      left 4rem
+      font-size 1.1rem
+
+//grid更方便嵌套
+//可以在父元素统一控制 也可以在子元素里控制
+.left-menu-item
+  display grid
+  place-items center start
+  height 3.5rem
+  width 100%
+  .item-container
+    display grid
+    grid-template-columns 4.2rem 1fr
+    grid-template-rows 1fr
+    justify-items center start
+    align-items center
+    .item-icon
+      .iconfont
+        font-size 1.5rem
+    .item-text
+      font-size 1.1rem
+      margin-left 0.8rem
+```
