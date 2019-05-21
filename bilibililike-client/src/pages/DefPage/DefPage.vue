@@ -37,7 +37,7 @@ export default {
   .back *
     font-size 8rem
     color #8cf
-    border 0.5rem solid #fff
     border-radius 2rem
+    margin 0.5rem
     overflow hidden
 </style>
