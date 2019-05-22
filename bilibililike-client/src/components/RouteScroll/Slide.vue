@@ -1,13 +1,11 @@
 <template>
   <div class="slide" ref="slide">
     <div class="slide-group" ref="slideGroup">
-      <!-- <slot>
-      </slot> -->
-          <div class="slide-item" v-for="(item,index) in items" :key="index">
-            <a :href="item.linkUrl">
-              <img :src="item.picUrl">
-            </a>
-          </div>
+      <div class="slide-item" v-for="(item,index) in items" :key="index">
+        <a :href="item.linkUrl">
+          <img :src="item.picUrl">
+        </a>
+      </div>
     </div>
     <div v-if="showDot" class="dots">
       <span class="dot" :class="{active: currentPageIndex === index }"
@@ -51,6 +49,19 @@ import BScroll from "better-scroll"
     ]
   ]
 
+  const scrollConfDef={
+      scrollX: true,
+      scrollY: false,
+      momentum: false,
+      snap: {
+        loop: true,
+        threshold: 0.3,
+        speed: 400,
+      },
+      bounce: false,
+      stopPropagation: true,
+      click: true
+    }
 
   const COMPONENT_NAME = 'slide'
 
@@ -61,17 +72,18 @@ import BScroll from "better-scroll"
       interval  :{type: Number  ,default: 4000},
       showDot   :{type: Boolean ,default: true},
       
-      loop      :{type: Boolean ,default: true},
-      click     :{type: Boolean ,default: true},
-      threshold :{type: Number  ,default: 0.3},
-      speed     :{type: Number  ,default: 400}
+      scrollConf:{type: Object ,default: ()=>{return {}}},
     },
     data() {
       return {
+        scrollConfDt:{},
         dots: [],
         currentPageIndex: 0,
         items:items[1]
       }
+    },
+    created () {
+      this.scrollConfUpdate(this.scrollConf)
     },
     mounted() {
       this.update()
@@ -92,6 +104,17 @@ import BScroll from "better-scroll"
           this.refresh()
         }, 60)
       })
+    },
+    watch: {
+      scrollConf(newVal, oldVal){
+        this.scrollConfUpdate(newVal)
+      },
+      scrollConfDt() {
+        this.update()
+      },
+      autoPlay() {
+        this.update()
+      },
     },
     activated() {
       if (!this.slide) {
@@ -114,6 +137,13 @@ import BScroll from "better-scroll"
       clearTimeout(this.timer)
     },
     methods: {
+      scrollConfUpdate(newVal){
+        let obj={...scrollConfDef}
+        for(let index in newVal){
+          obj[index]=newVal[index]
+        }
+        this.scrollConfDt={...obj}
+      },
       update() {
         if (this.slide) {
           this.slide.destroy()
@@ -154,26 +184,16 @@ import BScroll from "better-scroll"
           child.style.width = slideWidth + 'px'//item div 与scroll容器宽度相同
           width += slideWidth
         }
-        if (this.loop && !isResize) {
+        if (this.scrollConfDt.loop && !isResize) {
           width += 2 * slideWidth
         }
         this.$refs.slideGroup.style.width = width + 'px'
       },
       _initSlide() {
-        console.log(this.threshold)
-        this.slide = new BScroll(this.$refs.slide, {
-          scrollX: true,
-          scrollY: false,
-          momentum: false,
-          snap: {
-            loop: this.loop,
-            threshold: this.threshold,
-            speed: this.speed
-          },
-          bounce: false,
-          stopPropagation: true,
-          click: this.click
-        })
+        // console.log(this.scrollConfDt.threshold)
+        if(!this.slide){
+          this.slide = new BScroll(this.$refs.slide, this.scrollConfDt)
+        }
 
         this.slide.on('scrollEnd', this._onScrollEnd)
 
@@ -206,20 +226,6 @@ import BScroll from "better-scroll"
         }, this.interval)
       }
     },
-    watch: {
-      loop() {
-        this.update()
-      },
-      autoPlay() {
-        this.update()
-      },
-      speed() {
-        this.update()
-      },
-      threshold() {
-        this.update()
-      }
-    }
   }
 </script>
 
