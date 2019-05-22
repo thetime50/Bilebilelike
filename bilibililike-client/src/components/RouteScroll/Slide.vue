@@ -234,6 +234,7 @@ import BScroll from "better-scroll"
   $color-white = #fff
 
   .slide
+    position: relative
     min-height: 1px
     .slide-group
       position: relative
