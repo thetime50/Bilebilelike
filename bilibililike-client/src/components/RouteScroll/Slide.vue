@@ -106,12 +106,6 @@ import BScroll from "better-scroll"
       })
     },
     watch: {
-      scrollConf(newVal, oldVal){
-        this.scrollConfUpdate(newVal)
-      },
-      scrollConfDt() {
-        this.update()
-      },
       autoPlay() {
         this.update()
       },
@@ -184,7 +178,7 @@ import BScroll from "better-scroll"
           child.style.width = slideWidth + 'px'//item div 与scroll容器宽度相同
           width += slideWidth
         }
-        if (this.scrollConfDt.loop && !isResize) {
+        if (this.scrollConfDt.snap.loop && !isResize) {
           width += 2 * slideWidth
         }
         this.$refs.slideGroup.style.width = width + 'px'
