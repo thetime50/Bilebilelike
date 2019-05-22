@@ -20,21 +20,19 @@
       </div>
     </template>
   </header-top>
-  MainPage
-  <br><br>
-  <div class="emmm">
-    我说啊，我在这写demo，不如去给你写产品
-  </div>
+  <route-scroll/>
 </div>
 </template>
 
 <script>
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
+import RouteScroll from "../../components/RouteScroll/RouteScroll.vue"
 
 export default {
   name: "MainPage",
   components: {
     HeaderTop,
+    RouteScroll,
   },
   data () {
     return {
@@ -78,6 +76,4 @@ export default {
         margin 0 $com-iconsize*0.1
     .m-game .iconfont.icon-youxifull
       font-size $com-iconsize*1.2
-  .emmm
-    color #c0c0ff
 </style>
