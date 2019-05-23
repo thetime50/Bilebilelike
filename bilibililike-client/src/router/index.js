@@ -12,6 +12,13 @@ const Channel  = () => import("../pages/Channel/Channel.vue")
 const MainPage = () => import("../pages/MainPage/MainPage.vue")
 const Shop     = () => import("../pages/Shop/Shop.vue")
 
+import Zhibo    from "@/pages/MainPage/Zhibo/Zhibo.vue"
+import Tuijian  from "@/pages/MainPage/Tuijian/Tuijian.vue"
+import Remen    from "@/pages/MainPage/Remen/Remen.vue"
+import Zhuifan  from "@/pages/MainPage/Zhuifan/Zhuifan.vue"
+import Yingshi  from "@/pages/MainPage/Yingshi/Yingshi.vue"
+
+
 import Game from "../pages/Game/Game.vue"
 import OfflineCache from "../pages/OfflineCache/OfflineCache.vue"
 import Message from"../pages/Message/Message.vue"
@@ -28,7 +35,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/mainpage'
+      redirect: '/mainpage/tuijian'
     },
     {
       path: '/activity',
@@ -49,7 +56,27 @@ export default new Router({
       component: MainPage,
       meta: {
         showFooter: true
-      }
+      },
+      children: [{
+        path: '/mainpage/zhibo',
+        component: Zhibo,
+      },
+      {
+        path: '/mainpage/tuijian',
+        component: Tuijian,
+      },
+      {
+        path: '/mainpage/remen',
+        component: Remen,
+      },
+      {
+        path: '/mainpage/zhuifan',
+        component: Zhuifan,
+      },
+      {
+        path: '/mainpage/yingshi',
+        component: Yingshi,
+      },]
     },
     {
       path: '/shop',

@@ -1,7 +1,7 @@
 <template>
 <div class="component-route-scroll">
   <div class="slide"><slide/></div>
-  
+  <router-view/>
   RouteScroll
 </div>
 </template>
