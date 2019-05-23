@@ -68,6 +68,12 @@ export default {
     this.$nextTick(() =>{
       this.scroll = new BScroll(this.$refs.wrapper,{ click: true})
     })
+    // setInterval(() => {
+    //   console.log('simulate async data')
+    //   if (this.sw.swiperSlides.length < 10) {
+    //     this.sw.swiperSlides.push(this.sw.swiperSlides.length + 1)
+    //   }
+    // }, 3000)
   },
   data () {
     return {
@@ -92,14 +98,6 @@ export default {
       }
     },
   },
-  mounted() {
-    setInterval(() => {
-      console.log('simulate async data')
-      if (this.sw.swiperSlides.length < 10) {
-        this.sw.swiperSlides.push(this.sw.swiperSlides.length + 1)
-      }
-    }, 3000)
-  }
 }
 </script>
 
