@@ -1,6 +1,7 @@
 <template>
 <div class="component-route-scroll">
-  <slide/>
+  <div class="slide"><slide/></div>
+  
   RouteScroll
 </div>
 </template>
@@ -29,4 +30,6 @@ export default {
 <style lang="stylus"  rel="stylesheet/stylus">
 .component-route-scroll
   width 100%
+  .slide
+    position: relative
 </style>

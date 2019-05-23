@@ -1,5 +1,5 @@
 <template>
-  <div class="slide" ref="slide">
+  <div class="component-slide" ref="slide">
     <div class="slide-group" ref="slideGroup">
       <div class="slide-item" v-for="(item,index) in items" :key="index">
         <a :href="item.linkUrl">
@@ -227,9 +227,12 @@ import BScroll from "better-scroll"
   $color-light-grey-s = #ccc
   $color-white = #fff
 
-  .slide
-    position: relative
+  .component-slide
+    // position: relative
     min-height: 1px
+    overflow hidden
+    width 100%
+    height 100%
     .slide-group
       position: relative
       overflow: hidden
