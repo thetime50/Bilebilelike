@@ -28,8 +28,8 @@ export default {
       this.$router.replace(path)
     },
     isCurrent (path) {
-      // console.log(this.$route.path)
-      return this.$route.path === path
+      let re=new RegExp("^"+path+"(/|$)")
+      return re.test(this.$route.path)
     }
   },
 
