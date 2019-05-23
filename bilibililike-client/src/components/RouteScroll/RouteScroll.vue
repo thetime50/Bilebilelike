@@ -48,14 +48,21 @@ export default {
   },
   mounted () {
     this.$nextTick(()=>{
-      // console.log(this.slide)
-      this.slide.on('scrollEnd',()=>{
-        let beforIndex=this.slideIndex
-        if(beforIndex!=this.currentIndex){
-          this.$router.replace(this.routes[beforIndex].path)
+      // console.log(this.slideBS)
+      // 滑动后更新path
+      this.slideBS.on('scrollEnd',()=>{
+        let slideIndex=this.slide.currentPageIndex
+        if(slideIndex!=this.currentIndex){
+          this.$router.replace(this.routes[slideIndex].path)
         }
       })
+      this.slide.toPage(this.currentIndex,0)
     })
+  },
+  watch: {
+    currentIndex(befor,after){
+      this.slide.toPage(befor,0)
+    },
   },
   computed: {
     routeComponents(){
@@ -82,10 +89,13 @@ export default {
       return this.routeComponents.slice(this.currentIndex+1)
     },
     slide(){
+      return this.$refs.slide
+    },
+    slideBS(){
       return this.$refs.slide.slide
     },
-    slideIndex(){
-      return this.$refs.slide.currentPageIndex
+    slideToPage(page){
+      this.slide.toPage(page)
     },
   },
   methods: {
