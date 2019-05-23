@@ -1,7 +1,9 @@
 <template>
 <div class="component-route-scroll">
   <div class="nav">
-    <!--  -->
+    <component :is="nav"
+      :nowIndex="currentIndex"
+      :routes="routes"/>
   </div>
   <div class="slide">
     <slide :slideConf="slideConfDt" :scrollConf="scrollConfDt" ref="slide">
@@ -15,6 +17,7 @@
 </template>
 
 <script>
+  import Nav from "./Nav.vue"
   import Slide from "./Slide.vue"
   import tool from "@/assets/js/tool.js"
 
@@ -33,6 +36,7 @@ export default {
   },
   props:{
     routes    :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
+    nav       :{type: Object ,default: ()=>{return Nav}},
     slideConf :{type: Object ,default: ()=>{return {}}},
     scrollConf:{type: Object ,default: ()=>{return {}}},
   },
@@ -56,12 +60,12 @@ export default {
           this.$router.replace(this.routes[slideIndex].path)
         }
       })
-      this.slide.toPage(this.currentIndex,0)
+      this.slide.toPage(this.currentIndex,0,0)
     })
   },
   watch: {
     currentIndex(befor,after){
-      this.slide.toPage(befor,0)
+      this.slide.toPage(befor)
     },
   },
   computed: {
@@ -93,9 +97,6 @@ export default {
     },
     slideBS(){
       return this.$refs.slide.slide
-    },
-    slideToPage(page){
-      this.slide.toPage(page)
     },
   },
   methods: {

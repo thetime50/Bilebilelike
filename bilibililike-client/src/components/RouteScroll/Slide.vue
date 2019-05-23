@@ -128,8 +128,10 @@
       next() {
         this.slide.next()
       },
-      toPage(page,time=this.scrollConfDt.interval){
-        this.slide.goToPage(page,time)
+      toPage(page,time,easing){
+        if(page!=this.currentPageIndex){
+          this.slide.goToPage(page,time,easing)
+        }
       },
       init() {
         clearTimeout(this.timer)
