@@ -20,13 +20,21 @@
       </div>
     </template>
   </header-top>
-  <route-scroll/>
+  <route-scroll :routes="routes"/>
 </div>
 </template>
 
 <script>
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 import RouteScroll from "../../components/RouteScroll/RouteScroll.vue"
+
+const routes=[
+  {text:"直播",path:"/mainpage/zhibo"},
+  {text:"推荐",path:"/mainpage/tuijian"},
+  {text:"热门",path:"/mainpage/remen"},
+  {text:"追番",path:"/mainpage/zhuifan"},
+  {text:"影视",path:"/mainpage/yingshi"},
+]
 
 export default {
   name: "MainPage",
@@ -36,6 +44,7 @@ export default {
   },
   data () {
     return {
+      routes:routes,
     };
   }
 }

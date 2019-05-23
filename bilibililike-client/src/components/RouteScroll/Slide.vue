@@ -48,7 +48,6 @@
         scrollConfDt:{},
         dots: [],
         currentPageIndex: 0,
-        items:items[1],
 
         _slideConfDef :slideConfDef,
         _scrollConfDef:scrollConfDef,
