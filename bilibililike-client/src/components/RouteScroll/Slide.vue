@@ -1,11 +1,7 @@
 <template>
   <div class="component-slide" ref="slide">
     <div class="slide-group" ref="slideGroup">
-      <div class="slide-item" v-for="(item,index) in items" :key="index">
-        <a :href="item.linkUrl">
-          <img :src="item.picUrl">
-        </a>
-      </div>
+      <slot/>
     </div>
     <div v-if="showDot" class="dots">
       <span class="dot" :class="{active: currentPageIndex === index }"
@@ -15,40 +11,11 @@
 </template>
 
 <script>
-import BScroll from "better-scroll"
-import tool from "@/assets/js/tool.js"
+  import BScroll from "better-scroll"
+  import { addClass } from "@/assets/js/dom"
+  import tool from "@/assets/js/tool.js"
+
   var {setAttr2Def}=tool
-  const items = [
-    [
-      {
-        linkUrl: 'http://y.qq.com/w/album.html?albummid=0044K2vN1sT5mE',
-        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000001YCZlY3aBifi.jpg',
-        id: 11351
-      },
-      {
-        linkUrl: 'https://y.qq.com/m/digitalbum/gold/index.html?_video=true&id=2197820&g_f=shoujijiaodian',
-        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000004ckGfg3zaho0.jpg',
-        id: 11372
-      }
-    ],
-    [
-      {
-        linkUrl: 'http://y.qq.com/w/album.html?albummid=001tftZs2RX1Qz',
-        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M00000236sfA406cmk.jpg',
-        id: 11378
-      },
-      {
-        linkUrl: 'https://y.qq.com/msa/218/0_4085.html',
-        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000001s0BXx3Zxcwb.jpg',
-        id: 11375
-      },
-      {
-        linkUrl: 'https://y.qq.com/m/digitalbum/gold/index.html?_video=true&id=2195876&g_f=shoujijiaodian',
-        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000002cwng4353HKz.jpg',
-        id: 11287
-      }
-    ]
-  ]
 
   const scrollConfDef={
     scrollX: true,
@@ -73,7 +40,6 @@ import tool from "@/assets/js/tool.js"
     name: "Slide",
     props: {
       slideConf :{type: Object ,default: ()=>{return {}}},
-      
       scrollConf:{type: Object ,default: ()=>{return {}}},
     },
     data() {
@@ -182,6 +148,7 @@ import tool from "@/assets/js/tool.js"
         let width = 0
         for (let i = 0; i < this.children.length; i++) {
           let child = this.children[i]
+          addClass(child, 'slide-item')
           child.style.width = slideWidth + 'px'//item div 与scroll容器宽度相同
           width += slideWidth
         }
