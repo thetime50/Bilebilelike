@@ -4,7 +4,7 @@
     <!--  -->
   </div>
   <div class="slide">
-    <slide :slideConf="slideConfDt" :scrollConf="scrollConfDt">
+    <slide :slideConf="slideConfDt" :scrollConf="scrollConfDt" ref="slide">
       <component v-for="(comp,index) in afterComponents" :is="comp" :key="index"/>
       <router-view :key="currentIndex"/>
       <component v-for="(comp,index) in beforComponents" :is="comp" :key="index+currentIndex+1"/>
@@ -47,6 +47,15 @@ export default {
     this.scrollConfDt =setAttr2Def(this.scrollConf,scrollConfDef)
   },
   mounted () {
+    this.$nextTick(()=>{
+      // console.log(this.slide)
+      this.slide.on('scrollEnd',()=>{
+        let beforIndex=this.slideIndex
+        if(beforIndex!=this.currentIndex){
+          this.$router.replace(this.routes[beforIndex].path)
+        }
+      })
+    })
   },
   computed: {
     routeComponents(){
@@ -71,6 +80,12 @@ export default {
     },
     beforComponents(){
       return this.routeComponents.slice(this.currentIndex+1)
+    },
+    slide(){
+      return this.$refs.slide.slide
+    },
+    slideIndex(){
+      return this.$refs.slide.currentPageIndex
     },
   },
   methods: {
