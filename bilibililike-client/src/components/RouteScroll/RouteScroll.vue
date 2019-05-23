@@ -27,6 +27,11 @@
     showDot   :false,
   }
   const scrollConfDef={
+    snap: {
+      loop: false,
+      threshold: 0.3,
+      speed: 400,
+    },
   }
 
 export default {
