@@ -35,55 +35,53 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/mainpage/tuijian'
+      redirect: '/mainpage'
     },
     {
       path: '/activity',
       component: Activity,
-      meta: {
-        showFooter: true
-      }
+      meta: {showFooter: true},
     },
     {
       path: '/channel',
       component: Channel,
-      meta: {
-        showFooter: true
-      }
+      meta: {showFooter: true},
     },
     {
       path: '/mainpage',
+      redirect: '/mainpage/tuijian',
       component: MainPage,
-      meta: {
-        showFooter: true
-      },
+      // meta: {showFooter: true},
       children: [{
         path: '/mainpage/zhibo',
         component: Zhibo,
+        meta: {showFooter: true},
       },
       {
         path: '/mainpage/tuijian',
         component: Tuijian,
+        meta: {showFooter: true},
       },
       {
         path: '/mainpage/remen',
         component: Remen,
+        meta: {showFooter: true},
       },
       {
         path: '/mainpage/zhuifan',
         component: Zhuifan,
+        meta: {showFooter: true},
       },
       {
         path: '/mainpage/yingshi',
         component: Yingshi,
+        meta: {showFooter: true},
       },]
     },
     {
       path: '/shop',
       component: Shop,
-      meta: {
-        showFooter: true
-      }
+      meta: {showFooter: true},
     },
     {
       path: '/game',
