@@ -16,7 +16,8 @@
 
 <script>
 import BScroll from "better-scroll"
-
+import tool from "@/assets/js/tool.js"
+  var {setAttr2Def}=tool
   const items = [
     [
       {
@@ -50,40 +51,46 @@ import BScroll from "better-scroll"
   ]
 
   const scrollConfDef={
-      scrollX: true,
-      scrollY: false,
-      momentum: false,
-      snap: {
-        loop: true,
-        threshold: 0.3,
-        speed: 400,
-      },
-      bounce: false,
-      stopPropagation: true,
-      click: true
-    }
-
-  const COMPONENT_NAME = 'slide'
+    scrollX: true,
+    scrollY: false,
+    momentum: false,
+    snap: {
+      loop: true,
+      threshold: 0.3,
+      speed: 400,
+    },
+    bounce: false,
+    stopPropagation: true,
+    click: true
+  }
+  const slideConfDef={
+    autoPlay  :true,
+    interval  :4000,
+    showDot   :true,
+  }
 
   export default {
-    name: COMPONENT_NAME,
+    name: "Slide",
     props: {
-      autoPlay  :{type: Boolean ,default: true},
-      interval  :{type: Number  ,default: 4000},
-      showDot   :{type: Boolean ,default: true},
+      slideConf :{type: Object ,default: ()=>{return {}}},
       
       scrollConf:{type: Object ,default: ()=>{return {}}},
     },
     data() {
       return {
+        slideConfDt:{},
         scrollConfDt:{},
         dots: [],
         currentPageIndex: 0,
-        items:items[1]
+        items:items[1],
+
+        _slideConfDef :slideConfDef,
+        _scrollConfDef:scrollConfDef,
       }
     },
     created () {
-      this.scrollConfUpdate(this.scrollConf)
+      this.slideConfDt  =setAttr2Def(this.slideConf ,slideConfDef)
+      this.scrollConfDt =setAttr2Def(this.scrollConf,scrollConfDef)
     },
     mounted() {
       this.update()
@@ -130,14 +137,14 @@ import BScroll from "better-scroll"
       this.slide.disable()
       clearTimeout(this.timer)
     },
+    computed: {
+      loop      (){return this.scrollConfDt.snap.loop},
+      autoPlay  (){return this.slideConfDt.autoPlay},
+      interval  (){return this.slideConfDt.interval},
+      showDot   (){return this.slideConfDt.showDot },
+      length    (){return ((this.slide&&this.loop) ? (this.children.length-2) : (this.children.length))}
+    },
     methods: {
-      scrollConfUpdate(newVal){
-        let obj={...scrollConfDef}
-        for(let index in newVal){
-          obj[index]=newVal[index]
-        }
-        this.scrollConfDt={...obj}
-      },
       update() {
         if (this.slide) {
           this.slide.destroy()
@@ -173,12 +180,12 @@ import BScroll from "better-scroll"
         this.children = this.$refs.slideGroup.children
         let slideWidth = this.$refs.slide.clientWidth
         let width = 0
-        for (let i = 0; i < this.children.length; i++) {
+        for (let i = 0; i < this.length; i++) {
           let child = this.children[i]
           child.style.width = slideWidth + 'px'//item div 与scroll容器宽度相同
           width += slideWidth
         }
-        if (this.scrollConfDt.snap.loop && !isResize) {
+        if (this.loop && !isResize) {
           width += 2 * slideWidth
         }
         this.$refs.slideGroup.style.width = width + 'px'
@@ -211,7 +218,7 @@ import BScroll from "better-scroll"
         }
       },
       _initDots() {
-        this.dots = new Array(this.children.length)
+        this.dots = new Array(this.length)
       },
       _play() {
         clearTimeout(this.timer)

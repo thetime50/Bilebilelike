@@ -41,4 +41,11 @@ export default{
   isNumber: function(obj) {
     return obj === +obj
   },
+  setAttr2Def: function (arrts, def) {
+    let obj = { ...def }
+    for (let index in arrts) {
+      obj[index] = arrts[index]
+    }
+    return { ...obj }
+  }
 }
