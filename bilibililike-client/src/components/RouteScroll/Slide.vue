@@ -154,7 +154,7 @@ import tool from "@/assets/js/tool.js"
         })
       },
       refresh() {
-        this._setSlideWidth(true)
+        this._setSlideWidth()
         this.slide.refresh()
       },
       prev() {
@@ -176,16 +176,16 @@ import tool from "@/assets/js/tool.js"
           this._play()
         }
       },
-      _setSlideWidth(isResize) {
+      _setSlideWidth() {
         this.children = this.$refs.slideGroup.children
         let slideWidth = this.$refs.slide.clientWidth
         let width = 0
-        for (let i = 0; i < this.length; i++) {
+        for (let i = 0; i < this.children.length; i++) {
           let child = this.children[i]
           child.style.width = slideWidth + 'px'//item div 与scroll容器宽度相同
           width += slideWidth
         }
-        if (this.loop && !isResize) {
+        if (this.loop && !this.slide) {
           width += 2 * slideWidth
         }
         this.$refs.slideGroup.style.width = width + 'px'
