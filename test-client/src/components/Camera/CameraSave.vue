@@ -1,6 +1,6 @@
 <template>
   <div class="component-camera-updata">
-    <video width="95%" id="myVideo" ref="myVideo"></video>
+    <video width="85%" id="myVideo" ref="myVideo"></video>
     <div>
       <button id="myButton" @click="paishe">拍摄</button>
       <button id="myButton2" @click="yulan">预览</button>

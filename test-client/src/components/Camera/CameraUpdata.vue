@@ -2,7 +2,7 @@
   <div class="component-camera-updata">
     <div id="camera">
       <div id="contentHolder">
-        <video id="video" ref="video" width="95%" autoplay></video>
+        <video id="video" ref="video" width="85%" autoplay></video>
         <canvas style="display:none;" id="canvas" ref="canvas" width="640" height="480"></canvas>
       </div>
       <div id="buttons">
@@ -86,7 +86,7 @@ export default {
 #camera {
   /* width: 640px; */
   /* height: 525px; */
-  width: 95%;
+  width: 85%;
   position: fixed;
   border: 1px solid #f0f0f0;
   -moz-border-radius: 4px 4px 0 0;

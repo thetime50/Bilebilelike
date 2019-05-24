@@ -1,6 +1,6 @@
 <template>
   <div class="component-camera-webrtc">
-    <video src id="iv" ref="iv" style="width:95%;" autoplay="autoplay"></video>
+    <video src id="iv" ref="iv" style="width:85%;" autoplay="autoplay"></video>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
       //调用成功会回调返回一个stream流 video:true 表示采集视频,audio:true 表示采集声音,反之就都不采集
       navigator.getUserMedia(
         { video: true, audio: false },
-        function(stream) {
+        (stream)=> {
           //将采集到的视频信息显示在video标签中
           this.$refs.iv.srcObject = stream;
         },
