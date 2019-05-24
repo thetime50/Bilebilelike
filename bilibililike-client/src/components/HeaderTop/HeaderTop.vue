@@ -49,9 +49,15 @@ export default {
       },
     };
   },
-  created () {
-    if(this.leftIconType=='leftMenu'){
-      this.setLeftMenuEnable(true)
+  mounted () {
+    this.updataLeftMenuEnable()
+  },
+  beforeDestroy () {
+    this.setLeftMenuEnable(false)
+  },
+  watch: {
+    "$route.fullPath":function(to, from){
+      this.updataLeftMenuEnable()
     }
   },
   computed: {
@@ -64,7 +70,10 @@ export default {
     ...mapMutations('localState', {
       setLeftMenuShow: "setLeftMenuState_show",
       setLeftMenuEnable: "setLeftMenuState_enable"
-    })
+    }),
+    updataLeftMenuEnable(){
+      this.setLeftMenuEnable(this.leftIconType=='leftMenu')
+    },
   }
 }
 </script>

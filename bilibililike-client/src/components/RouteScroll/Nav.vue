@@ -48,7 +48,6 @@ export default {
     _positionSync(x){
       let items=this.items
       let cursors=this.cursors
-      console.log("_positionSync")
       for(let i=0;i<cursors.length;i++){
         let itemW=this.items[i].clientWidth
         let cursorW=this.cursors[i].clientWidth
