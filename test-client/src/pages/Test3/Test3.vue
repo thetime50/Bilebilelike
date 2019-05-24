@@ -18,12 +18,27 @@
     </template>
   </test-header-top>
 
+  <select v-model="selected">
+    <!-- <option disabled value="">请选择</option> -->
+    <option v-for="(item,index) in Cameras" :key="index">{{index}}</option>
+  </select>
+  <br>
+  <component :is="Cameras[selected]"/>
 Shop
 </div>
 </template>
 
 <script>
-import TestHeaderTop from "../../components/TestHeaderTop/TestHeaderTop.vue"
+import TestHeaderTop  from "../../components/TestHeaderTop/TestHeaderTop.vue"
+import CameraSave     from "../../components/Camera/CameraSave.vue"
+import CameraUpdata   from "../../components/Camera/CameraUpdata.vue"
+import CameraWebrtc   from "../../components/Camera/CameraWebrtc.vue"
+
+const Cameras={
+  "camera-save"  :CameraSave  ,
+  "camera-updata":CameraUpdata,
+  "camera-webrtc":CameraWebrtc,
+}
 
 export default {
   name: "Shop",
@@ -32,8 +47,10 @@ export default {
   },
 
   data () {
-	 return {
-	 };
+    return {
+      selected:"camera-save",
+      Cameras:Cameras,
+    };
   }
 }
 </script>
