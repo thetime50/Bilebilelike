@@ -24,7 +24,7 @@
 export default {
   name: "CameraUpdata",
   props: {
-    videoConfs  :{type: Object ,default: ()=>{return {}}},
+    videoConf  :{default: true},
   },
   data() {
     return {
@@ -37,7 +37,7 @@ export default {
       var cobj = this.$refs.myCanvas.getContext("2d");
       var vobj = this.$refs.myVideo;
       this.getUserMedia(
-        { video: this.videoConfs },
+        { video: this.videoConf },
         function(stream) {
           vobj.src = stream;
           vobj.play();

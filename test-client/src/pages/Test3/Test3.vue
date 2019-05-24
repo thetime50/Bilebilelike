@@ -28,7 +28,7 @@
     <option v-for="(item,index) in videoConfs" :key="index">{{index}}</option>
   </select>
   <br>
-  <component :is="Cameras[selected]" :key="VCSelected" :videoConf="videoConf"/>
+  <component :is="Cameras[selected]" :key="VCSelected" :videoConf="videoConfs[VCSelected]"/>
   Shop
 </div>
 </template>
@@ -62,9 +62,8 @@ export default {
       Cameras:Cameras,
       VCSelected:'video : true',
       videoConfs:videoConfs,
-      videoConf:videoConfs[this.VCSelected],
     };
-  }
+  },
 }
 </script>
 
