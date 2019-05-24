@@ -27,17 +27,13 @@ export default {
     };
   },
   mounted () {
-    // console.log(this.itemCursorStyle(1))
+    this.$nextTick(()=>{
+      this._positionSync(this.positionSync)
+    })
   },
   watch: {
     positionSync(before,after){
-      let items=this.items
-      let cursors=this.cursors
-      for(let i=0;i<cursors.length;i++){
-        let itemW=this.items[i].clientWidth
-        let cursorW=this.cursors[i].clientWidth
-        cursors[i].style.right=itemW*i+before*itemW+(itemW-cursorW)/2+"px"
-      }
+      this._positionSync(before)
     }
   },
   computed: {
@@ -49,6 +45,16 @@ export default {
     tabClick(item){
       this.$router.replace(item.path)
     },
+    _positionSync(x){
+      let items=this.items
+      let cursors=this.cursors
+      console.log("_positionSync")
+      for(let i=0;i<cursors.length;i++){
+        let itemW=this.items[i].clientWidth
+        let cursorW=this.cursors[i].clientWidth
+        cursors[i].style.right=itemW*i+x*itemW+(itemW-cursorW)/2+"px"
+      }
+    }
   }
 }
 </script>

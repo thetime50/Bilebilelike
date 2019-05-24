@@ -136,7 +136,7 @@
       },
       init() {
         clearTimeout(this.timer)
-        this.currentPageIndex = 0
+        // this.currentPageIndex = 0
         this._setSlideWidth()
         if (this.showDot) {
           this._initDots()
