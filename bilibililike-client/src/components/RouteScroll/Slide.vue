@@ -48,6 +48,7 @@
         scrollConfDt:{},
         dots: [],
         currentPageIndex: 0,
+        pageWidth:0,
 
         _slideConfDef :slideConfDef,
         _scrollConfDef:scrollConfDef,
@@ -150,6 +151,7 @@
         this.children = this.$refs.slideGroup.children
         let slideWidth = this.$refs.slide.clientWidth
         let width = 0
+        this.pageWidth=slideWidth
         for (let i = 0; i < this.children.length; i++) {
           let child = this.children[i]
           addClass(child, 'slide-item')

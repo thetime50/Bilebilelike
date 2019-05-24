@@ -3,6 +3,7 @@
   <div class="nav">
     <component :is="nav"
       :nowIndex="currentIndex"
+      :positionSync="positionSync"
       :routes="routes"/>
   </div>
   <div class="slide">
@@ -12,7 +13,6 @@
       <component v-for="(comp,index) in beforComponents" :is="comp" :key="index+currentIndex+1"/>
     </slide>
   </div>
-  RouteScroll
 </div>
 </template>
 
@@ -27,6 +27,7 @@
     showDot   :false,
   }
   const scrollConfDef={
+    probeType:3,
     snap: {
       loop: false,
       threshold: 0.3,
@@ -47,6 +48,7 @@ export default {
   },
   data () {
     return {
+      positionSync:0,
       slideConfDt:{},
       scrollConfDt:{},
     };
@@ -65,12 +67,15 @@ export default {
           this.$router.replace(this.routes[slideIndex].path)
         }
       })
+      this.slideBS.on('scroll',({x,y})=>{
+        this.positionSync=x/this.slide.pageWidth
+      })
       this.slide.toPage(this.currentIndex,0,0)
     })
   },
   watch: {
-    currentIndex(befor,after){
-      this.slide.toPage(befor)
+    currentIndex(before,after){
+      this.slide.toPage(before)
     },
   },
   computed: {
