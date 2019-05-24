@@ -1,6 +1,6 @@
 #  Bilebilelike项目
 *(2019-04-04 08:30)*  
-[预览→](https://thetime50.github.io/Bilebilelike/)
+[预览Bilibililike →](https://thetime50.github.io/Bilebilelike/)
 
 ![Bilibililike-qr.png](docs/imgs/Bilibililike-qr.png)
 
@@ -10,7 +10,7 @@ https://thetime50.github.io/Bilebilelike
 液态 205 15%  
 #fc65fc #12d4ff #12d4ff #ffffff
  -->
-[test-client→](https://thetime50.github.io/Bilebilelike/test-client)
+[test-client →](https://thetime50.github.io/Bilebilelike/test-client/dist/)
 
 ## 说明
 用于面试准备的作品，类似bilibile app的vue实现  
