@@ -20,6 +20,9 @@
 
 export default {
   name: "CameraUpdata",
+  props: {
+    videoConfs  :{type: Object ,default: ()=>{return {}}},
+  },
   data() {
     return {};
   },
@@ -29,7 +32,7 @@ export default {
       var canvas = this.$refs.canvas,
         context = canvas.getContext("2d"),
         video = this.$refs.video,
-        videoObj = { video: true },
+        videoObj = { video: this.videoConfs },
         errBack = function(error) {
           console.log("Video capture error: ", error.code);
         };

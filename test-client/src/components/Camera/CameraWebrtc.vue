@@ -10,6 +10,9 @@
 
 export default {
   name: "CameraWebrtc",
+  props: {
+    videoConfs  :{type: Object ,default: ()=>{return {}}},
+  },
   data() {
     return {};
   },
@@ -25,7 +28,7 @@ export default {
       console.log();
       //调用成功会回调返回一个stream流 video:true 表示采集视频,audio:true 表示采集声音,反之就都不采集
       navigator.getUserMedia(
-        { video: true, audio: false },
+        { video: this.videoConfs, audio: false },
         (stream)=> {
           //将采集到的视频信息显示在video标签中
           this.$refs.iv.srcObject = stream;

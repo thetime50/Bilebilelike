@@ -18,13 +18,18 @@
     </template>
   </test-header-top>
 
+  <!-- <button @click="cnt++">刷新</button> -->
   <select v-model="selected">
     <!-- <option disabled value="">请选择</option> -->
     <option v-for="(item,index) in Cameras" :key="index">{{index}}</option>
   </select>
+  <select v-model="VCSelected">
+    <!-- <option disabled value="">请选择</option> -->
+    <option v-for="(item,index) in videoConfs" :key="index">{{index}}</option>
+  </select>
   <br>
-  <component :is="Cameras[selected]"/>
-Shop
+  <component :is="Cameras[selected]" :key="VCSelected" :videoConf="videoConf"/>
+  Shop
 </div>
 </template>
 
@@ -39,6 +44,11 @@ const Cameras={
   "camera-updata":CameraUpdata,
   "camera-webrtc":CameraWebrtc,
 }
+const videoConfs = {
+  'video : true'                                : true,
+  'video : { facingMode:"user" }'               : { facingMode:"user" },
+  'video : { facingMode:{exact:"environment"} }': { facingMode:{exact:"environment"} },
+};
 
 export default {
   name: "Shop",
@@ -50,6 +60,9 @@ export default {
     return {
       selected:"camera-save",
       Cameras:Cameras,
+      VCSelected:'video : true',
+      videoConfs:videoConfs,
+      videoConf:videoConfs[this.VCSelected],
     };
   }
 }

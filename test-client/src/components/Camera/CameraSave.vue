@@ -23,34 +23,34 @@
 
 export default {
   name: "CameraUpdata",
+  props: {
+    videoConfs  :{type: Object ,default: ()=>{return {}}},
+  },
   data() {
-    return {};
+    return {
+      vobjClientWidth:0,
+      vobjClientHeight:0,
+    };
   },
   mounted() {
     this.$nextTick(() => {
       var cobj = this.$refs.myCanvas.getContext("2d");
       var vobj = this.$refs.myVideo;
       this.getUserMedia(
-        { video: true },
+        { video: this.videoConfs },
         function(stream) {
           vobj.src = stream;
           vobj.play();
         },
         function() {}
       );
+      window.addEventListener('resize', () => {
+        this._vobjClientWidth()
+        this._vobjClientHeight()
+      })
+      this._vobjClientWidth()
+      this._vobjClientHeight()
     });
-  },
-  computed: {
-    vobjClientWidth(){
-      if(this.$refs.myVideo)
-        return this.$refs.myVideo.clientWidth
-      return 0
-    },
-    vobjClientHeight(){
-      if(this.$refs.myVideo)
-        return this.$refs.myVideo.clientHeight
-      return 0
-    },
   },
   methods: {
     getUserMedia(obj, success, error) {
@@ -102,7 +102,13 @@ export default {
     yulan() {
       var cobj = this.$refs.myCanvas.getContext("2d");
       window.open(cobj.canvas.toDataURL("image/png"), "_blank");
-    }
+    },
+    _vobjClientWidth(){
+        this.vobjClientWidth= this.$refs.myVideo.clientWidth
+    },
+    _vobjClientHeight(){
+        this.vobjClientHeight= this.$refs.myVideo.clientHeight
+    },
   }
 };
 </script>
