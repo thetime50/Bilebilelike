@@ -6,14 +6,14 @@
       <div class="left-menu-header">
         <img src="../../assets/imgs/bili_drawerbg_logined.png" alt="" class="backimg">
         <div class="head-info">
-          <div class="head-pendant" @click="gotoPath('mypage')">
+          <div class="head-pendant" @click="gotoPath('/mypage')">
             <div class="head-img"><img :src="headImgGetter" alt="head-img"></div>
             <div class="item-icon" v-if="bigvipGetter">
               <i class="iconfont icon-wodedahuiyuan"></i>
             </div>
           </div>
           <div class="name-content" v-if="userInfo">
-            <div class="name" @click="gotoPath('mypage')">{{userInfo.name}}</div>
+            <div class="name" @click="gotoPath('/mypage')">{{userInfo.name}}</div>
             <div class="level"><div class="scale">LV5</div></div>
             <div class="yearbigvip"><div class="scale">年度大会员</div></div>
             <div></div>
