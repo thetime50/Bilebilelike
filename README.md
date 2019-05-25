@@ -16,6 +16,9 @@ https://thetime50.github.io/Bilebilelike
 用于面试准备的作品，类似bilibile app的vue实现  
 项目范围：app整体框架 关键页面 懒加载 模拟数据
 
+API文档：[API Document →](API Document.md)  
+解析BiliBili API：[bilibili api →](docs\bilibili api\bilibili api.md)  
+
 *(因为赶时间先写项目，文档慢慢写)*
 
 ## 技术选型
