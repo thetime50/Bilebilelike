@@ -41,6 +41,7 @@ API文档：[API Document →](API Document.md)
 	- ui组件库：mint-ui
 	- 滑动组件：better-scroll
 	- 懒加载：vue-lazyload
+  - Touch库：vue-touch
   - 剪贴板操作：clipboard
 - 前后台交互
 	- ajax请求：vue-resource axios
