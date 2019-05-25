@@ -13,11 +13,11 @@ https://thetime50.github.io/Bilebilelike
 [test-client →](https://thetime50.github.io/Bilebilelike/test-client/dist/)
 
 ## 说明
-用于面试准备的作品，类似bilibile app的vue实现  
+用于面试准备的作品，类似bilibili app的vue实现  
 项目范围：app整体框架 关键页面 懒加载 模拟数据
 
-API文档：[API Document →](API Document.md)  
-解析BiliBili API：[bilibili api →](docs\bilibili api\bilibili api.md)  
+API文档：[API Document →](API%20Document.md)  
+解析BiliBili API：[bilibili api →](docs\bilibili%20api\bilibili%20api.md)  
 
 *(因为赶时间先写项目，文档慢慢写)*
 
@@ -45,7 +45,7 @@ API文档：[API Document →](API Document.md)
   - 剪贴板操作：clipboard
 - 前后台交互
 	- ajax请求：vue-resource axios
-	- mock数据:mockjs
+	- mock数据: mockjs
 	- 接口测试：postman
 - 模块化
 	- ES6 //todo
