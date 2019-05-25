@@ -21,12 +21,27 @@ API文档：[API Document →](API Document.md)
 
 *(因为赶时间先写项目，文档慢慢写)*
 
+## 项目特点
+
+- 项目自动获取网卡IP能够在局域网访问(虽然对于Secure Origins要求的应用使用localhost会更方便一些)
+- mockjs处理登录验证等Ajax数据交互和服务逻辑
+- DrawerMap侧滑组件高度还原APP的交互
+- RouteScroll路由导航组件同步滑动操作 导航状态 光标 path 支持动态的光标宽度(可能还会加上懒加载)
+- 从BiliBili上解析更新数据
+
+可以改进的地方
+- 也许会添加摄像头扫码
+- 补全功能，添加播放器 弹幕 评论等
+- 整理mockjs数据结构和存储方案
+- 本地缓存还没做
+
 ## 技术选型
 - 前台数据交互处理组件化
 	- vue全家桶：vue/vue-router/vuex
 	- ui组件库：mint-ui
 	- 滑动组件：better-scroll
 	- 懒加载：vue-lazyload
+  - 剪贴板操作：clipboard
 - 前后台交互
 	- ajax请求：vue-resource axios
 	- mock数据:mockjs
