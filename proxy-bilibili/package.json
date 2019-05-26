@@ -1,0 +1,21 @@
+{
+  "name": "proxy-bilibili",
+  "version": "1.0.0",
+  "description": "bilibili api run",
+  "main": "proxy-bilibili.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./proxy-bilibili.js"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "thetime50",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.19.1"
+  }
+}
