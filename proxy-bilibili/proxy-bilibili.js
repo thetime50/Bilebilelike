@@ -4,8 +4,12 @@ const proxy = require('http-proxy-middleware');
 const app = express();
 
 function onProxyResp(proxyRes) {
-    proxyRes.headers['Access-Control-Allow-Origin'] = 'https://thetime50.github.io';
+    // proxyRes.headers['Access-Control-Allow-Origin'] = 'https://thetime50.github.io';
+    proxyRes.headers['Access-Control-Allow-Origin'] = 'http://192.168.31.6:8080';
     proxyRes.headers['Access-Control-Allow-Credentials'] = 'true';
+}
+function onProxyReq(proxyReq) {
+    proxyReq.setHeader('Referer', 'http://www.bilibili.com');
 }
 
 app.use('/api', proxy({
@@ -14,7 +18,8 @@ app.use('/api', proxy({
         '^/api': ''
     },
     changeOrigin: true,
-    onProxyRes: onProxyResp
+    onProxyRes: onProxyResp,
+    onProxyReq,
 }));
 
 
@@ -24,7 +29,8 @@ app.use('/comment', proxy({
         '^/comment': ''
     },
     changeOrigin: true,
-    onProxyRes: onProxyResp
+    onProxyRes: onProxyResp,
+    onProxyReq,
 }));
 
 
