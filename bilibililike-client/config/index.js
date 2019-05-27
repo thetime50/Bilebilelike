@@ -3,7 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-var host = require('./ip.js')('WLAN 2')
+var host = (require('./ip.js')('WLAN 2')|| 'localhost')
 
 module.exports = {
   dev: {
@@ -11,10 +11,48 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {},//可以不用Vue代理直接用本地proxy-bilibili了 
+    // // vue代理到本地服务器proxy-bilibili转发
+    // proxyTable: {
+    //   '/biliapi/api': {
+    //     target: "http://"+host+":8088", // 接口域名
+    //     secure: false,                  // https
+    //     changeOrigin: true,             // 跨域
+    //     pathRewrite: {                  // rewrite
+    //       '^/biliapi/api': '/api'
+    //     }
+    //   },
+    //   '/biliapi/comment': {
+    //     target: "http://"+host+":8088",   // 接口域名
+    //     secure: false,                    // https
+    //     changeOrigin: true,               // 跨域
+    //     pathRewrite: {                    // rewrite
+    //       '^/biliapi/comment': '/comment'
+    //     }
+    //   }
+    // },
+    // // vue代理到bilibili //还是没有替换Referer 无法正常使用
+    // proxyTable: {
+    //   '/biliapi/api': {
+    //     target: 'http://api.bilibili.com',  // 接口域名
+    //     secure: false,                      // https
+    //     changeOrigin: true,                 // 跨域
+    //     pathRewrite: {                      // rewrite
+    //       '^/biliapi/api': ''
+    //     }
+    //   },
+    //   '/biliapi/comment': {
+    //     target: 'http://comment.bilibili.com',  // 接口域名
+    //     secure: false,                          // https
+    //     changeOrigin: true,                     // 跨域
+    //     pathRewrite: {                          // rewrite
+    //       '^/biliapi/comment': ''
+    //     }
+    //   }
+    // },
 
     // Various Dev Server settings
-    host: (host || 'localhost'),//'localhost', // can be overwritten by process.env.HOST
+    host: host,//'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,

@@ -9,11 +9,13 @@ function onProxyResp(proxyRes) {
     proxyRes.headers['Access-Control-Allow-Credentials'] = 'true';
 }
 function onProxyReq(proxyReq) {
+    proxyReq.setHeader('Origin', 'http://www.bilibili.com');
     proxyReq.setHeader('Referer', 'http://www.bilibili.com');
+    console.log(new Date().toLocaleTimeString(),"proxyReq",proxyReq.path)
 }
 
 app.use('/api', proxy({
-    target: 'https://api.bilibili.com',
+    target: 'http://api.bilibili.com',
     pathRewrite: {
         '^/api': ''
     },
@@ -24,7 +26,7 @@ app.use('/api', proxy({
 
 
 app.use('/comment', proxy({
-    target: 'https://comment.bilibili.com',
+    target: 'http://comment.bilibili.com',
     pathRewrite: {
         '^/comment': ''
     },
