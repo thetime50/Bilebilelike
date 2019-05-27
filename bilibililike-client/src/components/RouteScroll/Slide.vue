@@ -5,7 +5,7 @@
     </div>
     <div v-if="showDot" class="dots-container" :class="styles['dots-container']">
       <div class="dots" :class="styles['dots']">
-        <span class="dot" :class="[styles['dot'],{active: currentPageIndex === index}]"
+        <span class="dot" :class="[{active: currentPageIndex === index},styles['dot']]"
         v-for="(item, index) in dots" :key="index"></span>
       </div>
     </div>

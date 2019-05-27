@@ -9,10 +9,21 @@ function onProxyResp(proxyRes) {
     proxyRes.headers['Access-Control-Allow-Credentials'] = 'true';
 }
 function onProxyReq(proxyReq) {
-    proxyReq.setHeader('Origin', 'http://www.bilibili.com');
-    proxyReq.setHeader('Referer', 'http://www.bilibili.com');
+    proxyReq.setHeader('Origin', 'http://m.bilibili.com');
+    proxyReq.setHeader('Referer', 'http://m.bilibili.com');
+    // proxyReq.setHeader('Upgrade-Insecure-Requests', 0);
     console.log(new Date().toLocaleTimeString(),"proxyReq",proxyReq.path)
 }
+
+app.use('/m', proxy({
+    target: 'http://m.bilibili.com',
+    pathRewrite: {
+        '^/m': ''
+    },
+    changeOrigin: true,
+    onProxyRes: onProxyResp,
+    onProxyReq,
+}));
 
 app.use('/api', proxy({
     target: 'http://api.bilibili.com',

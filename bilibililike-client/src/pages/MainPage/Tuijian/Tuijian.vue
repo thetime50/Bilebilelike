@@ -10,14 +10,29 @@
       </div>
     </slide>
   </div>
-  Tuijian <br>
-  {{test}}
+  Tuijian <br><br>
+  reqResLoc:<br>
+  {{reqResLoc}}<br><br>
+  reqRegion:<br>
+  {{reqRegion}}<br><br>
+  reqRankingRegion:<br>
+  {{reqRankingRegion}}<br><br>
+  reqRecommendnew:<br>
+  {{reqRecommendnew}}<br><br>
+  reqReply:<br>
+  {{reqReply}}<br><br>
 </div>
 </template>
 
 <script>
 import Slide from "@/components/RouteScroll/Slide.vue"
-import {reqRegion} from "../../../api"
+import {
+  reqResLoc,
+  reqRegion,
+  reqVideoPage,
+  reqRankingRegion,
+  reqRecommendnew,
+  reqReply} from "../../../api"
 
 export default {
   name: "Tuijian",
@@ -26,11 +41,21 @@ export default {
   },
   data () {
     return {
-      test:{},
+      reqResLoc:{},
+      reqRegion:{},
+      reqVideoPage:{},
+      reqRankingRegion:{},
+      reqRecommendnew:{},
+      reqReply:{},
     };
   },
   async mounted () {
-    this.test={... await reqRegion()}
+    this.reqResLoc={... await reqResLoc()}
+    this.reqRegion={... await reqRegion()}
+    this.reqVideoPage={... await reqVideoPage(53054599)}
+    this.reqRankingRegion={... await reqRankingRegion(47)}
+    this.reqRecommendnew={... await reqRecommendnew(53054599)}
+    this.reqReply={... await reqReply(53054599)}
   },
   computed: {
     // 首页轮播
@@ -46,7 +71,6 @@ export default {
 $debug-border()
   if true
     border 1px solid #088
-
 
 .component-tuijian
   *
