@@ -15,4 +15,6 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+.component-yingshi
+  height 40rem
 </style>

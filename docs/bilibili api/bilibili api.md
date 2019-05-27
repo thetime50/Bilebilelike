@@ -23,7 +23,7 @@ https://m.bilibili.com/video/av53054599.html
 
 https://api.bilibili.com/x/web-interface/ranking/region?rid=47&day=7 //多条介绍？？  
 https://api.bilibili.com/x/web-interface/nav //用户信息  
-ttps://comment.bilibili.com/recommendnew,53054599 //推荐  
+https://comment.bilibili.com/recommendnew,53054599 //推荐  
 https://api.bilibili.com/x/v2/reply?type=1&sort=2&oid=53054599&pn=1&nohot=1 //评论  
 
 V: /video/video--1711075381.js  

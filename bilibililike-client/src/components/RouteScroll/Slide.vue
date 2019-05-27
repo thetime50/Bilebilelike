@@ -1,11 +1,13 @@
 <template>
-  <div class="component-slide" ref="slide">
-    <div class="slide-group" ref="slideGroup">
+  <div class="component-slide" ref="slide" :class="styles['component-slide']">
+    <div class="slide-group" ref="slideGroup" :class="styles['slide-group']">
       <slot/>
     </div>
-    <div v-if="showDot" class="dots">
-      <span class="dot" :class="{active: currentPageIndex === index }"
-       v-for="(item, index) in dots"  :key="index"></span>
+    <div v-if="showDot" class="dots-container" :class="styles['dots-container']">
+      <div class="dots" :class="styles['dots']">
+        <span class="dot" :class="[styles['dot'],{active: currentPageIndex === index}]"
+        v-for="(item, index) in dots" :key="index"></span>
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +43,7 @@
     props: {
       slideConf :{type: Object ,default: ()=>{return {}}},
       scrollConf:{type: Object ,default: ()=>{return {}}},
+      styles    :{type: Object ,default: ()=>{return {}}},//{"ref1":"class1","ref2":"class2"}
     },
     data() {
       return {
@@ -208,7 +211,7 @@
   $color-white = #fff
 
   .component-slide
-    // position: relative
+    position: relative
     min-height: 1px
     overflow hidden
     width 100%
@@ -222,23 +225,24 @@
         box-sizing: border-box
         overflow: hidden
         text-align: center
-    .dots
+    .dots-container
       position: absolute
       right: 0
       left: 0
-      bottom: 12px
+      bottom: 0.6rem
       transform: translateZ(1px)
       text-align: center
       font-size: 0
-      .dot
-        display: inline-block
-        margin: 0 4px
-        width: 8px
-        height: 8px
-        border-radius: 50%
-        background: $color-light-grey-s
-        &.active
-          width: 20px
-          border-radius: 5px
-          background: $color-white
+      .dots
+        .dot
+          display: inline-block
+          margin: 0 4px
+          width: 8px
+          height: 8px
+          border-radius: 50%
+          background: $color-light-grey-s
+          &.active
+            width: 20px
+            border-radius: 5px
+            background: $color-white
 </style>

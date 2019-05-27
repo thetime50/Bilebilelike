@@ -5,7 +5,7 @@
 [5 根据会话获取用户信息](#5_根据会话获取用户信息)  
 [6 用户登出](#6_用户登出)  
 
-解析BiliBili API：[bilibili api →](docs\bilibili api\bilibili api.md)  
+解析BiliBili API：[bilibili% api →](docs\bilibili%20api\bilibili%20api.md)  
 
 ## 1 获取一次性验证码
      

@@ -15,4 +15,6 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+.component-remen
+  height 40rem
 </style>

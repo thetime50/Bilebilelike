@@ -1,7 +1,8 @@
 <template>
 <div class="component-tuijian">
   <div class="loop-slider">
-    <slide :slideConf="{}" :scrollConf="{}">
+    <slide :slideConf="{}" :scrollConf="{}"
+      :styles="{ 'dots':'tj-dots', 'dot':'tj-dot' }">
       <div v-for="(item,index) in ['123','456','789']" :key="index">
         {{item}}
         <br>
@@ -54,4 +55,17 @@ $debug-border()
     $debug-border()
     margin 0 $block-interval
     border-radius $block-radius
+    .tj-dots
+      position absolute
+      right 1.5rem
+      .tj-dot
+        vertical-align middle
+        $dot-size = 0.5rem
+        background-color #fff
+        width: $dot-size
+        height: $dot-size
+        &.active
+          width: $dot-size
+          height: $dot-size
+          background-color $blbl-pink
 </style>
