@@ -11,28 +11,24 @@
     </slide>
   </div>
   Tuijian <br><br>
-  reqResLoc:<br>
-  {{reqResLoc}}<br><br>
-  reqRegion:<br>
-  {{reqRegion}}<br><br>
-  reqRankingRegion:<br>
-  {{reqRankingRegion}}<br><br>
-  reqRecommendnew:<br>
-  {{reqRecommendnew}}<br><br>
-  reqReply:<br>
-  {{reqReply}}<br><br>
+  resLoc:<br>
+  {{resLoc}}<br><br>
+  region:<br>
+  {{region}}<br><br>
+  videoPage:<br>
+  {{videoPage}}<br><br>
+  rankingRegion:<br>
+  {{rankingRegion}}<br><br>
+  recommendnew:<br>
+  {{recommendnew}}<br><br>
+  reply:<br>
+  {{reply}}<br><br>
 </div>
 </template>
 
 <script>
 import Slide from "@/components/RouteScroll/Slide.vue"
-import {
-  reqResLoc,
-  reqRegion,
-  reqVideoPage,
-  reqRankingRegion,
-  reqRecommendnew,
-  reqReply} from "../../../api"
+import {mapState,mapActions} from "vuex"
 
 export default {
   name: "Tuijian",
@@ -41,27 +37,43 @@ export default {
   },
   data () {
     return {
-      reqResLoc:{},
-      reqRegion:{},
-      reqVideoPage:{},
-      reqRankingRegion:{},
-      reqRecommendnew:{},
-      reqReply:{},
     };
   },
   async mounted () {
-    this.reqResLoc={... await reqResLoc()}
-    this.reqRegion={... await reqRegion()}
-    this.reqVideoPage={... await reqVideoPage(53054599)}
-    this.reqRankingRegion={... await reqRankingRegion(47)}
-    this.reqRecommendnew={... await reqRecommendnew(53054599)}
-    this.reqReply={... await reqReply(53054599)}
-  },
-  computed: {
     // 首页轮播
     // 首页视频
     // 超时切换或 下拉刷新
+    // this.reqResLoc={... await reqResLoc()}
+    // this.reqRegion={... await reqRegion()}
+    // this.reqVideoPage={... await reqVideoPage(53054599)}
+    // this.reqRankingRegion={... await reqRankingRegion(47)}
+    // this.reqRecommendnew={... await reqRecommendnew(53054599)}
+    // this.reqReply={... await reqReply(53054599)}
+    this.getResLoc()
+    this.getRegion()
+    this.getVideoPage(53054599)
+    this.getRankingRegion(47)
+    this.getRecommendnew(53054599)
+    this.getReply(53054599)
   },
+  computed: {
+    ...mapState([
+      "resLoc",
+      "region",
+      "videoPage",
+      "rankingRegion",
+      "recommendnew",
+      "reply",]),
+  },
+  methods: {
+    ...mapActions([
+      "getResLoc",
+      "getRegion",
+      "getVideoPage",
+      "getRankingRegion",
+      "getRecommendnew",
+      "getReply",]),
+  }
 }
 </script>
 
