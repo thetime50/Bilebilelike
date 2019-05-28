@@ -3,10 +3,8 @@
   <div class="loop-slider">
     <slide :slideConf="{}" :scrollConf="{}" :key="refreshTime.getTime()"
       :styles="{ 'dots':'tj-dots', 'dot':'tj-dot' }">
-      <div v-for="(item,index) in resLoc" :key="index">
-        <!-- <img :src="item.pic" :alt="item.name"> -->
-        {{item.pic}}<br>
-        {{item.name}}
+      <div v-for="(item,index) in resLoc" class="loog-div" :key="index">
+        <a :href="item.url"> <img :src="item.pic" :alt="item.name" width="100%"> </a>
       </div>
     </slide>
   </div>
@@ -54,7 +52,6 @@ export default {
     async checkRefresh(){
       let now=new Date()
       if((now-this.refreshTime) > 8*1000){//3*1000*60){//3min
-        console.log("Refresh")
         await this.getResLoc()
         await this.getRanking()
         this.refreshTime=new Date()
@@ -80,12 +77,19 @@ $debug-border()
   *
     // $debug-border()
   .loop-slider
-    $debug-border()
+    // $debug-border()
     margin 0 $block-interval
     border-radius $block-radius
+    overflow hidden
+    .loog-div
+      a
+        display block
+        img
+          display block
     .tj-dots
       position absolute
-      right 1.5rem
+      right 0.5rem
+      bottom -0.2rem
       .tj-dot
         vertical-align middle
         $dot-size = 0.5rem
