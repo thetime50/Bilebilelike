@@ -10,7 +10,7 @@
     <slide :slideConf="slideConfDt" :scrollConf="scrollConfDt" ref="slide">
       <component v-for="(comp,index) in afterComponents" :is="comp" :key="index"/>
       <router-view :key="currentIndex"/>
-      <component v-for="(comp,index) in beforComponents" :is="comp" :key="index+currentIndex+1"/>
+      <component v-for="(comp,index) in beforeComponents" :is="comp" :key="index+currentIndex+1"/>
     </slide>
   </div>
 </div>
@@ -71,11 +71,15 @@ export default {
         this.positionSync=x/this.slide.pageWidth
       })
       this.slide.toPage(this.currentIndex,0,0)
+      this._triggerRouteChange(this.$route.path,"")
     })
   },
   watch: {
     currentIndex(before,after){
       this.slide.toPage(before)
+    },
+    "$route.path"(before,after){
+      this._triggerRouteChange(before,after)
     },
   },
   computed: {
@@ -99,7 +103,7 @@ export default {
     afterComponents(){
       return this.routeComponents.slice(0,this.currentIndex)
     },
-    beforComponents(){
+    beforeComponents(){
       return this.routeComponents.slice(this.currentIndex+1)
     },
     slide(){
@@ -110,6 +114,25 @@ export default {
     },
   },
   methods: {
+    _triggerRouteChange(before,after){
+      let isAfter = (s)=>new RegExp("^"+after+"\\b").test(s)
+      let isBefore = (s)=>new RegExp("^"+before+"\\b").test(s)
+      let afterIndex=-1,beforeIndex=-1
+      this.routes.forEach((item,index)=>{
+        if(isAfter(item.path))
+          afterIndex=index
+        if(isBefore(item.path))
+          beforeIndex=index
+      })
+      if(afterIndex>=0){
+        let routeChange= this.slide.$children[afterIndex].routeChange
+        routeChange && routeChange({type:"leave ",before,after})
+      }
+      if(beforeIndex>=0){
+        let routeChange= this.slide.$children[beforeIndex].routeChange
+        routeChange && routeChange({type:"enter",before,after})
+      }
+    },
   }
 }
 </script>

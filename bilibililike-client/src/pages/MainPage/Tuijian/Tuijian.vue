@@ -15,14 +15,6 @@
   {{resLoc}}<br><br>
   region:<br>
   {{region}}<br><br>
-  videoPage:<br>
-  {{videoPage}}<br><br>
-  rankingRegion:<br>
-  {{rankingRegion}}<br><br>
-  recommendnew:<br>
-  {{recommendnew}}<br><br>
-  reply:<br>
-  {{reply}}<br><br>
 </div>
 </template>
 
@@ -37,42 +29,41 @@ export default {
   },
   data () {
     return {
+      refreshTime:new Date(0),//可能会把这时间放vuex里边
     };
   },
-  async mounted () {
+  mounted () {
     // 首页轮播
     // 首页视频
     // 超时切换或 下拉刷新
-    // this.reqResLoc={... await reqResLoc()}
-    // this.reqRegion={... await reqRegion()}
-    // this.reqVideoPage={... await reqVideoPage(53054599)}
-    // this.reqRankingRegion={... await reqRankingRegion(47)}
-    // this.reqRecommendnew={... await reqRecommendnew(53054599)}
-    // this.reqReply={... await reqReply(53054599)}
-    this.getResLoc()
-    this.getRegion()
-    this.getVideoPage(53054599)
-    this.getRankingRegion(47)
-    this.getRecommendnew(53054599)
-    this.getReply(53054599)
+  },
+  watch: {
   },
   computed: {
     ...mapState([
       "resLoc",
       "region",
-      "videoPage",
-      "rankingRegion",
-      "recommendnew",
-      "reply",]),
+    ]),
   },
   methods: {
     ...mapActions([
       "getResLoc",
       "getRegion",
-      "getVideoPage",
-      "getRankingRegion",
-      "getRecommendnew",
-      "getReply",]),
+    ]),
+    async checkRefresh(){
+      let now=new Date()
+      if((now-this.refreshTime) > 8*1000){//3*1000*60){//3min
+        console.log("Refresh")
+        await this.getResLoc()
+        await this.getRegion()
+        this.refreshTime=new Date()
+      }
+    },
+    routeChange(e){
+      if(e.type=="enter"){
+        this.checkRefresh()
+      }
+    },
   }
 }
 </script>

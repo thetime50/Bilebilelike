@@ -124,7 +124,6 @@ export default {
   },
   methods: {
     ic2233Src(num){
-      console.log(num)
       this.ic22Src=num==0?IC22HIMG:IC22IMG
       this.ic33Src=num==0?IC33HIMG:IC33IMG
     },
