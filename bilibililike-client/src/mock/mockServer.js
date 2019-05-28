@@ -2,6 +2,13 @@ import Mock from "mockjs"
 import mockDb from "./mockDb.js"
 import data from "./data.json"
 
+import resLoc from "./data/main/loc.json"
+// import ranking  from "./data"
+// import videoPage from "./data"
+// import rankingRegion from "./data"
+// import recommendnew from "./data"
+// import reply from "./data"
+
 import store from '@/store'
 
 var Random=Mock.Random
@@ -92,7 +99,7 @@ export default{
 
   // bili api
   resLoc(options){
-    return {code:0,data:{test:"test str"}}
+    return resLoc
   },
   ranking(options){
     return {code:0,data:{test:"test str"}}
