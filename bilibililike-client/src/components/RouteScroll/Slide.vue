@@ -19,19 +19,19 @@
 
   var {setAttr2Def}=tool
 
-  const scrollConfDef={
-    scrollX: true,
-    scrollY: false,
-    momentum: false,
-    snap: {
-      loop: true,
-      threshold: 0.3,
-      speed: 400,
-    },
-    bounce: false,
-    stopPropagation: true,
-    click: true
-  }
+  const scrollConfDef=function (){ return {
+      scrollX: true,
+      scrollY: false,
+      momentum: false,
+      snap: {
+        loop: true,
+        threshold: 0.3,
+        speed: 400,
+      },
+      bounce: false,
+      stopPropagation: true,
+      click: true
+  }}
   const slideConfDef={
     autoPlay  :true,
     interval  :4000,
@@ -54,12 +54,12 @@
         pageWidth:0,
 
         _slideConfDef :slideConfDef,
-        _scrollConfDef:scrollConfDef,
+        _scrollConfDef:scrollConfDef(),
       }
     },
     created () {
       this.slideConfDt  =setAttr2Def(this.slideConf ,slideConfDef)
-      this.scrollConfDt =setAttr2Def(this.scrollConf,scrollConfDef)
+      this.scrollConfDt =setAttr2Def(this.scrollConf,scrollConfDef())
     },
     mounted() {
       this.update()

@@ -26,14 +26,14 @@
     autoPlay  :false,
     showDot   :false,
   }
-  const scrollConfDef={
+  const scrollConfDef=function (){ return {
     probeType:3,
     snap: {
       loop: false,
       threshold: 0.3,
       speed: 400,
     },
-  }
+  }}
 
 export default {
   name: "RouteScroll",
@@ -55,7 +55,7 @@ export default {
   },
   created () {
     this.slideConfDt  =setAttr2Def(this.slideConf ,slideConfDef)
-    this.scrollConfDt =setAttr2Def(this.scrollConf,scrollConfDef)
+    this.scrollConfDt =setAttr2Def(this.scrollConf,scrollConfDef())
   },
   mounted () {
     this.$nextTick(()=>{
