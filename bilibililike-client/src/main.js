@@ -13,6 +13,9 @@ import loadingImg from './assets/imgs/sobot_dialog_load_1.png'
 import errorImg from './assets/imgs/img_tips_error_banner_tv.png'
 // import loadingImg from './assets/imgs/loading.gif'
 import './mock'
+
+import JLink from './components/JumpLink/JumpLinkPlug.js'
+
 import {mapState,mapActions} from "vuex"
 
 Vue.config.productionTip = false
@@ -26,6 +29,8 @@ Vue.use(vueLazyload, {
   attempt: 5,
   // throttleWait:4000000
 })
+
+Vue.use(JLink)
 
 router.beforeEach((to, from, next) => {
   let isLogin = !!store.state.userInfo

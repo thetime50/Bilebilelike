@@ -35,10 +35,12 @@ export default {
     ...mapMutations("dbgState",["setpPhonMsg"]),
     exLink(){
       this.linkDt=this.link
-      this.setpPhonMsg("页面正在编写\n将离开Demo跳转至:\n  "+this.link)
-      this.delay && setTimeout(()=>{
-        this.setpPhonMsg("")
-      },this.delay)
+      // this.setpPhonMsg("页面正在编写\n将离开Demo跳转至:\n  "+this.link)
+      // this.delay && setTimeout(()=>{
+      //   this.setpPhonMsg("")
+      // },this.delay)
+      if(confirm("页面正在编写\n将离开Demo跳转至:\n  "+this.link))
+        location.href=this.linkDt
     }
   },
 }

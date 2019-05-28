@@ -19,7 +19,6 @@
 <script>
 import {mapState,mapActions} from "vuex"
 import Slide from "@/components/RouteScroll/Slide.vue"
-import JLink from "@/components/JumpLink/JumpLink.vue"
 
 // 首页轮播
 // 首页视频
@@ -29,7 +28,6 @@ export default {
   name: "Tuijian",
   components: {
     Slide,
-    JLink,
   },
   data () {
     return {
@@ -79,7 +77,7 @@ $debug-border()
   *
     // $debug-border()
   .loop-slider
-    $debug-border()
+    // $debug-border()
     margin 0 $block-interval
     border-radius $block-radius
     overflow hidden
