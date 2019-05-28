@@ -90,6 +90,25 @@ export default{
     return {code: 0}
   },
 
+  // bili api
+  resLoc(options){
+    return {code:0,data:{test:"test str"}}
+  },
+  ranking(options){
+    return {code:0,data:{test:"test str"}}
+  },
+  videoPage(options){
+    return {code:0,data:{test:"test str"}}
+  },
+  rankingRegion(options){
+    return {code:0,data:{test:"test str"}}
+  },
+  recommendnew(options){
+    return {code:0,data:{test:"test str"}}
+  },
+  reply(options){
+    return {code:0,data:{test:"test str"}}
+  },
 
   unknownPath(options){
     console.log("unknownPath",options)

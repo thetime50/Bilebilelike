@@ -6,8 +6,8 @@ import ajax from './ajax.js'
 const BASE_URL = ''//'/api'
 
 // const BLBL_ORIGIN = 'https://zeromake.com:8086' //代理服务台服务器 发布用
-const BLBL_ORIGIN = 'http://192.168.31.6:8088'  //proxy-bilibili本地代理 调试用
-// const BLBL_ORIGIN = "/biliapi"                   //VUE代理 调试用 上面这条可以用 这不需要了
+// const BLBL_ORIGIN = 'http://192.168.31.6:8088'  //proxy-bilibili本地代理 调试用
+const BLBL_ORIGIN = "/biliapi"                   //mock 或者 VUE代理 调试用 上面这条可以用 这不需要了
 const BLBL_API    = BLBL_ORIGIN+"/api"
 const BLBL_COMMENT= BLBL_ORIGIN+"/comment"
 const BLBL_M      = BLBL_ORIGIN+"/m"
