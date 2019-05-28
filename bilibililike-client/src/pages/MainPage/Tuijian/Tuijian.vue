@@ -3,9 +3,9 @@
   <div class="loop-slider">
     <slide :slideConf="{}" :scrollConf="{}" :key="refreshTime.getTime()"
       :styles="{ 'dots':'tj-dots', 'dot':'tj-dot' }">
-      <div v-for="(item,index) in resLoc" class="loog-div" :key="index">
-        <a :href="item.url"> <img :src="item.pic" :alt="item.name" width="100%"> </a>
-      </div>
+      <j-link v-for="(item,index) in resLoc" :link="item.url" :styles="{'comp':'loop-div'}" :key="index">
+        <img :src="item.pic" :alt="item.name" width="100%">
+      </j-link>
     </slide>
   </div>
   Tuijian <br><br>
@@ -17,8 +17,9 @@
 </template>
 
 <script>
-import Slide from "@/components/RouteScroll/Slide.vue"
 import {mapState,mapActions} from "vuex"
+import Slide from "@/components/RouteScroll/Slide.vue"
+import JLink from "@/components/JumpLink/JumpLink.vue"
 
 // 首页轮播
 // 首页视频
@@ -28,6 +29,7 @@ export default {
   name: "Tuijian",
   components: {
     Slide,
+    JLink,
   },
   data () {
     return {
@@ -77,15 +79,12 @@ $debug-border()
   *
     // $debug-border()
   .loop-slider
-    // $debug-border()
+    $debug-border()
     margin 0 $block-interval
     border-radius $block-radius
     overflow hidden
-    .loog-div
-      a
-        display block
-        img
-          display block
+    .loop-div a img
+      display block
     .tj-dots
       position absolute
       right 0.5rem
