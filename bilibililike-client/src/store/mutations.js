@@ -3,7 +3,7 @@ import {
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
   BLBI_RES_LOC,
-  BLBI_REGION,
+  BLBI_RANKING,
   BLBI_VIDEO_PAGE,
   BLBI_RANKING_REGION,
   BLBI_RECOMMENDNEW,
@@ -20,8 +20,8 @@ export default{
   [BLBI_RES_LOC] (state, {resLoc}) {
     state.resLoc = {...resLoc}
   },
-  [BLBI_REGION] (state, {region}) {
-    state.region = {...region}
+  [BLBI_RANKING] (state, {ranking}) {
+    state.ranking = {...ranking}
   },
   [BLBI_VIDEO_PAGE] (state, {videoPage}) {
     state.videoPage = {...videoPage}

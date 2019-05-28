@@ -3,7 +3,7 @@ import {
   reqUserInfo,
   reqLogout,
   reqResLoc,
-  reqRegion,
+  reqRanking,
   reqVideoPage,
   reqRankingRegion,
   reqRecommendnew,
@@ -13,7 +13,7 @@ import {
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
   BLBI_RES_LOC,
-  BLBI_REGION,
+  BLBI_RANKING,
   BLBI_VIDEO_PAGE,
   BLBI_RANKING_REGION,
   BLBI_RECOMMENDNEW,
@@ -48,11 +48,11 @@ import {
     }
   },
   // 获取首页推荐数据
-  async getRegion({commit}){
-    const result = await reqRegion()
+  async getRanking({commit}){
+    const result = await reqRanking()
     if (result.code === 0) {
-      const region = result.data
-      commit(BLBI_REGION, {region})
+      const ranking = result.data
+      commit(BLBI_RANKING, {ranking})
     }
   },
   // 获取视频页面

@@ -48,7 +48,7 @@ export const reqResLoc = () => ajax(BLBL_API + '/x/web-show/res/loc?jsonp=jsonp&
 /**
  * 首页推荐视频
  */
-export const reqRegion = (rid=0) => ajax(BLBL_API + '/x/web-interface/ranking?rid=' + rid + '&day=3&jsonp=jsonp')
+export const reqRanking = (rid=0) => ajax(BLBL_API + '/x/web-interface/ranking?rid=' + rid + '&day=3&jsonp=jsonp')
 /* 视频页面 */
 /**
  * 视频页面 用来解析tid

@@ -1,7 +1,7 @@
 export default{
   userInfo:"",
   resLoc:{},
-  region:{},
+  ranking:{},
   videoPage:{},
   rankingRegion:{},
   recommendnew:{},
