@@ -8,30 +8,34 @@
       </j-link>
     </slide>
   </div>
-  Tuijian <br><br>
-  resLoc:<br>
-  {{resLoc}}<br><br>
-  ranking:<br>
-  {{ranking}}<br><br>
+  <div class="cades">
+    <div v-for="(item,index) in loadRanking" class="card" :key="index">
+      <InfoCard :info="item"> </InfoCard>
+    </div>
+  </div>
 </div>
 </template>
 
 <script>
 import {mapState,mapActions} from "vuex"
 import Slide from "@/components/RouteScroll/Slide.vue"
+import InfoCard from "@/components/InfoCard/InfoCard.vue"
 
 // 首页轮播
 // 首页视频
 // 超时切换或 下拉刷新
+// 分片加载
 
 export default {
   name: "Tuijian",
   components: {
     Slide,
+    InfoCard,
   },
   data () {
     return {
       refreshTime:new Date(0),//可能会把这时间放vuex里边
+      loadCnt:10,
     };
   },
   mounted () {
@@ -43,6 +47,9 @@ export default {
       "resLoc",
       "ranking",
     ]),
+    loadRanking(){
+      return this.ranking.list?this.ranking.list.slice(0,this.loadCnt):[]
+    }
   },
   methods: {
     ...mapActions([
@@ -97,4 +104,17 @@ $debug-border()
           width: $dot-size
           height: $dot-size
           background-color $blbl-pink
+  .cades
+    margin $block-interval
+    .card
+      width 50%
+      box-sizing border-box
+      :nth-child(n+3)
+        margin-top $block-interval
+      &:nth-child(odd)
+        padding-right ($block-interval / 2)
+        float left
+      &:nth-child(even)
+        padding-left ($block-interval / 2)
+        float right
 </style>

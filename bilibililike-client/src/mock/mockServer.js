@@ -3,7 +3,7 @@ import mockDb from "./mockDb.js"
 import data from "./data.json"
 
 import resLoc from "./data/main/loc.json"
-// import ranking  from "./data"
+import ranking  from "./data/main/ranking.json"
 // import videoPage from "./data"
 // import rankingRegion from "./data"
 // import recommendnew from "./data"
@@ -102,7 +102,7 @@ export default{
     return resLoc
   },
   ranking(options){
-    return {code:0,data:{test:"test str"}}
+    return ranking
   },
   videoPage(options){
     return {code:0,data:{test:"test str"}}

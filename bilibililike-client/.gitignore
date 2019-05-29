@@ -12,3 +12,7 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# 因为有发布dist文件夹 所以static内缺少的文件夹
+# 请到对应版本的dist/static下复制
+static/i0.hdslb.com

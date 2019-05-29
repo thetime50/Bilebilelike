@@ -19,6 +19,9 @@ https://thetime50.github.io/Bilebilelike
 API文档：[API Document →](API%20Document.md)  
 解析BiliBili API：[bilibili api →](docs\bilibili%20api\bilibili%20api.md)  
 
+**因为有发布dist文件夹 所以static内缺少的文件夹**
+**请到对应版本的dist/static下复制**
+
 *(因为赶时间先写项目，文档慢慢写)*
 
 ## 项目特点
