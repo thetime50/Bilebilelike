@@ -106,9 +106,11 @@ $dbg=false
           background-color $blbl-pink
   .cades
     margin $block-interval
+    white-space nowrap//need unset
     .card
       width 50%
       box-sizing border-box
+      white-space unset
       &:nth-child(n+3)
         margin-top $block-interval
       &:nth-child(odd)
