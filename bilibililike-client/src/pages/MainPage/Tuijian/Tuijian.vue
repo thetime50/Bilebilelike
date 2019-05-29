@@ -76,15 +76,15 @@ export default {
 <style lang="stylus"  rel="stylesheet/stylus">
 @import "../../../assets/style/index.styl"
 
-$debug-border()
-  if true
-    border 1px solid #088
+$dbg=false
 
 .component-tuijian
+  background-color $def-back-color
+  padding-top ($block-interval * 0.8)
   *
-    // $debug-border()
+    $debug-border($dbg)
   .loop-slider
-    // $debug-border()
+    $debug-border($dbg)
     margin 0 $block-interval
     border-radius $block-radius
     overflow hidden
@@ -109,7 +109,7 @@ $debug-border()
     .card
       width 50%
       box-sizing border-box
-      :nth-child(n+3)
+      &:nth-child(n+3)
         margin-top $block-interval
       &:nth-child(odd)
         padding-right ($block-interval / 2)

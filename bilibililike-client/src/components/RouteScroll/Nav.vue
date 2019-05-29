@@ -63,7 +63,6 @@ export default {
   $line = 2.8rem
   .component-nav
     position relative
-    margin-bottom 0.5rem
     border-bottom 1px solid $def-line-color
     .nav-list
       position sticky

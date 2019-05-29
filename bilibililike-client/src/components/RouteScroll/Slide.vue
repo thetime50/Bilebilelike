@@ -219,7 +219,8 @@
     .slide-group
       position: relative
       overflow: hidden
-      white-space: nowrap
+      //忘记这是做什么用的了 如果有需要请在外面注入属性并且使用unset防止继承
+      // white-space: nowrap//unset
       .slide-item
         float: left
         box-sizing: border-box

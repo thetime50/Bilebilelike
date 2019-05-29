@@ -1,3 +1,6 @@
+/*
+ * mixins.styl
+*/
 // $green = #02a774;
 // $yellow = #F5A100;
 // $bc = #e4e4e4;
@@ -10,9 +13,14 @@ $game-blue = #23ade5
 $def-font-color=#7f7f7f
 $def-char-color=#515151
 $def-line-color=#dcdcdc
+$def-back-color=#f4f4f4
 
 $block-interval=0.8rem
 $block-radius  =0.5rem
+
+$debug-border(sw)
+  if sw
+    border 1px solid #088
 
 // 一像素下边框
 bottom-border-1px($color)
