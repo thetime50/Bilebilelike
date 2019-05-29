@@ -1,0 +1,18 @@
+{
+  "name": "download",
+  "version": "1.0.0",
+  "description": "assets download",
+  "main": "download.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node download.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.0.1",
+    "bagpipe": "^0.3.5",
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.0"
+  }
+}
