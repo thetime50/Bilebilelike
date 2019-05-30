@@ -6,7 +6,7 @@
       :positionSync="positionSync"
       :routes="routes"/>
   </div>
-  <div class="slide">
+  <div class="route-scroll-slide">
     <slide :slideConf="slideConfDt" :scrollConf="scrollConfDt" ref="slide">
       <component v-for="(comp,index) in afterComponents" :is="comp" :key="index"/>
       <router-view :key="currentIndex"/>
@@ -28,6 +28,7 @@
   }
   const scrollConfDef=function (){ return {
     probeType:3,
+    // eventPassthrough : "vertical",
     snap: {
       loop: false,
       threshold: 0.3,
@@ -140,6 +141,6 @@ export default {
 <style lang="stylus"  rel="stylesheet/stylus">
 .component-route-scroll
   width 100%
-  .slide
+  .route-scroll-slide
     position: relative
 </style>

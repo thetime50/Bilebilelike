@@ -9,8 +9,9 @@
     </slide>
   </div>
   <div class="cades">
-    <div v-for="(item,index) in loadRanking" class="card" :key="index">
-      <InfoCard :info="item"> </InfoCard>
+    <div v-for="(item,index) in loadRanking" class="cades-line" :key="index">
+      <div class="card"><InfoCard :info="item[0]" :key="'in-'+2*index"> </InfoCard></div>
+      <div class="card"><InfoCard :info="item[1]" :key="'in-'+2*index+1"> </InfoCard></div>
     </div>
   </div>
 </div>
@@ -35,7 +36,7 @@ export default {
   data () {
     return {
       refreshTime:new Date(0),//可能会把这时间放vuex里边
-      loadCnt:10,
+      loadCnt:30,
     };
   },
   mounted () {
@@ -48,7 +49,12 @@ export default {
       "ranking",
     ]),
     loadRanking(){
-      return this.ranking.list?this.ranking.list.slice(0,this.loadCnt):[]
+      let sList=this.ranking.list?this.ranking.list.slice(0,this.loadCnt):[]
+      let dList=[]
+      for(let i=0;i<sList.length;i+=2){
+        dList.push([sList[i],sList[i+1]])
+      }
+      return dList
     }
   },
   methods: {
@@ -106,17 +112,17 @@ $dbg=false
           background-color $blbl-pink
   .cades
     margin $block-interval
-    white-space nowrap//need unset
-    .card
-      width 50%
-      box-sizing border-box
-      white-space unset
-      &:nth-child(n+3)
-        margin-top $block-interval
-      &:nth-child(odd)
-        padding-right ($block-interval / 2)
+    .cades-line
+      width 100%
+      overflow hidden
+      .card
+        width 50%
+        box-sizing border-box
         float left
-      &:nth-child(even)
-        padding-left ($block-interval / 2)
-        float right
+        &:nth-child(n+3)
+          margin-top $block-interval
+        &:nth-child(odd)
+          padding-right ($block-interval / 2)
+        &:nth-child(even)
+          padding-left ($block-interval / 2)
 </style>
