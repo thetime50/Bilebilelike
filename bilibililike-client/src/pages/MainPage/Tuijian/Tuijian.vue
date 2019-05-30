@@ -115,12 +115,12 @@ $dbg=false
     .cades-line
       width 100%
       overflow hidden
+      &:nth-child(n+1)
+        margin-top $block-interval
       .card
         width 50%
         box-sizing border-box
         float left
-        &:nth-child(n+3)
-          margin-top $block-interval
         &:nth-child(odd)
           padding-right ($block-interval / 2)
         &:nth-child(even)
