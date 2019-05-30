@@ -4,12 +4,15 @@
     <div><i class="iconfont icon-pindao" style="font-size:100px;color:#fb7299"></i></div> -->
     <DbgMsg/>
     <left-menu-drawer></left-menu-drawer>
-    <router-view/>
+    <div class="app-router-view-contain" ref="app-router-view-contain">
+        <router-view/>
+    </div>
     <FooterGuide v-show="$route.meta.showFooter"/>
   </div>
 </template>
 
 <script>
+import BScroll from "better-scroll"
 import LeftMenuDrawer from "./components/LeftMenuDrawer/LeftMenuDrawer.vue"
 import FooterGuide from "./components/FooterGuide/FooterGuide.vue"
 import DbgMsg from "./components/DbgMsg/DbgMsg.vue"
@@ -21,8 +24,31 @@ export default {
     FooterGuide,
     DbgMsg,
   },
+  mounted () {
+    // this.$nextTick(()=> {
+    //   this.scroll = new BScroll(this.$refs["router-view-contain"],{ 
+    //     click: true,
+    //     bounce:false,
+    //     bindToWrapper:true,
+    //     // stopPropagation:true,
+    //   })
+    //   //不知道为什么这里一定要重新刷新
+    //   setTimeout(()=>this.scroll.refresh(),120)
+    // })
+    setTimeout(()=> {
+      this.scroll = new BScroll(this.$refs["app-router-view-contain"],{ 
+        click: true,
+        bounce:false,
+        bindToWrapper:true,
+        // stopPropagation:true,
+      })
+      //不知道为什么这里一定要重新刷新
+      setTimeout(()=>this.scroll.refresh(),120)
+    },2000)
+
+  },
   methods: {
-  }
+  },
 }
 </script>
 
@@ -36,7 +62,10 @@ export default {
   margin-top: 0;
 }
 </style>
+
 <style lang="stylus"  rel="stylesheet/stylus">
+@import "./assets/style/index.styl"
+
 @keyframes animated_div {
   0%		{transform: rotate(0deg);}
   100%		{transform: rotate(360deg);}
@@ -53,5 +82,15 @@ img
   //   //
   // &[lazy=loaded]
   //   //
+#app
+  position relative
+  height 100%
+  .app-router-view-contain
+    overflow hidden
+    top 0
+    bottom $footer-guide-height
+    width 100%
+    position absolute
+
 </style>
 

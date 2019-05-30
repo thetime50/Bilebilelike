@@ -28,6 +28,7 @@
   }
   const scrollConfDef=function (){ return {
     probeType:3,
+    stopPropagation:false,
     // eventPassthrough : "vertical",
     snap: {
       loop: false,

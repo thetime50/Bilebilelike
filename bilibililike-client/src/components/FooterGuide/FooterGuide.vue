@@ -48,7 +48,7 @@ export default {
   bottom 0
   background-color #fff
   width 100%
-  height 63px
+  height $footer-guide-height
   display flex
   .guide_item
     display flex
