@@ -73,22 +73,22 @@ $normal-interval = 0.7rem
   .image-div
     position relative
     .img-proportion
-      position : relative;
-      background: #ccc;
-      width: 100%;
-      padding-bottom : 62.5%//@320w_200h
+      position relative
+      width 100%
+      padding-bottom 62.5%//@320w_200h
       .img-div
         position absolute
         width 100%
         height 100%
+        display flex
         img
           display block
           width 100%
           height 100%
-          margin 0 auto
+          margin auto
           &[lazy=loading]
             width auto
-            height 100%
+            height 40%
     .img-footer
       $img-footer-font-size = 0.7rem
       position absolute
