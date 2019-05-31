@@ -34,6 +34,7 @@ https://api.bilibili.com/x/web-interface/ranking/region?rid=47&day=7
 V: var r, i, n = e.tid;  
 V: return r = "//" + O + "/x/web-interface/ranking/region?rid=" + n + "&day=7",  
 A: "tid": 47,  
+//介绍好像在av53054599.html里面了，这个好像没啥用
 
 - 推荐  
 https://comment.bilibili.com/recommendnew,53054599  

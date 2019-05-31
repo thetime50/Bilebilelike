@@ -5,31 +5,6 @@
 	"data": {
 		 "note": "统计所有投稿在 2019年05月24日 - 2019年05月27日 的数据综合得分，每日更新一次",
 		 "list": [{
-			  "aid": "53437058",
-			  "author": "惜缘、过去",
-			  "coins": 294209,
-			  "duration": "4:20",
-			  "mid": 159122,
-			  "pic": "./static/i0.hdslb.com/bfs/archive/893cbeb1889304c8b614cca1d1cd6c89d21a968b.jpg",
-			  "play": 1399947,
-			  "pts": 4752435,
-			  "title": "【全明星】鬼畜修炼手册",
-			  "trend": null,
-			  "video_review": 17252,
-			  "rights": {
-					"bp": 0,
-					"elec": 0,
-					"download": 0,
-					"movie": 0,
-					"pay": 0,
-					"hd5": 0,
-					"no_reprint": 1,
-					"autoplay": 1,
-					"ugc_pay": 0,
-					"is_cooperation": 0,
-					"ugc_pay_preview": 0
-			  }
-		 }, {
 			  "aid": "53498266",
 			  "author": "信誓蛋蛋",
 			  "coins": 262029,
@@ -80,6 +55,31 @@
 					"ugc_pay_preview": 0
 			  }
 		 }, {
+			"aid": "53437058",
+			"author": "惜缘、过去",
+			"coins": 294209,
+			"duration": "4:20",
+			"mid": 159122,
+			"pic": "./static/i0.hdslb.com/bfs/archive/893cbeb1889304c8b614cca1d1cd6c89d21a968b.jpg",
+			"play": 1299947,
+			"pts": 4752435,
+			"title": "【全明星】鬼畜修炼手册",
+			"trend": null,
+			"video_review": 7252,
+			"rights": {
+				 "bp": 0,
+				 "elec": 0,
+				 "download": 0,
+				 "movie": 0,
+				 "pay": 0,
+				 "hd5": 0,
+				 "no_reprint": 1,
+				 "autoplay": 1,
+				 "ugc_pay": 0,
+				 "is_cooperation": 0,
+				 "ugc_pay_preview": 0
+			}
+	  }, {
 			  "aid": "53043610",
 			  "author": "教育思享",
 			  "coins": 47865,
