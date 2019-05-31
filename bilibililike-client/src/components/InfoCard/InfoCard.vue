@@ -53,7 +53,8 @@ export default {
       return autoChNum(num,chCnt,type)
     },
     av2url(av){
-      return "https://m.bilibili.com/video/av"+av+".html"
+      // return "https://m.bilibili.com/video/av"+av+".html"
+      return "/video/av"+av
     }
   }
 }

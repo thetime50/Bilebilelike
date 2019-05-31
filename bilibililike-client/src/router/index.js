@@ -21,12 +21,12 @@ import Yingshi  from "@/pages/MainPage/Yingshi/Yingshi.vue"
 
 import Game from "../pages/Game/Game.vue"
 import OfflineCache from "../pages/OfflineCache/OfflineCache.vue"
-import Message from"../pages/Message/Message.vue"
-import Search from"../pages/Search/Search.vue"
-import DefPage from"../pages/DefPage/DefPage.vue"
-import Login from"../pages/Login/Login.vue"
-import MyPage from"../pages/MyPage/MyPage.vue"
-
+import Message from "../pages/Message/Message.vue"
+import Search from "../pages/Search/Search.vue"
+import DefPage from "../pages/DefPage/DefPage.vue"
+import Login from "../pages/Login/Login.vue"
+import MyPage from "../pages/MyPage/MyPage.vue"
+import Video from "../pages/Video/Video.vue"
 
 Vue.use(Router)
 
@@ -122,6 +122,12 @@ export default new Router({
     {
       path: '/mypage',
       component: MyPage,
+      meta: {
+      }
+    },
+    {
+      path: '/video/:av',
+      component: Video,
       meta: {
       }
     },
