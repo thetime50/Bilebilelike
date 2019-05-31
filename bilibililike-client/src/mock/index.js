@@ -32,6 +32,7 @@ const BLBL_API_PATHS={
   resLoc        : BLBL_API + "/x/web-show/res/loc",             // "?jsonp=jsonp&pf=7&id=1695",
   ranking       : BLBL_API + "/x/web-interface/ranking",        // "?rid=' + rid + '&day=3&jsonp=jsonp",
   videoPage     : BLBL_M   + "/video",                          // "/av"+ av +".html",
+  initialState  : BLBL_M   + "/video/initial_state",            // ","+ av
   rankingRegion : BLBL_API + "/x/web-interface/ranking/region", // "?rid=" + tid + "&day=7",
   recommendnew  : BLBL_COMMENT + "//recommendnew",              // "," + av,
   reply         : BLBL_API + "/x/v2/reply",                     // "?type=1&sort=2&oid=" + av + "&pn=1&nohot=1",
@@ -47,10 +48,13 @@ Mock.mock(pathRegExp(BLBL_API_PATHS.resLoc),        mockServer.resLoc)
 // 首页推荐视频
 // BLBL_API + '/x/web-interface/ranking?rid=' + rid + '&day=3&jsonp=jsonp'
 Mock.mock(pathRegExp(BLBL_API_PATHS.ranking),       mockServer.ranking)
-/* 视频页面 */
-// 视频页面 用来解析tid
+// /* 视频页面 */
+// // 视频页面 用来解析tid
+// // BLBL_M + "/video/av"+ av +".html"
+// Mock.mock(pathRegExp(BLBL_API_PATHS.videoPage),     mockServer.videoPage)
+// 这是上面接口页面中的initial_state数据
 // BLBL_M + "/video/av"+ av +".html"
-Mock.mock(pathRegExp(BLBL_API_PATHS.videoPage),     mockServer.videoPage)
+Mock.mock(pathRegExp(BLBL_API_PATHS.initialState),  mockServer.initialState)
 // 视频介绍
 // BLBL_API + "/x/web-interface/ranking/region?rid=" + tid + "&day=7"
 Mock.mock(pathRegExp(BLBL_API_PATHS.rankingRegion), mockServer.rankingRegion)

@@ -1,6 +1,7 @@
 import Mock from "mockjs"
 import mockDb from "./mockDb.js"
 import data from "./data.json"
+import tool from "../assets/js/tool"
 
 import resLoc from "./data/main/loc.json"
 import ranking  from "./data/main/ranking.json"
@@ -105,17 +106,41 @@ export default{
     return ranking
   },
   videoPage(options){
-    return {code:0,data:{test:"test str"}}
+    return {code:0,data:{test:"videoPage test str"}}
+  },
+  initialState(options){
+    let av=/\/\d{8}$/.exec(options.url)
+    if(av){
+      av=av[0].slice(1)
+      let initial_state=require("./data/video/av"+av+"/initial_state.json")
+      return {code:0,data:{...initial_state}}
+    }else{
+      return {code: 1}
+    }
   },
   rankingRegion(options){
-    return {code:0,data:{test:"test str"}}
+    return {code:0,data:{test:"rankingRegion test str"}}
   },
   recommendnew(options){
-    return {code:0,data:{test:"test str"}}
-  },
+    let av=/,\d{8}$/.exec(options.url)
+    if(av){
+      av=av[0].slice(1)
+      let recommendnew=require("./data/video/av"+av+"/recommendnew,"+av+".json")
+      return {code:0,data:{...recommendnew}}
+    }else{
+      return {code: 1}
+    }
+},
   reply(options){
-    return {code:0,data:{test:"test str"}}
-  },
+    let pu=tool.parseUrl(options.url)
+    let av=pu._querys.oid
+    if(av){
+      let replay=require("./data/video/av"+av+"/replay.json")
+      return {code:0,data:{...replay}}
+    }else{
+      return {code: 1}
+    }
+},
 
   unknownPath(options){
     console.log("unknownPath",options)

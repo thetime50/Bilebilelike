@@ -4,5 +4,7 @@ export default{
     return "."+(state.userInfo?state.userInfo.headImg:
       "/static/temp/imgs/bili_default_avatar.png")},
   bigvipGetter:function(state,getters){
-    return state.userInfo?state.userInfo.bigvip:false}
+    return state.userInfo?state.userInfo.bigvip:false},
+  initialState:function(state,getters){
+    return state.videoPage},
 }

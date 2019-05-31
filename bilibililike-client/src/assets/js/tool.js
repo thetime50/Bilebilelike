@@ -1,3 +1,5 @@
+import prUrl from "url"
+
 export default{
   getStyle: function(node, styleType){
     return node.currentStyle? node.currentStyle[styleType]: getComputedStyle(node)[styleType];//浏览器中有node.currentStyle方法就用，没有就用另一个
@@ -86,4 +88,18 @@ export default{
     }
     return cnNumStr
   },
+  urlQuery2obj(query){
+    let vars = query?query.split("&"):[]
+    let obj={}
+    for (let i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      obj[pair[0]]=pair[1]
+    }
+    return obj
+  },
+  parseUrl(url){
+    let pu={...prUrl.parse(url)}
+    pu={...pu,_querys:{...this.urlQuery2obj(pu.query)}}
+    return pu
+  }
 }

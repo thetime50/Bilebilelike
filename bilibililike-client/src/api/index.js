@@ -55,6 +55,10 @@ export const reqRanking = (rid=0) => ajax(BLBL_API + '/x/web-interface/ranking?r
  */
 export const reqVideoPage = (av) => {return {}}//ajax(BLBL_M + "/video/av"+ av +".html")
 /**
+ * 视频页面tid (获取mock的initial state数据)
+ */
+export const reqInitialState = (av) => ajax(BLBL_M   + "/video/initial_state/"+av)
+/**
  * 视频介绍
  */
 export const reqRankingRegion = (tid) => ajax(BLBL_API + "/x/web-interface/ranking/region?rid=" + tid + "&day=7")
