@@ -26,6 +26,7 @@ export default {
   },
   mounted () {
     // this.$nextTick(()=> {
+    //   console.dir(this.$refs["app-router-view-contain"].innerHTML.slice(0,40))
     //   this.scroll = new BScroll(this.$refs["router-view-contain"],{ 
     //     click: true,
     //     bounce:false,
@@ -35,17 +36,18 @@ export default {
     //   //不知道为什么这里一定要重新刷新
     //   setTimeout(()=>this.scroll.refresh(),120)
     // })
-    setTimeout(()=> {
-      this.scroll = new BScroll(this.$refs["app-router-view-contain"],{ 
-        click: true,
-        bounce:false,
-        bindToWrapper:true,
-        // stopPropagation:true,
-      })
-      //不知道为什么这里一定要重新刷新
-      setTimeout(()=>this.scroll.refresh(),120)
-    },2000)
-
+    this._interval=setInterval(()=>{
+      // console.dir(this.$refs["app-router-view-contain"].innerHTML.length)
+      if(this.$refs["app-router-view-contain"].innerHTML.length>100){
+        clearInterval(this._interval)
+        this.scroll = new BScroll(this.$refs["app-router-view-contain"],{ 
+          click: true,
+          bounce:false,
+          bindToWrapper:true,
+          // stopPropagation:true,
+        })
+      }
+    },10)
   },
   methods: {
   },

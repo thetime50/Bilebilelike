@@ -2,9 +2,11 @@
 <div class="component-info-card">
   <div class="image-div">
     <j-link :link="info.aid | av2url">
-      <div class="img-div">
-        <!-- <img :src="info.pic" :alt="info.title"> -->
-        <img v-lazy="info.pic" :alt="info.title">
+      <div class="img-proportion">
+        <div class="img-div">
+          <!-- <img :src="info.pic" :alt="info.title"> -->
+          <img v-lazy="info.pic" :alt="info.title">
+        </div>
       </div>
       <div class="img-footer">
         <div class="bofang-icon">
@@ -70,10 +72,23 @@ $normal-interval = 0.7rem
     $debug-border($dbg)
   .image-div
     position relative
-    .img-div
-      img
-        display block
+    .img-proportion
+      position : relative;
+      background: #ccc;
+      width: 100%;
+      padding-bottom : 62.5%//@320w_200h
+      .img-div
+        position absolute
         width 100%
+        height 100%
+        img
+          display block
+          width 100%
+          height 100%
+          margin 0 auto
+          &[lazy=loading]
+            width auto
+            height 100%
     .img-footer
       $img-footer-font-size = 0.7rem
       position absolute
