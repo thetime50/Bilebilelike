@@ -66,49 +66,106 @@ let assetsUrlProxy = function (url, orgData, proxyRewrites) {
   // return orgData
 }
 
+const IN_HDSLB_REPL={
+  re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
+  str:BLBL_ORIGIN + '/i$1hdslb',
+}
+
 /**
  * 首页轮播
  */
 export const proxyResLoc = async function (url = '', data = {}, type = 'GET') {
   let orgData = await ajax(url, data, type)
-  if (/^https?:\/\//.test(url) && orgData.code == 0) {
-    // url orgData proxyRewrite
-    //list paths
-    //attribute path list
-    //re str list
-    orgData.data.forEach((item, index, arr) => {
-      item.pic = item.pic.replace(/http:\/\/i(\d)\.hdslb\.com\b/, BLBL_ORIGIN + '/i$1hdslb')
-    });
-  }
+  // url orgData proxyRewrite
+  assetsUrlProxy(url,orgData,[//list path array
+    {
+      listPath:"data",//list path
+      replaces:[//attrPath re str list
+        {
+          attrPath:"pic",
+          ...IN_HDSLB_REPL,
+        }
+      ]
+    }
+  ])
   return orgData
 }
 /**
  * 首页推荐视频
  */
 export const proxyRanking = async function (url = '', data = {}, type = 'GET') {
-  //
+  let orgData = await ajax(url, data, type)
+  // url orgData proxyRewrite
+  assetsUrlProxy(url,orgData,[{
+    listPath:"data.list",
+    replaces:[{
+        attrPath:"pic",
+        ...IN_HDSLB_REPL,
+    }]
+  }])
+  return orgData
 }
 /**
  * 视频页面 用来解析tid
  */
 export const proxyVideoPage = async function (url = '', data = {}, type = 'GET') {
-  //
+  // let orgData = await ajax(url, data, type)
+  // // url orgData proxyRewrite
+  // assetsUrlProxy(url,orgData,[{
+  //   listPath:"data",
+  //   replaces:[{
+  //       attrPath:"pic",
+  //       re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
+  //       str:BLBL_ORIGIN + '/i$1hdslb',
+  //   }]
+  // }])
+  // return orgData
 }
 /**
  * 视频介绍
  */
 export const proxyRankingRegion = async function (url = '', data = {}, type = 'GET') {
-  //
+  // let orgData = await ajax(url, data, type)
+  // // url orgData proxyRewrite
+  // assetsUrlProxy(url,orgData,[{
+  //   listPath:"data",
+  //   replaces:[{
+  //       attrPath:"pic",
+  //       re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
+  //       str:BLBL_ORIGIN + '/i$1hdslb',
+  //   }]
+  // }])
+  // return orgData
 }
 /**
  * 关联视频推荐
  */
 export const proxyRecommendnew = async function (url = '', data = {}, type = 'GET') {
-  //
+  // let orgData = await ajax(url, data, type)
+  // // url orgData proxyRewrite
+  // assetsUrlProxy(url,orgData,[{
+  //   listPath:"data",
+  //   replaces:[{
+  //       attrPath:"pic",
+  //       re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
+  //       str:BLBL_ORIGIN + '/i$1hdslb',
+  //   }]
+  // }])
+  // return orgData
 }
 /**
  * 评论
  */
 export const proxyReply = async function (url = '', data = {}, type = 'GET') {
-  //
+  // let orgData = await ajax(url, data, type)
+  // // url orgData proxyRewrite
+  // assetsUrlProxy(url,orgData,[{
+  //   listPath:"data",
+  //   replaces:[{
+  //       attrPath:"pic",
+  //       re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
+  //       str:BLBL_ORIGIN + '/i$1hdslb',
+  //   }]
+  // }])
+  // return orgData
 }

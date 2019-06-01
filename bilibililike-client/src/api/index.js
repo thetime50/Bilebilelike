@@ -50,12 +50,11 @@ export const reqCaptcha = () => ajax(BASE_URL + '/captcha?time=' + {time:Date.no
 /**
  * 首页轮播
  */
-//ajax(BLBL_API + '/x/web-show/res/loc?jsonp=jsonp&pf=7&id=1695')
 export const reqResLoc = () => proxyResLoc(BLBL_API + '/x/web-show/res/loc?jsonp=jsonp&pf=7&id=1695')
 /**
  * 首页推荐视频
  */
-export const reqRanking = (rid=0) => ajax(BLBL_API + '/x/web-interface/ranking?rid=' + rid + '&day=3&jsonp=jsonp')
+export const reqRanking = (rid=0) => proxyRanking(BLBL_API + '/x/web-interface/ranking?rid=' + rid + '&day=3&jsonp=jsonp')
 /* 视频页面 */
 /**
  * 视频页面 用来解析tid

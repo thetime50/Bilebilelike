@@ -20,6 +20,14 @@ const hosts = [
         target: 'http://i0.hdslb.com',
         rewrite: { '^/i0hdslb': '' },
         url: '/i0hdslb'
+    },{
+        target: 'http://i1.hdslb.com',
+        rewrite: { '^/i1hdslb': '' },
+        url: '/i1hdslb'
+    },{
+        target: 'http://i2.hdslb.com',
+        rewrite: { '^/i2hdslb': '' },
+        url: '/i2hdslb'
     }
 ];
 
