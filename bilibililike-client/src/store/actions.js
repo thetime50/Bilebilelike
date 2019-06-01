@@ -5,7 +5,6 @@ import {
   reqResLoc,
   reqRanking,
   reqVideoPage,
-  reqInitialState,
   reqRankingRegion,
   reqRecommendnew,
   reqReply,
@@ -58,7 +57,7 @@ import {
   },
   // 获取视频页面
   async getVideoPage({commit},av,callback){
-    const result = await reqInitialState(av)//reqVideoPage(av)
+    const result = await reqVideoPage(av)
     if (result.code === 0) {
       const videoPage = result.data
       commit(BLBI_VIDEO_PAGE, {videoPage})

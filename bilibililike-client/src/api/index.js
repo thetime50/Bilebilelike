@@ -2,15 +2,21 @@
 与后台交互模块
  */
 import ajax from './ajax.js'
-// const BASE_URL = 'http://local:4000'
-const BASE_URL = ''//'/api'
-
-// const BLBL_ORIGIN = 'https://zeromake.com:8086' //代理服务台服务器 发布用
-// const BLBL_ORIGIN = 'http://192.168.31.6:8088'  //proxy-bilibili本地代理 调试用
-const BLBL_ORIGIN = "/biliapi"                   //mock 或者 VUE代理 调试用 上面这条可以用 这不需要了
-const BLBL_API    = BLBL_ORIGIN+"/api"
-const BLBL_COMMENT= BLBL_ORIGIN+"/comment"
-const BLBL_M      = BLBL_ORIGIN+"/m"
+import {
+  BASE_URL,
+  BLBL_ORIGIN,
+  BLBL_API,
+  BLBL_COMMENT,
+  BLBL_M,
+} from './originConf.js'
+import {
+  proxyResLoc,
+  proxyRanking,
+  proxyVideoPage,
+  proxyRankingRegion,
+  proxyRecommendnew,
+  proxyReply,
+} from './proxyApi.js'
 
 /**
  * 账号密码登录
@@ -44,7 +50,8 @@ export const reqCaptcha = () => ajax(BASE_URL + '/captcha?time=' + {time:Date.no
 /**
  * 首页轮播
  */
-export const reqResLoc = () => ajax(BLBL_API + '/x/web-show/res/loc?jsonp=jsonp&pf=7&id=1695')
+//ajax(BLBL_API + '/x/web-show/res/loc?jsonp=jsonp&pf=7&id=1695')
+export const reqResLoc = () => proxyResLoc(BLBL_API + '/x/web-show/res/loc?jsonp=jsonp&pf=7&id=1695')
 /**
  * 首页推荐视频
  */
@@ -53,7 +60,7 @@ export const reqRanking = (rid=0) => ajax(BLBL_API + '/x/web-interface/ranking?r
 /**
  * 视频页面 用来解析tid
  */
-export const reqVideoPage = (av) => {return {}}//ajax(BLBL_M + "/video/av"+ av +".html")
+export const reqVideoPage = (av) => reqInitialState(av)//{return {}}//ajax(BLBL_M + "/video/av"+ av +".html")//
 /**
  * 视频页面tid (获取mock的initial state数据)
  */
