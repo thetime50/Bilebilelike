@@ -109,23 +109,26 @@ export const proxyRanking = async function (url = '', data = {}, type = 'GET') {
  * 视频页面 用来解析tid
  */
 export const proxyVideoPage = async function (url = '', data = {}, type = 'GET') {
-  // let orgData = await ajax(url, data, type)
-  // // url orgData proxyRewrite
-  // assetsUrlProxy(url,orgData,[{
-  //   listPath:"data",
-  //   replaces:[{
-  //       attrPath:"pic",
-  //       re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
-  //       str:BLBL_ORIGIN + '/i$1hdslb',
-  //   }]
-  // }])
-  // return orgData
+  console.log(url)
+  let orgData = await ajax(url, data, type)
+  // if(/^https?:\/\//.test(url)){
+  //   // url orgData proxyRewrite
+  //   assetsUrlProxy(url,orgData,[{
+  //     listPath:"data",
+  //     replaces:[{
+  //         attrPath:"pic",
+  //         re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
+  //         str:BLBL_ORIGIN + '/i$1hdslb',
+  //     }]
+  //   }])
+  // }
+  return {code:0,data:{...orgData}}
 }
 /**
- * 视频介绍
+ * 视频介绍(介绍在page里边，这个暂时没有用)
  */
 export const proxyRankingRegion = async function (url = '', data = {}, type = 'GET') {
-  // let orgData = await ajax(url, data, type)
+  let orgData = await ajax(url, data, type)
   // // url orgData proxyRewrite
   // assetsUrlProxy(url,orgData,[{
   //   listPath:"data",
@@ -135,13 +138,13 @@ export const proxyRankingRegion = async function (url = '', data = {}, type = 'G
   //       str:BLBL_ORIGIN + '/i$1hdslb',
   //   }]
   // }])
-  // return orgData
+  return orgData
 }
 /**
  * 关联视频推荐
  */
 export const proxyRecommendnew = async function (url = '', data = {}, type = 'GET') {
-  // let orgData = await ajax(url, data, type)
+  let orgData = await ajax(url, data, type)
   // // url orgData proxyRewrite
   // assetsUrlProxy(url,orgData,[{
   //   listPath:"data",
@@ -151,13 +154,13 @@ export const proxyRecommendnew = async function (url = '', data = {}, type = 'GE
   //       str:BLBL_ORIGIN + '/i$1hdslb',
   //   }]
   // }])
-  // return orgData
+  return orgData
 }
 /**
  * 评论
  */
 export const proxyReply = async function (url = '', data = {}, type = 'GET') {
-  // let orgData = await ajax(url, data, type)
+  let orgData = await ajax(url, data, type)
   // // url orgData proxyRewrite
   // assetsUrlProxy(url,orgData,[{
   //   listPath:"data",
@@ -167,5 +170,5 @@ export const proxyReply = async function (url = '', data = {}, type = 'GET') {
   //       str:BLBL_ORIGIN + '/i$1hdslb',
   //   }]
   // }])
-  // return orgData
+  return orgData
 }

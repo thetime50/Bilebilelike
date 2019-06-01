@@ -7,7 +7,7 @@ const hosts = [
     {
         target: 'http://m.bilibili.com',
         rewrite: { '^/mbilibili': '', },
-        url: '/m'
+        url: '/mbilibili'
     },{
         target: 'http://api.bilibili.com',
         rewrite: { '^/api': '', },

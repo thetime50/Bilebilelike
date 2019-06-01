@@ -59,20 +59,18 @@ export const reqRanking = (rid=0) => proxyRanking(BLBL_API + '/x/web-interface/r
 /**
  * 视频页面 用来解析tid
  */
-export const reqVideoPage = (av) => reqInitialState(av)//{return {}}//ajax(BLBL_M + "/video/av"+ av +".html")//
+export const reqVideoPage = (av) => proxyVideoPage( (/^https?:\/\//.test(BLBL_M)) ? 
+                                          (BLBL_M + "/video/av"+ av +".html") :
+                                          (BLBL_M   + "/video/initial_state/"+av) )//(获取mock的initial state数据
 /**
- * 视频页面tid (获取mock的initial state数据)
+ * 视频介绍(介绍在page里边，这个暂时没有用)
  */
-export const reqInitialState = (av) => ajax(BLBL_M   + "/video/initial_state/"+av)
-/**
- * 视频介绍
- */
-export const reqRankingRegion = (tid) => ajax(BLBL_API + "/x/web-interface/ranking/region?rid=" + tid + "&day=7")
+export const reqRankingRegion = (tid) => proxyRankingRegion(BLBL_API + "/x/web-interface/ranking/region?rid=" + tid + "&day=7")
 /**
  * 关联视频推荐
  */
-export const reqRecommendnew = (av) => ajax(BLBL_COMMENT + "//recommendnew," + av)
+export const reqRecommendnew = (av) => proxyRecommendnew(BLBL_COMMENT + "//recommendnew," + av)
 /**
  * 评论
  */
-export const reqReply = (av) => ajax(BLBL_API + "/x/v2/reply?type=1&sort=2&oid=" + av + "&pn=1&nohot=1")
+export const reqReply = (av) => proxyReply(BLBL_API + "/x/v2/reply?type=1&sort=2&oid=" + av + "&pn=1&nohot=1")
