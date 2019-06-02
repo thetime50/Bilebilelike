@@ -9,7 +9,7 @@ import {
   BLBL_M,
 } from './originConf.js'
 
-let getAttribute = function (obj, attrPath,type=0) {
+const getAttribute = function (obj, attrPath,type=0) {
   let attr=obj
   let paths=[]
   if(typeof attrPath === "string")
@@ -31,7 +31,7 @@ let getAttribute = function (obj, attrPath,type=0) {
   }
   return attr
 }
-function replacesStrAttribute(obj,attrPath,replace){
+const replacesStrAttribute = function(obj,attrPath,replace){
   let paths=[],point=obj,i=0
   if(typeof attrPath === "string")
     paths=attrPath.split('.')
@@ -39,14 +39,14 @@ function replacesStrAttribute(obj,attrPath,replace){
     paths=attrPath
   for(i=0;i< paths.length-1;i++){
     if(point[paths[i]]===undefined)
-      point[paths[i]]={}
+      return
     point=point[paths[i]]
   }
-  point[paths[i]]=point[paths[i]].replace(replace.re,replace.str)
-  return obj
+  if(point[paths[i]])
+    point[paths[i]]=point[paths[i]].replace(replace.re,replace.str)
 }
 
-let assetsUrlProxy = function (url, orgData, proxyRewrites) {
+export const assetsUrlProxy = function (url, orgData, proxyRewrites) {
   if (/^https?:\/\//.test(url) && orgData.code == 0) {
     //proxyRewrites[m]
     //数据里的多个列表
@@ -67,8 +67,8 @@ let assetsUrlProxy = function (url, orgData, proxyRewrites) {
 }
 
 const IN_HDSLB_REPL={
-  re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
-  str:BLBL_ORIGIN + '/i$1hdslb',
+  re:/^(https?:)?\/\/i(\d)\.hdslb\.com\b/ ,
+  str:BLBL_ORIGIN + '/i$2hdslb',
 }
 
 /**
@@ -99,8 +99,8 @@ export const proxyRanking = async function (url = '', data = {}, type = 'GET') {
   assetsUrlProxy(url,orgData,[{
     listPath:"data.list",
     replaces:[{
-        attrPath:"pic",
-        ...IN_HDSLB_REPL,
+      attrPath:"pic",
+      ...IN_HDSLB_REPL,
     }]
   }])
   return orgData
@@ -109,35 +109,20 @@ export const proxyRanking = async function (url = '', data = {}, type = 'GET') {
  * 视频页面 用来解析tid
  */
 export const proxyVideoPage = async function (url = '', data = {}, type = 'GET') {
-  console.log(url)
+  // console.log(url)
   let orgData = await ajax(url, data, type)
-  // if(/^https?:\/\//.test(url)){
-  //   // url orgData proxyRewrite
-  //   assetsUrlProxy(url,orgData,[{
-  //     listPath:"data",
-  //     replaces:[{
-  //         attrPath:"pic",
-  //         re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
-  //         str:BLBL_ORIGIN + '/i$1hdslb',
-  //     }]
-  //   }])
-  // }
-  return {code:0,data:{...orgData}}
+  if(/^https?:\/\//.test(url)){
+    return {code:0,data:{...orgData}}
+  }else{
+    return orgData
+  }
 }
 /**
  * 视频介绍(介绍在page里边，这个暂时没有用)
  */
 export const proxyRankingRegion = async function (url = '', data = {}, type = 'GET') {
   let orgData = await ajax(url, data, type)
-  // // url orgData proxyRewrite
-  // assetsUrlProxy(url,orgData,[{
-  //   listPath:"data",
-  //   replaces:[{
-  //       attrPath:"pic",
-  //       re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
-  //       str:BLBL_ORIGIN + '/i$1hdslb',
-  //   }]
-  // }])
+  //
   return orgData
 }
 /**
@@ -145,15 +130,17 @@ export const proxyRankingRegion = async function (url = '', data = {}, type = 'G
  */
 export const proxyRecommendnew = async function (url = '', data = {}, type = 'GET') {
   let orgData = await ajax(url, data, type)
-  // // url orgData proxyRewrite
-  // assetsUrlProxy(url,orgData,[{
-  //   listPath:"data",
-  //   replaces:[{
-  //       attrPath:"pic",
-  //       re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
-  //       str:BLBL_ORIGIN + '/i$1hdslb',
-  //   }]
-  // }])
+  // url orgData proxyRewrite
+  assetsUrlProxy(url,orgData,[{
+    listPath:"data",
+    replaces:[{
+      attrPath:"pic",
+      ...IN_HDSLB_REPL,
+    },{
+      attrPath:"owner.face",
+      ...IN_HDSLB_REPL,
+    }]
+  }])
   return orgData
 }
 /**
@@ -161,14 +148,22 @@ export const proxyRecommendnew = async function (url = '', data = {}, type = 'GE
  */
 export const proxyReply = async function (url = '', data = {}, type = 'GET') {
   let orgData = await ajax(url, data, type)
-  // // url orgData proxyRewrite
-  // assetsUrlProxy(url,orgData,[{
-  //   listPath:"data",
-  //   replaces:[{
-  //       attrPath:"pic",
-  //       re:/^http:\/\/i(\d)\.hdslb\.com\b/ ,
-  //       str:BLBL_ORIGIN + '/i$1hdslb',
-  //   }]
-  // }])
+  // url orgData proxyRewrite
+  assetsUrlProxy(url,orgData,[{
+    listPath:"data.replies",
+    replaces:[{
+        attrPath:"member.avatar",
+        ...IN_HDSLB_REPL,
+    },{
+      attrPath:"member.pendant.image",
+      ...IN_HDSLB_REPL,
+    },{
+      attrPath:"member.nameplate.image",
+      ...IN_HDSLB_REPL,
+    },{
+      attrPath:"member.nameplate.image_small",
+      ...IN_HDSLB_REPL,
+    }]
+  }])
   return orgData
 }

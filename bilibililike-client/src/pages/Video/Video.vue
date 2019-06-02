@@ -1,13 +1,22 @@
 <template>
 <div class="component-video">
   Video<br>
-  {{av}}<br><br>
+  {{av}}<br>
+  <br>
   initialState<br>
-  {{initialState | slice}}<br><br>
+  {{initialState | slice}}<br>
+  <br>
   recommendnew<br>
-  {{recommendnew | slice}}<br><br>
+  {{recommendnew | slice}}<br>
+  <!-- {{recommendnew[0].pic}}<br>
+  {{recommendnew[0].owner.face}}<br> -->
+  <br>
   reply<br>
   {{reply | slice}}<br>
+  <!-- {{reply.replies[0].member.avatar}}<br>
+  {{reply.replies[0].member.pendant.image}}<br>
+  {{reply.replies[0].member.nameplate.image}}<br>
+  {{reply.replies[0].member.nameplate.image_small}}<br> -->
 </div>
 </template>
 
