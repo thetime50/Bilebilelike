@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "Vav",
+  name: "Nav",
   props:{
     nowIndex      :{type: Number ,default: 0},              //文本高亮
     cursorWidth   :{type: Number ,default: 70},             //70%
@@ -24,22 +24,33 @@ export default {
   },
   data () {
     return {
+      //navlist:{},
+      cursors:[],
+      items:[],
+      routesChange:false,
     };
   },
   mounted () {
     this.$nextTick(()=>{
+      this.refsRefres()
       this._positionSync(this.positionSync)
     })
   },
   watch: {
     positionSync(before,after){
       this._positionSync(before)
+    },
+    routes(before,after){
+      this.routesChange=true
     }
   },
   computed: {
-    navlist(){ return this.$refs.navlist },
-    cursors(){ return this.$refs.cursors },
-    items()   { return this.$refs.items },
+  },
+  updated () {
+    if(this.routesChange){
+      this.refsRefres()
+      this.routesChange=false
+    }
   },
   methods: {
     tabClick(item){
@@ -53,7 +64,11 @@ export default {
         let cursorW=this.cursors[i].clientWidth
         cursors[i].style.right=itemW*i+x*itemW+(itemW-cursorW)/2+"px"
       }
-    }
+    },
+    refsRefres(){
+      this.cursors=this.$refs.cursors?[...this.$refs.cursors]:[]
+      this.items =this.$refs.items?[...this.$refs.items]:[]
+    },
   }
 }
 </script>

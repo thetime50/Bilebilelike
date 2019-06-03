@@ -20,13 +20,15 @@
       </div>
     </template>
   </header-top>
-  <route-scroll :routes="routes"/>
+  <route-scroll :routes="routes" :nav="nav" :_dummyNavPropsSync="set_nav_state"/>
 </div>
 </template>
 
 <script>
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 import RouteScroll from "../../components/RouteScroll/RouteScroll.vue"
+import DummyNav from "../../components/RouteScroll/DummyNav.vue"
+import {mapMutations} from "vuex"
 
 const routes=[
   {text:"直播",path:"/mainpage/zhibo"},
@@ -45,7 +47,11 @@ export default {
   data () {
     return {
       routes:routes,
+      nav:DummyNav,
     };
+  },
+  methods: {
+    ...mapMutations("navState",["set_nav_state"])
   }
 }
 </script>

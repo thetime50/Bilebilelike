@@ -6,6 +6,8 @@ import mutations from "./mutations.js"
 import actions from "./actions.js"
 import getters from "./getters.js"
 
+import navState from "./NavState"
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,6 +16,7 @@ export default new Vuex.Store({
   actions,
   getters,
   modules:{
+    navState,
     localState:{
       namespaced:true,
       state:{

@@ -7,15 +7,23 @@
     <div class="app-router-view-contain" ref="app-router-view-contain">
         <router-view/>
     </div>
+    <NavList v-if="nav_enable"
+      :nowIndex="nav_nowIndex"
+      :cursorWidth="nav_cursorWidth"
+      :positionSync="nav_positionSync"
+      :routes="nav_routes"/>
     <FooterGuide v-show="$route.meta.showFooter"/>
   </div>
 </template>
 
 <script>
+import {mapState} from "vuex"
+
 import BScroll from "better-scroll"
 import LeftMenuDrawer from "./components/LeftMenuDrawer/LeftMenuDrawer.vue"
 import FooterGuide from "./components/FooterGuide/FooterGuide.vue"
 import DbgMsg from "./components/DbgMsg/DbgMsg.vue"
+import NavList from "./components/RouteScroll/Nav.vue"
 
 export default {
   name: 'App',
@@ -23,6 +31,7 @@ export default {
     LeftMenuDrawer,
     FooterGuide,
     DbgMsg,
+    NavList,
   },
   mounted () {
     // this.$nextTick(()=> {
@@ -48,6 +57,15 @@ export default {
         })
       }
     },10)
+  },
+  computed:{
+    ...mapState("navState",[
+      "nav_enable",
+      "nav_nowIndex",
+      "nav_cursorWidth",
+      "nav_positionSync",
+      "nav_routes",
+    ]),
   },
   methods: {
   },
@@ -93,6 +111,10 @@ img
     bottom $footer-guide-height
     width 100%
     position absolute
-
+#app
+  &>.component-nav
+    position fixed
+    top $header-top-height
+    width 100%
 </style>
 

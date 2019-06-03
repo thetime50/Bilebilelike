@@ -4,7 +4,8 @@
     <component :is="nav"
       :nowIndex="currentIndex"
       :positionSync="positionSync"
-      :routes="routes"/>
+      :routes="routes"
+      :_propsSync="_dummyNavPropsSync"/>
   </div>
   <div class="route-scroll-slide">
     <slide :slideConf="slideConfDt" :scrollConf="scrollConfDt" ref="slide">
@@ -48,6 +49,7 @@ export default {
     nav       :{type: Object ,default: ()=>{return Nav}},
     slideConf :{type: Object ,default: ()=>{return {}}},
     scrollConf:{type: Object ,default: ()=>{return {}}},
+    _dummyNavPropsSync :{type: Function},
   },
   data () {
     return {

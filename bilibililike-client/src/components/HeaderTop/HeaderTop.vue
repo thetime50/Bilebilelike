@@ -91,7 +91,7 @@ export default {
     left 0
     top 0
     width 100%
-    height 3.5rem
+    height $header-top-height
     font-size 2rem
     // padding 0.5rem
     outline 0
