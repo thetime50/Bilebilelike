@@ -22,17 +22,7 @@ export default {
     };
   },
   mounted () {
-    // this.$nextTick(()=> {
-    //   console.dir(this.$refs["app-router-view-contain"].innerHTML.slice(0,40))
-    //   this.scroll = new BScroll(this.$refs["router-view-contain"],{ 
-    //     click: true,
-    //     bounce:false,
-    //     bindToWrapper:true,
-    //     // stopPropagation:true,
-    //   })
-    //   //不知道为什么这里一定要重新刷新
-    //   setTimeout(()=>this.scroll.refresh(),120)
-    // })
+    // this.$nextTick(()=> {//
     this._interval=setInterval(()=>{
       // console.dir(this.$refs["sticky-scroll-scroll"].innerHTML.length)
       if(this.$refs["sticky-scroll-scroll"].innerHTML.length>100){

@@ -122,6 +122,7 @@ $normal-interval = 0.7rem
     text-align left
     font-size 0.9rem
     line-height 120%
+    height (0.9rem * 1.2 * 2)
     font-stretch 900//ultra-expanded
     color #000
   .card-fooder
