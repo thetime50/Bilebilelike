@@ -1,34 +1,50 @@
 <template>
-<div class="main-page">
-  <header-top left-icon-type="leftMenu">
-    <template>
-      <div class="heater-v-slot">
-        <router-link class="m-search" :to="{path:'/search',query:{page:'MainPage'}}"><!-- search -->
-          <div class="search-back-div">
-            <i class="iconfont icon-sousuo"></i>
-          </div>
-        </router-link>
-        <router-link class="m-game" :to="'/game'"><!-- game -->
-          <i class="iconfont icon-youxifull"></i>
-        </router-link>
-        <router-link class="m-offline-cache" :to="'/offlinecache'"><!-- offline-cache -->
-          <i class="iconfont icon-xiazai"></i>
-        </router-link>
-        <router-link class="m-message" :to="'/message'"><!-- message -->
-          <i class="iconfont icon-xiaoxi"></i>
-        </router-link>
+<div class="component-main-page">
+  <StickyScroll>
+    <template v-slot:sticky>
+      <div class="main-page-nav-list">
+        <NavList v-if="nav_enable"
+          :nowIndex="nav_nowIndex"
+          :cursorWidth="nav_cursorWidth"
+          :positionSync="nav_positionSync"
+          :routes="nav_routes"/>
       </div>
     </template>
-  </header-top>
-  <route-scroll :routes="routes" :nav="nav" :_dummyNavPropsSync="set_nav_state"/>
+    <template>
+      <!--  -->
+      <header-top left-icon-type="leftMenu">
+        <template>
+          <div class="heater-v-slot">
+            <router-link class="m-search" :to="{path:'/search',query:{page:'MainPage'}}"><!-- search -->
+              <div class="search-back-div">
+                <i class="iconfont icon-sousuo"></i>
+              </div>
+            </router-link>
+            <router-link class="m-game" :to="'/game'"><!-- game -->
+              <i class="iconfont icon-youxifull"></i>
+            </router-link>
+            <router-link class="m-offline-cache" :to="'/offlinecache'"><!-- offline-cache -->
+              <i class="iconfont icon-xiazai"></i>
+            </router-link>
+            <router-link class="m-message" :to="'/message'"><!-- message -->
+              <i class="iconfont icon-xiaoxi"></i>
+            </router-link>
+          </div>
+        </template>
+      </header-top>
+      <route-scroll :routes="routes" :nav="nav" :_dummyNavPropsSync="set_nav_state"/>
+    </template>
+  </StickyScroll>
 </div>
 </template>
 
 <script>
+import {mapState,mapMutations} from "vuex"
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 import RouteScroll from "../../components/RouteScroll/RouteScroll.vue"
 import DummyNav from "../../components/RouteScroll/DummyNav.vue"
-import {mapMutations} from "vuex"
+import NavList from "@/components/RouteScroll/Nav.vue"
+import StickyScroll from "@/components/StickyScroll/StickyScroll.vue"
 
 const routes=[
   {text:"直播",path:"/mainpage/zhibo"},
@@ -43,12 +59,23 @@ export default {
   components: {
     HeaderTop,
     RouteScroll,
+    NavList,
+    StickyScroll,
   },
   data () {
     return {
       routes:routes,
       nav:DummyNav,
     };
+  },
+  computed:{
+    ...mapState("navState",[
+      "nav_enable",
+      "nav_nowIndex",
+      "nav_cursorWidth",
+      "nav_positionSync",
+      "nav_routes",
+    ]),
   },
   methods: {
     ...mapMutations("navState",["set_nav_state"])
@@ -57,8 +84,16 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
-  @import "../../assets/style/index.styl"
-  .main-page .header .div-section2//尽量外面套自己的class 不要去引内部的class
+@import "../../assets/style/index.styl"
+.component-main-page
+  height 100%
+  width 100%
+  .main-page-nav-list
+    position absolute
+    top $header-top-height
+    width 100%
+    background-color #fff
+  .header .div-section2//尽量外面套自己的class 不要去引内部的class
     width 100%
     .heater-v-slot
       display: -webkit-flex; /* Safari */
