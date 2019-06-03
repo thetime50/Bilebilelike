@@ -7,17 +7,20 @@
     <div class="app-router-view-contain" ref="app-router-view-contain">
         <router-view/>
     </div>
-    <NavList v-if="nav_enable"
-      :nowIndex="nav_nowIndex"
-      :cursorWidth="nav_cursorWidth"
-      :positionSync="nav_positionSync"
-      :routes="nav_routes"/>
+    <div class="app-nav-list" ref="app-nav-list">
+      <NavList v-if="nav_enable"
+        :nowIndex="nav_nowIndex"
+        :cursorWidth="nav_cursorWidth"
+        :positionSync="nav_positionSync"
+        :routes="nav_routes"/>
+    </div>
     <FooterGuide v-show="$route.meta.showFooter"/>
   </div>
 </template>
 
 <script>
 import {mapState} from "vuex"
+import tool from "./assets/js/tool"
 
 import BScroll from "better-scroll"
 import LeftMenuDrawer from "./components/LeftMenuDrawer/LeftMenuDrawer.vue"
@@ -53,7 +56,16 @@ export default {
           click: true,
           bounce:false,
           bindToWrapper:true,
+          probeType:3,
           // stopPropagation:true,
+        })
+        this.scroll.on('scroll',({x,y})=>{
+          let appNavList=this.$refs["app-nav-list"]
+          let childrenTop=appNavList.children[0].offsetTop
+          if(childrenTop+y>0)
+            appNavList.style.top=y+"px"
+          else
+            appNavList.style.top=-childrenTop+"px"
         })
       }
     },10)
@@ -112,9 +124,13 @@ img
     width 100%
     position absolute
 #app
-  &>.component-nav
+  &>.app-nav-list
     position fixed
-    top $header-top-height
     width 100%
+    &>.component-nav
+      position absolute
+      top $header-top-height
+      width 100%
+      background-color #fff
 </style>
 
