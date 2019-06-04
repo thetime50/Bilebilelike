@@ -20,6 +20,14 @@ export default{
     // getStr=vPage.slice(0,temp+startStr.length)
     // initState=JSON.parse(getStr)
     // console.log(21,vPage)//getStr)
-    return vPage//initState
+    // return initState
+    if(vPage.reduxAsyncConnect){
+      vPage.reduxAsyncConnect.videoInfo.pic=
+        vPage.reduxAsyncConnect.videoInfo.pic.replace(
+          /^(https?:)?\/\/i(\d)\.hdslb\.com\b/,
+          "./static/i0.hdslb.com"
+        )
+    }
+    return vPage
   },
 }

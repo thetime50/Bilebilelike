@@ -103,3 +103,63 @@ export default{
     return pu
   }
 }
+
+/////////////////////////////////
+
+export const getAttribute = function (obj, attrPath,type=0) {
+  let attr=obj
+  let paths=[]
+  if(typeof attrPath === "string")
+    paths=attrPath.split(/\.|\[|\]/)
+  else if(typeof attrPath === "array")
+    paths=attrPath
+  for(let i=0;i<paths.length;i++){
+    if(paths[i]=="")
+      continue
+    if(attr[paths[i]]!=undefined){//存在属性
+      attr=attr[paths[i]]
+    }else{
+      if(type==0){
+        attr=attr[paths[i]]//undefined
+        break
+      }else{
+        attr[paths[i]]=i<paths.length-1?{}:undefined
+        attr=attr[paths[i]]
+      }
+    }
+  }
+  return attr
+}
+export const setAttribute = function(obj,attrPath,value){
+  let paths=[],attr=obj,i=0
+  if(typeof attrPath === "string")
+    paths=attrPath.split(/\.|\[|\]/)
+  else if(typeof attrPath === "array")
+    paths=attrPath
+  for(let i=0;i< paths.length-1;i++){
+    if(paths[i]=="")
+      continue
+    if(attr[paths[i]]===undefined)
+      attr[paths[i]]={}
+    attr=attr[paths[i]]
+  }
+  attr[paths[i]]=value
+  return obj
+}
+
+export const replacesStrAttribute = function(obj,attrPath,replace){
+  let paths=[],attr=obj,i=0
+  if(typeof attrPath === "string")
+    paths=attrPath.split(/\.|\[|\]/)
+  else if(typeof attrPath === "array")
+    paths=attrPath
+  for(let i=0;i< paths.length-1;i++){
+    if(paths[i]=="")
+      continue
+    if(attr[paths[i]]===undefined)
+      return
+    attr=attr[paths[i]]
+  }
+  if(attr[paths[i]])
+    attr[paths[i]]=attr[paths[i]].replace(replace.re,replace.str)
+}

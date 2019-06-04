@@ -10,7 +10,7 @@
       </div>
       <div class="img-footer">
         <div class="bofang-icon">
-          <i class="iconfont icon-bofang"></i>
+          <i class="iconfont icon-bofangshu"></i>
         </div>
         <div class="bofang-num">
           {{info.play | autoChNum}} 
