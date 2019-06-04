@@ -1,32 +1,43 @@
 <template>
 <div class="component-video">
-  Video<br>
-  {{av}}<br>
-  <br>
-  initialState<br>
-  {{initialState | slice}}<br>
-  <br>
-  recommendnew<br>
-  {{recommendnew | slice}}<br>
-  <!-- {{recommendnew[0].pic}}<br>
-  {{recommendnew[0].owner.face}}<br> -->
-  <br>
-  reply<br>
-  {{reply | slice}}<br>
-  <!-- {{reply.replies[0].member.avatar}}<br>
-  {{reply.replies[0].member.pendant.image}}<br>
-  {{reply.replies[0].member.nameplate.image}}<br>
-  {{reply.replies[0].member.nameplate.image_small}}<br> -->
+  <div class="video-container">
+    <div class="video-proportion">
+      <div class="video-div"></div>
+      <div class="video-header"></div>
+      <div class="video-footer"></div>
+      <div class="video-masker"></div>
+    </div>
+    <div class="danmu">
+      
+    </div>
+  </div>
+  <!-- user and info -->
+  <ComponentScroll
+    :components="components"
+  />
+
 </div>
 </template>
 
 <script>
 import {mapState,mapGetters,mapActions} from "vuex"
+import ComponentScroll from "../../components/RouteScroll/ComponentScroll.vue"
+import Description from "./compontents/Description.vue"
+import Replay from "./compontents/Replay.vue"
+
+const components=[
+  {text:"简介",comp:Description},
+  {text:"评论",comp:Replay},
+]
 
 export default {
   name: "Video",
+  components: {
+    ComponentScroll,
+  },
   data () {
     return {
+      components:components,
     };
   },
   created () {
