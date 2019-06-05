@@ -16,8 +16,8 @@
         <div class="video-bofang">
           <i class="iconfont icon-bofang"></i>
         </div>
-        <div class="video-bar"></div>
-        <div class="video-time">{{videoTime}}</div>
+        <div class="video-progress"><Progress :percentage="playProportion"/></div>
+        <div class="video-time">{{videoTimeStr}}</div>
         <div class="video-quanping">
           <i class="iconfont icon-quanping"></i>
         </div>
@@ -42,9 +42,10 @@
 <script>
 import {mapState,mapGetters,mapActions} from "vuex"
 import ComponentScroll from "../../components/RouteScroll/ComponentScroll.vue"
-import Description from "./compontents/Description.vue"
-import Replay from "./compontents/Replay.vue"
 import ProportionImg from "../../components/ProportionImg/ProportionImg.vue"
+import Progress from "../../components/Progress/Progress.vue"
+import Description from "./components/Description.vue"
+import Replay from "./components/Replay.vue"
 import {getAttribute} from "@/assets/js/tool.js"
 
 const components=[
@@ -57,6 +58,7 @@ export default {
   components: {
     ComponentScroll,
     ProportionImg,
+    Progress,
   },
   data () {
     return {
@@ -80,6 +82,13 @@ export default {
     infoTitle(){
       return getAttribute(this.initialState,"reduxAsyncConnect.videoInfo.title")
     },
+
+    proportion(){
+      // this.initialState.videoInfo. dimension/pages.dimension .width
+      return 1080/1920*100
+    },
+    
+    //video time
     infoDuration(){
       let duration=getAttribute(this.initialState,"reduxAsyncConnect.videoInfo.duration")
       duration=duration?duration:"00:00"
@@ -89,13 +98,30 @@ export default {
       return duration
     },
     videoTime(){
-      let duration=this.infoDuration
-      return duration.replace(/\d/g,"0")+"/"+duration
+      let durationArr=this.infoDuration.split(":")
+      let duration=0
+      durationArr.forEach((item)=>{
+        duration=duration*60+parseInt(item)
+      })
+      return duration
     },
-    proportion(){
-      // this.initialState.videoInfo. dimension/pages.dimension .width
-      return 1080/1920*100
+    videoTimeStr(){
+      return this.playDuration+"/"+this.infoDuration
     },
+
+    //play time
+    playDuration(){
+      let tempStr=this.infoDuration.replace(/\d/g,0)
+      let playStr=this.time2str(this.playTime)
+      playStr=tempStr.slice(0,tempStr.length-playStr.length)+playStr
+      return playStr
+    },
+    playTime(){
+      return this.videoTime*0.2
+    },
+    playProportion(){
+      return this.playTime/this.videoTime*100
+    }
   },
   filters: {
     slice(s){
@@ -103,10 +129,24 @@ export default {
     },
     getAttribute(){
       return getAttribute(...arguments)
-    }
+    },
   },
   methods: {
     ...mapActions(["getVideoPage","getRecommendnew","getReply"]),
+    time2str(time){
+      time=parseInt(time)
+      let str=""
+      let part=time%60
+      str=(part<10 ? "0" : "") + part
+      time=parseInt(time/60)
+      part=time%60
+      str=(part<10 ? "0" : "") + part + ":"+str
+      time=parseInt(time/60)
+      if(time){
+        str=time+":"+str
+      }
+      return str
+    },
   },
 }
 </script>
@@ -142,11 +182,11 @@ export default {
       padding 0 0.4rem
       >*
         color #fff
-      div
+      >div
         margin 0 0.4rem
       .video-bofang
         //
-      .video-bar
+      .video-progress
         flex 1
       .video-time
         font-size 0.5rem
