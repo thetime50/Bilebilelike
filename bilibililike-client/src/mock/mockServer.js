@@ -135,8 +135,8 @@ export default{
     let pu=tool.parseUrl(options.url)
     let av=pu._querys.oid
     if(av){
-      let replay=require("./data/video/av"+av+"/replay.json")
-      return {code:0,data:{...replay}}
+      let reply=require("./data/video/av"+av+"/reply.json")
+      return {code:0,data:{...reply}}
     }else{
       return {code: 1}
     }
