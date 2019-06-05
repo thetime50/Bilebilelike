@@ -14,7 +14,7 @@
 export default {
   name: "Progress",
   props: {
-    percentage:{type:Number   ,default:50},
+    percentage:{type:Number   ,default:0},
     styles    :{type: Object  ,default: ()=>{return {}}},//{"ref1":"class1","ref2":"class2"}
   },
   data () {
@@ -41,6 +41,7 @@ $height = 0.2rem
     background-color rgba(200,200,200,0.3)
     .percentage
       height 100%
+      width 0%
       background-color $blbl-pink
   .img-container
     position absolute

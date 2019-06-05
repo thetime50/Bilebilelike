@@ -6,8 +6,10 @@ SlotScroll.vue
   <div class="nav">
     <component :is="nav"
       :nowIndex="currentIndex"
+      :cursorWidth="navCursorWidth"
       :positionSync="positionSync"
       :titles="titles"
+      :navStyle="navStyle"
       :_propsSync="_dummyNavPropsSync"
       @navChange="navChange"/>
   </div>
@@ -47,10 +49,12 @@ export default {
     Slide,
   },
   props:{
-    titles               :{type: Array  ,default: ()=>{return []}},//titles text list
+    titles              :{type: Array  ,default: ()=>{return []}},//titles text list
     nav                 :{type: Object ,default: ()=>{return TitleNav}},
+    navCursorWidth      :{type: Number ,default: 70},             //70%
     slideConf           :{type: Object ,default: ()=>{return {}}},
     scrollConf          :{type: Object ,default: ()=>{return {}}},
+    navStyle            :{type: String ,default:""},
     _dummyNavPropsSync  :{type: Function},
   },
   data () {

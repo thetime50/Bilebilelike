@@ -2,7 +2,7 @@
 TitleNav.vue
 -->
 <template>
-<div class="component-title-nav">
+<div class="component-title-nav" :class="[navStyle]">
   <ul class="nav-list">
     <li class="item" v-for="(item,index) in titles" ref="items" :key="index">
       <div class="item-text" :class="{'active': nowIndex===index}"
@@ -24,6 +24,7 @@ export default {
     cursorWidth   :{type: Number ,default: 70},             //70%
     positionSync  :{type: Number ,default: 0},              //光标位置同步
     titles        :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
+    navStyle      :{type: String ,default:""},
   },
   data () {
     return {
