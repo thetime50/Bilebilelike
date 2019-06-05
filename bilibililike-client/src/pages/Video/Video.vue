@@ -29,7 +29,7 @@ Video.vue
     </ProportionImg>
     <div class="danmu">
       <input type="text" :class="{'have-value':message}" v-model="message" placeholder="发个友善的弹幕见证当下"
-    @focus="inputting=true" @blur="inputting=false">
+      @focus="inputting=true" @blur="inputting=false" @keypress="danmuKeypress">
     </div>
   </div>
   <div class="video-slot-scroll">
@@ -152,6 +152,12 @@ export default {
       }
       return str
     },
+    danmuKeypress(e){
+      if(e.key=="Enter"){
+        this.message=""
+        e.srcElement.blur()
+      }
+    }
   },
 }
 </script>
