@@ -28,15 +28,18 @@ Video.vue
       <div class="video-masker"></div>
     </ProportionImg>
     <div class="danmu">
-      
+      <input type="text" :class="{'have-value':message}" v-model="message" placeholder="发个友善的弹幕见证当下"
+    @focus="inputting=true" @blur="inputting=false">
     </div>
   </div>
-  <!-- user and info -->
-  <SlotScroll :titles="titles" navStyle="video-page-nav" navCursorWidth=40>
-    <Description :initialState="initialState" :recommendnew="recommendnew"/>
-    <Reply :reply="reply"/>
-  </SlotScroll>
-  
+  <div class="video-slot-scroll">
+    <!-- user and info -->
+    <SlotScroll :titles="titles" navStyle="video-page-nav" :navCursorWidth="40">
+      <Description :initialState="initialState" :recommendnew="recommendnew"/>
+      <Reply :reply="reply"/>
+    </SlotScroll>
+    <div class="inputting-masker" v-if="inputting"/>
+  </div>
 </div>
 </template>
 
@@ -62,7 +65,9 @@ export default {
   },
   data () {
     return {
-      titles:["简介","评论"],
+      titles       :["简介","评论"],
+      message     :"",
+      inputting   :false,
     };
   },
   created () {
@@ -203,5 +208,30 @@ export default {
       position absolute
       //
     .danmu
-      //
+      display flex
+      background-color #333333
+      height 2.6rem
+      justify-content center
+      align-items center
+      input
+        flex 1
+        display inline-block
+        height 1.8rem
+        border-radius @height
+        background-color #5a5a5a
+        padding 0 0.8rem
+        margin 0 1rem
+        &:focus,&.have-value
+          outline none
+          background-color #fff
+  .video-slot-scroll
+    position relative
+    .inputting-masker
+      position absolute
+      top 0
+      width 100%
+      height 100%
+      background-color rgba(0,0,0,0.6)
+
+
 </style>
