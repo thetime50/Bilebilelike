@@ -1,18 +1,15 @@
 <!--
-Replay.vue
+RecommendNew.vue
 -->
 <template>
-<div class="component-replay">
-  Replay <br>
-  Replay <br>
-  Replay <br>
-  Replay <br>
+<div class="component-recommend-new">
+  RecommendNew
 </div>
 </template>
 
 <script>
 export default {
-  name: "Replay",
+  name: "RecommendNew",
   data () {
 	 return {
 	 };

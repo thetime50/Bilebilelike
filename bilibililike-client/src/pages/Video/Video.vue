@@ -1,3 +1,6 @@
+<!--
+Video.vue
+-->
 <template>
 <div class="component-video">
   <div class="video-container">
@@ -44,8 +47,8 @@ import {mapState,mapGetters,mapActions} from "vuex"
 import ComponentScroll from "../../components/RouteScroll/ComponentScroll.vue"
 import ProportionImg from "../../components/ProportionImg/ProportionImg.vue"
 import Progress from "../../components/Progress/Progress.vue"
-import Description from "./components/Description.vue"
-import Replay from "./components/Replay.vue"
+import Description from "./components/Description/Description.vue"
+import Replay from "./components/Replay/Replay.vue"
 import {getAttribute} from "@/assets/js/tool.js"
 
 const components=[

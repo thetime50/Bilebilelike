@@ -1,10 +1,13 @@
+<!--
+TitleNav.vue
+-->
 <template>
-<div class="component-component-nav">
+<div class="component-title-nav">
   <ul class="nav-list">
-    <li class="item" v-for="(item,index) in components" ref="items" :key="index">
+    <li class="item" v-for="(item,index) in titles" ref="items" :key="index">
       <div class="item-text" :class="{'active': nowIndex===index}"
         @click="tabClick(index)">
-        {{item.text}}
+        {{item}}
       </div>
       <div class="item-cursor" ref="cursors" 
         :style="{width:cursorWidth+'%'}"></div>
@@ -15,12 +18,12 @@
 
 <script>
 export default {
-  name: "ComponentNav",
+  name: "TitleNav",
   props:{
     nowIndex      :{type: Number ,default: 0},              //文本高亮
     cursorWidth   :{type: Number ,default: 70},             //70%
     positionSync  :{type: Number ,default: 0},              //光标位置同步
-    components        :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
+    titles        :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
   },
   data () {
     return {
@@ -40,7 +43,7 @@ export default {
     positionSync(before,after){
       this._positionSync(before)
     },
-    components(before,after){
+    titles(before,after){
       this.listChange=true
     }
   },
@@ -76,7 +79,7 @@ export default {
 <style lang="stylus"  rel="stylesheet/stylus">
   @import "../../assets/style/index.styl"
   $line = 2.8rem
-  .component-component-nav
+  .component-title-nav
     position relative
     border-bottom 1px solid $def-line-color
     .nav-list

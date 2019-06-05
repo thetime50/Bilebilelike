@@ -4,7 +4,7 @@
     <component :is="nav"
       :nowIndex="currentIndex"
       :positionSync="positionSync"
-      :components="components"
+      :titles="titleArr"
       :_propsSync="_dummyNavPropsSync"
       @navChange="navChange"/>
   </div>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import ComponentNav from "./ComponentNav.vue"
+  import TitleNav from "./TitleNav.vue"
   import Slide from "./Slide.vue"
   import tool from "@/assets/js/tool.js"
 
@@ -45,7 +45,7 @@ export default {
   },
   props:{
     components          :{type: Array  ,default: ()=>{return []}},//{text:"",comp:component}
-    nav                 :{type: Object ,default: ()=>{return ComponentNav}},
+    nav                 :{type: Object ,default: ()=>{return TitleNav}},
     slideConf           :{type: Object ,default: ()=>{return {}}},
     scrollConf          :{type: Object ,default: ()=>{return {}}},
     _dummyNavPropsSync  :{type: Function},
@@ -92,6 +92,13 @@ export default {
         comps.push(item.comp)
       });
       return comps
+    },
+    titleArr(){
+      let titles=[]
+      this.components.forEach((item) => {
+        titles.push(item.text)
+      });
+      return titles
     },
     slide(){
       return this.$refs.slide
