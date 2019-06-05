@@ -5,10 +5,13 @@ Description.vue
 <div class="component-description">
   <VideoInfo/>
   <RecommendNew/>
+  {{initialState | slice}}<br>
+  {{recommendnew | slice}}<br>
 </div>
 </template>
 
 <script>
+import {getAttribute} from "@/assets/js/tool.js"
 import VideoInfo from "./components/VideoInfo.vue"
 import RecommendNew from "./components/RecommendNew.vue"
 
@@ -25,6 +28,14 @@ export default {
   data () {
     return {
     };
+  },
+  filters: {
+    slice(s){
+      return JSON.stringify(s).slice(0,100)
+    },
+    getAttribute(){
+      return getAttribute(...arguments)
+    },
   },
 }
 </script>

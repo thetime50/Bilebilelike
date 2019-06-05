@@ -4,7 +4,7 @@
     <div><i class="iconfont icon-pindao" style="font-size:100px;color:#fb7299"></i></div> -->
     <DbgMsg/>
     <left-menu-drawer></left-menu-drawer>
-    <div class="app-router-view-contain">
+    <div class="app-router-view-contain" :class="{'show-footer':$route.meta.showFooter}">
       <router-view/>
     </div>
     <FooterGuide v-show="$route.meta.showFooter"/>
@@ -68,8 +68,10 @@ img
   .app-router-view-contain
     overflow hidden
     top 0
-    bottom $footer-guide-height
+    bottom 0
     width 100%
     position absolute
+    &.show-footer
+      bottom $footer-guide-height
 </style>
 

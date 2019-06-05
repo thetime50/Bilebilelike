@@ -32,40 +32,37 @@ Video.vue
     </div>
   </div>
   <!-- user and info -->
-  <ComponentScroll
-    :components="components"
-  />
-: <br>
-{{initialState | slice}} <br>
-: <br>
-{{infoTitle}}
+  <SlotScroll :titles="titles">
+    <Description :initialState="initialState" :recommendnew="recommendnew"/>
+    <Reply :reply="reply"/>
+  </SlotScroll>
+  
 </div>
 </template>
 
 <script>
 import {mapState,mapGetters,mapActions} from "vuex"
-import ComponentScroll from "../../components/RouteScroll/ComponentScroll.vue"
+import {getAttribute} from "@/assets/js/tool.js"
+import SlotScroll from "../../components/RouteScroll/SlotScroll.vue"
 import ProportionImg from "../../components/ProportionImg/ProportionImg.vue"
 import Progress from "../../components/Progress/Progress.vue"
-import Description from "./components/Description/Description.vue"
-import Replay from "./components/Replay/Replay.vue"
-import {getAttribute} from "@/assets/js/tool.js"
 
-const components=[
-  {text:"简介",comp:Description},
-  {text:"评论",comp:Replay},
-]
+import Description from "./components/Description/Description.vue"
+import Reply from "./components/Reply/Reply.vue"
 
 export default {
   name: "Video",
   components: {
-    ComponentScroll,
+    SlotScroll,
+    Description,
+    Reply,
+
     ProportionImg,
     Progress,
   },
   data () {
     return {
-      components:components,
+      titles:["简介","评论"],
     };
   },
   created () {
@@ -77,8 +74,8 @@ export default {
     av(){
       return this.$route.params.av.slice(2)
     },
-    ...mapState(["recommendnew","reply"]),
     ...mapGetters(["initialState"]),
+    ...mapState(["recommendnew","reply"]),
     infoPic(){
       return getAttribute(this.initialState,"reduxAsyncConnect.videoInfo.pic")
     },
