@@ -32,7 +32,7 @@ Video.vue
     </div>
   </div>
   <!-- user and info -->
-  <SlotScroll :titles="titles">
+  <SlotScroll :titles="titles" navStyle="video-page-nav" navCursorWidth=40>
     <Description :initialState="initialState" :recommendnew="recommendnew"/>
     <Reply :reply="reply"/>
   </SlotScroll>
@@ -152,6 +152,12 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+
+.video-page-nav
+  .nav-list
+    li.item
+      padding 0 10%
+
 .component-video
   width 100%
   height 100%
