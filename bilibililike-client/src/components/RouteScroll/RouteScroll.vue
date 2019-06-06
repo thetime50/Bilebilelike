@@ -4,7 +4,7 @@
     <component :is="nav"
       :nowIndex="currentIndex"
       :positionSync="positionSync"
-      :routes="routes"
+      :titles="titles"
       :_propsSync="_dummyNavPropsSync"/>
   </div>
   <div class="route-scroll-slide">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import Nav from "./Nav.vue"
+  import TitleNav from "./TitleNav.vue"
   import Slide from "./Slide.vue"
   import tool from "@/assets/js/tool.js"
 
@@ -46,7 +46,7 @@ export default {
   },
   props:{
     routes    :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
-    nav       :{type: Object ,default: ()=>{return Nav}},
+    nav       :{type: Object ,default: ()=>{return TitleNav}},
     slideConf :{type: Object ,default: ()=>{return {}}},
     scrollConf:{type: Object ,default: ()=>{return {}}},
     _dummyNavPropsSync :{type: Function},
@@ -88,6 +88,13 @@ export default {
     },
   },
   computed: {
+    titles(){
+      let titles=[]
+      this.routes.forEach((item) => {
+        titles.push(item.text)
+      });
+      return titles
+    },
     routeComponents(){
       let comps=[]
       this.routes.forEach((item) => {

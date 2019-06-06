@@ -7,7 +7,7 @@
           :nowIndex="nav_nowIndex"
           :cursorWidth="nav_cursorWidth"
           :positionSync="nav_positionSync"
-          :routes="nav_routes"/>
+          :titles="nav_titles"/>
       </div>
     </template>
     <template>
@@ -43,7 +43,7 @@ import {mapState,mapMutations} from "vuex"
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 import RouteScroll from "../../components/RouteScroll/RouteScroll.vue"
 import DummyNav from "../../components/RouteScroll/DummyNav.vue"
-import NavList from "@/components/RouteScroll/Nav.vue"
+import NavList from "@/components/RouteScroll/TitleNav.vue"
 import StickyScroll from "@/components/StickyScroll/StickyScroll.vue"
 
 const routes=[
@@ -74,7 +74,7 @@ export default {
       "nav_nowIndex",
       "nav_cursorWidth",
       "nav_positionSync",
-      "nav_routes",
+      "nav_titles",
     ]),
   },
   methods: {

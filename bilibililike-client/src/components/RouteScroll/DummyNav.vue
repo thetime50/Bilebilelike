@@ -16,7 +16,7 @@ export default {
     nowIndex      :{type: Number ,default: 0},              //文本高亮
     cursorWidth   :{type: Number ,default: 70},             //70%
     positionSync  :{type: Number ,default: 0},              //光标位置同步
-    routes        :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
+    titles        :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
     styles    :{type: Object ,default: ()=>{return {"component-dummy-nav":"component-nav"}}},//{"ref1":"class1","ref2":"class2"}
     _propsSync    :{type: Function },
   },
@@ -29,7 +29,7 @@ export default {
       "nav_nowIndex":this.nowIndex,
       "nav_cursorWidth":this.cursorWidth,
       "nav_positionSync":this.positionSync,
-      "nav_routes":this.routes,
+      "nav_titles":this.titles,
       })
     this._propsSync({"nav_enable":true})
   },
@@ -47,8 +47,8 @@ export default {
     positionSync(before,after){
       this._propsSync({"nav_positionSync":before})
     },
-    routes(before,after){
-      this._propsSync({"nav_routes":before})
+    titles(before,after){
+      this._propsSync({"nav_titles":before})
     },
     // styles(before,after){
     //   this._propsSync({"nav_styles":before})

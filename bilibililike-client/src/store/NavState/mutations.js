@@ -8,7 +8,7 @@ import {
   SET_NAV_NOW_INDEX,
   SET_NAV_CURSOR_WIDTH,
   SET_NAV_POSITION_SYNC,
-  SET_NAV_ROUTES,
+  SET_NAV_TITLES,
 } from './mutation-types'
  
 export default{
@@ -38,7 +38,7 @@ export default{
   [SET_NAV_POSITION_SYNC] (state, nav_positionSync) {
     state.nav_positionSync = nav_positionSync
   },
-  [SET_NAV_ROUTES] (state, nav_routes) {
-    state.nav_routes = [...nav_routes]
+  [SET_NAV_TITLES] (state, nav_titles) {
+    state.nav_titles = [...nav_titles]
   },
 }
