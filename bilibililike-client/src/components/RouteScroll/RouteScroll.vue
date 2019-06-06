@@ -5,6 +5,7 @@
       :nowIndex="currentIndex"
       :positionSync="positionSync"
       :titles="titles"
+      :navChange="navChange"
       :_propsSync="_dummyNavPropsSync"/>
   </div>
   <div class="route-scroll-slide">
@@ -145,6 +146,9 @@ export default {
         routeChange && routeChange({type:"enter",before,after})
       }
     },
+    navChange({index}){
+      this.$router.replace(this.routes[index].path)
+    }
   }
 }
 </script>

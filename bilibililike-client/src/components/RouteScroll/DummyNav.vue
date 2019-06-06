@@ -18,6 +18,7 @@ export default {
     positionSync  :{type: Number ,default: 0},              //光标位置同步
     titles        :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
     styles    :{type: Object ,default: ()=>{return {"component-dummy-nav":"component-nav"}}},//{"ref1":"class1","ref2":"class2"}
+    navChange     :{type: Function,default: ()=>{return function(){}}},
     _propsSync    :{type: Function },
   },
   data () {
@@ -30,6 +31,7 @@ export default {
       "nav_cursorWidth":this.cursorWidth,
       "nav_positionSync":this.positionSync,
       "nav_titles":this.titles,
+      "nav_change":this.navChange,
       })
     this._propsSync({"nav_enable":true})
   },
@@ -53,6 +55,9 @@ export default {
     // styles(before,after){
     //   this._propsSync({"nav_styles":before})
     // },
+    navChange(before,after){
+      this._propsSync({"nav_change":before})
+    }
   },
   computed: {
   },

@@ -10,8 +10,8 @@ SlotScroll.vue
       :positionSync="positionSync"
       :titles="titles"
       :navStyle="navStyle"
-      :_propsSync="_dummyNavPropsSync"
-      @navChange="navChange"/>
+      :navChange="navChange"
+      :_propsSync="_dummyNavPropsSync"/>
   </div>
   <div class="slot-scroll-slide">
     <slide :slideConf="slideConfDt" :scrollConf="scrollConfDt" ref="slide">

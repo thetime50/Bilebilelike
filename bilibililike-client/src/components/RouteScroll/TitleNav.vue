@@ -25,6 +25,7 @@ export default {
     positionSync  :{type: Number ,default: 0},              //光标位置同步
     titles        :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
     navStyle      :{type: String ,default:""},
+    navChange     :{type: Function},
   },
   data () {
     return {
@@ -58,7 +59,7 @@ export default {
   },
   methods: {
     tabClick(index){
-      this.$emit('navChange',{index})
+      this.navChange && this.navChange({index})
     },
     _positionSync(x){
       let items=this.items

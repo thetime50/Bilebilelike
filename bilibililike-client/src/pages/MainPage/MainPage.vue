@@ -7,7 +7,8 @@
           :nowIndex="nav_nowIndex"
           :cursorWidth="nav_cursorWidth"
           :positionSync="nav_positionSync"
-          :titles="nav_titles"/>
+          :titles="nav_titles"
+          :navChange="nav_change"/>
       </div>
     </template>
     <template>
@@ -75,6 +76,7 @@ export default {
       "nav_cursorWidth",
       "nav_positionSync",
       "nav_titles",
+      "nav_change",
     ]),
   },
   methods: {

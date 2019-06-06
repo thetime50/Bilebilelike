@@ -7,4 +7,5 @@ export default {
   nav_cursorWidth: 70,
   nav_positionSync: 0,
   nav_titles: [],
+  nav_change: function(){},
 }
