@@ -5,8 +5,6 @@ Description.vue
 <div class="component-description">
   <VideoInfo :initialState="initialState"/>
   <RecommendNew :recommendnew="recommendnew"/>
-  {{initialState | slice}}<br>
-  {{recommendnew | slice}}<br>
 </div>
 </template>
 
@@ -41,4 +39,8 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+@import "../../../../assets/style/index.styl"
+
+.component-description
+  padding $block-interval
 </style>
