@@ -3,8 +3,8 @@ Description.vue
 -->
 <template>
 <div class="component-description">
-  <VideoInfo/>
-  <RecommendNew/>
+  <VideoInfo :initialState="initialState"/>
+  <RecommendNew :recommendnew="recommendnew"/>
   {{initialState | slice}}<br>
   {{recommendnew | slice}}<br>
 </div>

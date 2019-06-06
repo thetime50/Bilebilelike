@@ -34,7 +34,8 @@ Video.vue
   </div>
   <div class="video-slot-scroll">
     <!-- user and info -->
-    <SlotScroll :titles="titles" navStyle="video-page-nav" :navCursorWidth="40">
+    <SlotScroll :titles="titles" navStyle="video-page-nav" :navCursorWidth="40"
+      :scrollConf="{click:true}">
       <Description :initialState="initialState" :recommendnew="recommendnew"/>
       <Reply :reply="reply"/>
     </SlotScroll>

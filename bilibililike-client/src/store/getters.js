@@ -21,12 +21,16 @@ export default{
     // initState=JSON.parse(getStr)
     // console.log(21,vPage)//getStr)
     // return initState
+    
+    let urlReplace={re:/^(https?:)?\/\/i(\d)\.hdslb\.com\b/,
+                  str:"./static/i0.hdslb.com"}
     if(vPage.reduxAsyncConnect){
       vPage.reduxAsyncConnect.videoInfo.pic=
         vPage.reduxAsyncConnect.videoInfo.pic.replace(
-          /^(https?:)?\/\/i(\d)\.hdslb\.com\b/,
-          "./static/i0.hdslb.com"
-        )
+          urlReplace.re,urlReplace.str)
+        vPage.reduxAsyncConnect.videoInfo.owner.face=
+        vPage.reduxAsyncConnect.videoInfo.owner.face.replace(
+          urlReplace.re,urlReplace.str)
     }
     return vPage
   },

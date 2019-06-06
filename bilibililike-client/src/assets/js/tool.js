@@ -113,6 +113,8 @@ export const getAttribute = function (obj, attrPath,type=0) {
     paths=attrPath.split(/\.|\[|\]/)
   else if(typeof attrPath === "array")
     paths=attrPath
+  if(attr==undefined)
+    return attr
   for(let i=0;i<paths.length;i++){
     if(paths[i]=="")
       continue
