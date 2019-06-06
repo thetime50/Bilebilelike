@@ -126,7 +126,7 @@ export default{
     if(av){
       av=av[0].slice(1)
       let recommendnew=require("./data/video/av"+av+"/recommendnew,"+av+".json")
-      return {code:0,data:{...recommendnew}}
+      return recommendnew
     }else{
       return {code: 1}
     }
@@ -136,7 +136,7 @@ export default{
     let av=pu._querys.oid
     if(av){
       let reply=require("./data/video/av"+av+"/reply.json")
-      return {code:0,data:{...reply}}
+      return reply
     }else{
       return {code: 1}
     }

@@ -114,7 +114,6 @@ export default {
       return getAttribute(this.videoInfo,"stat")
     },
     videoView(){//播放数
-    console.log(tool.autoChNum(getAttribute(this.videoStat,"view"),4,2))
       return getAttribute(this.videoStat,"view")
     },
     videoDanmaku(){//弹幕

@@ -15,7 +15,7 @@ import{
 } from '@/assets/js/tool.js'
 
 export const assetsUrlProxy = function (url, orgData, proxyRewrites, rewrite=false) {
-  if (rewrite || /^https?:\/\//.test(url) && orgData.code == 0) {
+  if ((rewrite || /^https?:\/\//.test(url)) && orgData.code == 0) {
     //proxyRewrites[m]
     //数据里的多个列表
     proxyRewrites.forEach((rewrite, index, arr) => {
@@ -36,7 +36,9 @@ export const assetsUrlProxy = function (url, orgData, proxyRewrites, rewrite=fal
 
 export const IN_HDSLB_REPL={
   re:/^(https?:)?\/\/i(\d)\.hdslb\.com\b/ ,
-  str:BLBL_ORIGIN + '/i$2hdslb',
+  str:(/^https?:\/\//.test(BLBL_ORIGIN)) ?
+    (BLBL_ORIGIN + '/i$2hdslb'):
+    ('./static/i0.hdslb.com'),
 }
 
 /**
@@ -108,7 +110,7 @@ export const proxyRecommendnew = async function (url = '', data = {}, type = 'GE
       attrPath:"owner.face",
       ...IN_HDSLB_REPL,
     }]
-  }])
+  }],true)
   return orgData
 }
 /**
@@ -132,6 +134,6 @@ export const proxyReply = async function (url = '', data = {}, type = 'GET') {
       attrPath:"member.nameplate.image_small",
       ...IN_HDSLB_REPL,
     }]
-  }])
+  }],true)
   return orgData
 }
