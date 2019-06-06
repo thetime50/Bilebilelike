@@ -52,9 +52,9 @@ export default {
     titles              :{type: Array  ,default: ()=>{return []}},//titles text list
     nav                 :{type: Object ,default: ()=>{return TitleNav}},
     navCursorWidth      :{type: Number ,default: 70},             //70%
+    navStyle            :{type: String ,default:""},
     slideConf           :{type: Object ,default: ()=>{return {}}},
     scrollConf          :{type: Object ,default: ()=>{return {}}},
-    navStyle            :{type: String ,default:""},
     _dummyNavPropsSync  :{type: Function},
   },
   data () {

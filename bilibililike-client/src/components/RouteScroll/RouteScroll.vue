@@ -3,8 +3,10 @@
   <div class="nav">
     <component :is="nav"
       :nowIndex="currentIndex"
+      :cursorWidth="navCursorWidth"
       :positionSync="positionSync"
       :titles="titles"
+      :navStyle="navStyle"
       :navChange="navChange"
       :_propsSync="_dummyNavPropsSync"/>
   </div>
@@ -46,11 +48,13 @@ export default {
     Slide,
   },
   props:{
-    routes    :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
-    nav       :{type: Object ,default: ()=>{return TitleNav}},
-    slideConf :{type: Object ,default: ()=>{return {}}},
-    scrollConf:{type: Object ,default: ()=>{return {}}},
-    _dummyNavPropsSync :{type: Function},
+    routes              :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
+    nav                 :{type: Object ,default: ()=>{return TitleNav}},
+    navCursorWidth      :{type: Number ,default: 70},             //70%
+    navStyle            :{type: String ,default:""},
+    slideConf           :{type: Object ,default: ()=>{return {}}},
+    scrollConf          :{type: Object ,default: ()=>{return {}}},
+    _dummyNavPropsSync  :{type: Function},
   },
   data () {
     return {

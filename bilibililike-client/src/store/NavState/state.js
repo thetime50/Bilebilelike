@@ -8,4 +8,5 @@ export default {
   nav_positionSync: 0,
   nav_titles: [],
   nav_change: function(){},
+  nav_style: "",
 }
