@@ -2,8 +2,8 @@
 <div class="component-main-page">
   <StickyScroll>
     <template v-slot:sticky>
-      <div class="main-page-nav-list">
-        <NavList v-if="nav_enable"
+      <div class="main-page-title-nav">
+        <TitleNav v-if="nav_enable"
           :nowIndex="nav_nowIndex"
           :cursorWidth="nav_cursorWidth"
           :positionSync="nav_positionSync"
@@ -45,7 +45,7 @@ import {mapState,mapMutations} from "vuex"
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 import RouteScroll from "../../components/RouteScroll/RouteScroll.vue"
 import DummyNav from "../../components/RouteScroll/DummyNav.vue"
-import NavList from "@/components/RouteScroll/TitleNav.vue"
+import TitleNav from "@/components/RouteScroll/TitleNav.vue"
 import StickyScroll from "@/components/StickyScroll/StickyScroll.vue"
 
 const routes=[
@@ -61,7 +61,7 @@ export default {
   components: {
     HeaderTop,
     RouteScroll,
-    NavList,
+    TitleNav,
     StickyScroll,
   },
   data () {
@@ -92,7 +92,7 @@ export default {
 .component-main-page
   height 100%
   width 100%
-  .main-page-nav-list
+  .main-page-title-nav
     position absolute
     top $header-top-height
     width 100%

@@ -26,7 +26,7 @@ import Search from "../pages/Search/Search.vue"
 import DefPage from "../pages/DefPage/DefPage.vue"
 import Login from "../pages/Login/Login.vue"
 import MyPage from "../pages/MyPage/MyPage.vue"
-import Video from "../pages/Video/Video.vue"
+const Video   = () => import( "../pages/Video/Video.vue")
 
 Vue.use(Router)
 
