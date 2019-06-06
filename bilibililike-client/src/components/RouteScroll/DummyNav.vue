@@ -17,7 +17,7 @@ export default {
     cursorWidth   :{type: Number ,default: 70},             //70%
     positionSync  :{type: Number ,default: 0},              //光标位置同步
     titles        :{type: Array  ,default: ()=>{return []}},//{text:"",path:""}
-    styles    :{type: Object ,default: ()=>{return {"component-dummy-nav":"component-nav"}}},//{"ref1":"class1","ref2":"class2"}
+    styles    :{type: Object ,default: ()=>{return {"component-dummy-nav":"component-title-nav"}}},//{"ref1":"class1","ref2":"class2"}
     navChange     :{type: Function,default: ()=>{return function(){}}},
     _propsSync    :{type: Function },
   },
