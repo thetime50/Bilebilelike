@@ -25,7 +25,7 @@ VideoInfo.vue
     <div class="video-title-container">
       <div class="video-title"
         :class="{'no-unfold':!unfold,'no-unfoldc-lamp':noUnfoldcLamp}"
-        @transitionend="titleTransitionend">
+        @click="unfoldChange" @transitionend="titleTransitionend">
         {{videoTitle}}
       </div>
       <div class="unfold-div" @click="unfoldChange">
@@ -54,7 +54,14 @@ VideoInfo.vue
       <div class="descr">{{videoDesc}}</div>
     </div>
   </div>
-  <div class="vinfo-wrap-3">
+  <div class="vinfo-wrap-3"> <!-- 硬币收藏等 -->
+    <div class="button-item" v-for="(item,index) in getButtons"
+      :key="index" @click="item.click">
+      <div class="icon"><i class="iconfont" :class="[item.icon,{'pink':item.pink}]"></i></div>
+      <div class="data">
+        {{typeof(item.data)=="number"? (item.data|autoChNum) : item.data}}
+      </div>
+    </div>
   </div>
 </div>
 </template>
@@ -73,6 +80,11 @@ export default {
       attention:false,
       unfold:false,
       noUnfoldcLamp:true,//未打开时为true
+
+      like    :false,
+      noLike  :false,
+      coin    :false,
+      favorite:false,
     };
   },
   computed: {
@@ -98,12 +110,62 @@ export default {
     videoDesc(){
       return getAttribute(this.videoInfo,"desc")
     },
+    videoStat(){
+      return getAttribute(this.videoInfo,"stat")
+    },
     videoView(){//播放数
-      return getAttribute(this.videoInfo,"stat.view")
+    console.log(tool.autoChNum(getAttribute(this.videoStat,"view"),4,2))
+      return getAttribute(this.videoStat,"view")
     },
     videoDanmaku(){//弹幕
-      return getAttribute(this.videoInfo,"desc.danmaku")
+      return getAttribute(this.videoStat,"danmaku")
     },
+
+    //
+    videoLike(){
+      return getAttribute(this.videoStat,"like")
+    },
+    videoCion(){
+      return getAttribute(this.videoStat,"coin")
+    },
+    videoFavorite(){
+      return getAttribute(this.videoStat,"favorite")
+    },
+    videoShare(){
+      return getAttribute(this.videoStat,"share")
+    },
+    getButtons(){
+      return [{
+        icon:"icon-xihuan",
+        data:tool.autoChNum(this.videoLike,4,2),
+        pink:this.like,
+        click:()=>{
+          this.like    = !this.like
+          this.noLike  = !this.like&&this.noLike
+      }},{
+        icon:"icon-buxihuan",
+        data:"不喜欢",
+        pink:this.noLike,
+        click:()=>{
+          this.noLike  = !this.noLike
+          this.like    = !this.noLike&&this.like
+      }},{
+        icon:"icon-toubix",
+        data:tool.autoChNum(this.videoCion,4,2),
+        pink:this.coin,
+        click:()=>this.coin=!this.coin
+      },{
+        icon:"icon-shoucang",
+        data:tool.autoChNum(this.videoFavorite,4,2),
+        pink:this.favorite,
+        click:()=>this.favorite=!this.favorite
+      },{
+        icon:"icon-fenxiang1",
+        data:tool.autoChNum(this.videoShare,4,2),
+        pink:false,
+        click:()=>{}
+      },]
+    }
   },
   filters: {
     slice(s){
@@ -160,7 +222,7 @@ export default {
           color #000
           font-size 1.1rem
         .fans-cnt
-          //
+          color $def-info-color
     .attention-div
       position: absolute;
       top 50%;
@@ -177,7 +239,7 @@ export default {
         font-size @font-size
       &.attention
         background-color #e7e7e7
-        color #999999
+        color $def-info-color
   .vinfo-wrap-2
     .video-title-container
       display flex
@@ -214,8 +276,10 @@ export default {
         div
           display inline-block
           font-size @font-size
+          color $def-info-color
           i
            font-size @font-size
+           color $def-info-color
         // .bofang-num
         // .danmu-num
         // .av-serial
@@ -223,7 +287,24 @@ export default {
           .iconfont
             color $blbl-pink
       .descr
-        //
+        color $def-info-color
   .vinfo-wrap-3
-    //
+    display grid
+    grid-template-columns 1fr 1fr 1fr 1fr 1fr
+    grid-template-rows auto
+    align-items stretch
+    height 4rem
+    border-bottom 1px solid $def-line-color
+    .button-item
+      margin-top 0.5rem
+      .icon
+        i
+          color $def-font-color
+          font-size 1.5rem
+          &.pink
+            color $blbl-pink
+      .data
+        margin-top 0.3rem
+        font-size 0.7rem
+        color $def-info-color
 </style>

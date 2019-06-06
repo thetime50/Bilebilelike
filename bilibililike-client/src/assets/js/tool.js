@@ -75,12 +75,14 @@ export default{
     }else if(type==2){
       if(decCnt>8){
         chStr=chArrnA[2]
-        cnNumStr=(decCnt%8<chCnt ? (num/10**8+""):cnNumStr).slice(0,chCnt)+chStr
+        cnNumStr=(decCnt%8<chCnt ? (num/10**8+""):cnNumStr).slice(0,chCnt)
       }else if(decCnt>4){
         chStr=chArrnA[1]
-        cnNumStr=(decCnt%4<chCnt ? (num/10**4+""):cnNumStr).slice(0,chCnt)+chStr
+        cnNumStr=(decCnt%4<chCnt ? (num/10**4+""):cnNumStr).slice(0,chCnt)
       }//后面要用递归了
-
+      if(cnNumStr[cnNumStr.length-1]==".")
+        cnNumStr=cnNumStr.slice(0,cnNumStr.length-1)
+      cnNumStr+=chStr
     }else if(type==3){
 
     }else if(type==4){
