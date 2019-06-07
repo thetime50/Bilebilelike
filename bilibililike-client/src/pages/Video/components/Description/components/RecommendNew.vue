@@ -41,4 +41,14 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+@import "../../../../../assets/style/index.styl"
+
+.component-recommend-new
+  .card-item
+    width 100%
+    padding ($block-interval*0.8) 0
+    border-bottom 1px solid $def-line-color
+    &:nth-last-child(1)
+      border-bottom none
+      padding-bottom 0
 </style>

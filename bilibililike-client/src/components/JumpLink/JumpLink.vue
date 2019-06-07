@@ -1,7 +1,9 @@
 <template>
 <div class="component-jump-link" :class="styles['comp']">
-  <router-link v-if="isRouterLink" :to="link" :class="styles['rtlink']"> <slot/> </router-link>
-  <a v-else href="javascript:void(0)" @click="exLink" :class="styles['exlink']"> <slot/> </a>
+  <router-link v-if="!divWrap && isRouterLink" :to="link" :class="styles['rtlink']"> <slot/> </router-link>
+  <a v-else-if="!divWrap && !isRouterLink" href="javascript:void(0)" @click="exLink" :class="styles['exlink']"> <slot/> </a>
+
+  <div v-else @click="divClick" :class="styles['divlink']"> <slot/> </div>
 </div>
 </template>
 
@@ -14,6 +16,7 @@ export default {
     link    :{type: String ,default: ""},
     styles  :{type: Object ,default: ()=>{return {}}},//{"ref1":"class1","ref2":"class2"}
     delay   :{type: Number ,default: 3000},
+    divWrap :{type: Boolean,default: false}
   },
   data () {
     return {
@@ -41,7 +44,14 @@ export default {
       // },this.delay)
       if(confirm("页面正在编写\n将离开Demo跳转至:\n  "+this.link))
         location.href=this.linkDt
-    }
+    },
+    divClick(){
+      if(this.isRouterLink){
+        this.$router.push(this.link)
+      }else{
+        this.exLink()
+      }
+    },
   },
 }
 </script>

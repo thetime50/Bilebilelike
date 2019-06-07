@@ -52,7 +52,6 @@ Video.vue
           :nav="nav"
           :navCursorWidth="40"
           navStyle="video-page-nav"
-          :scrollConf="{click:true}"
           :_dummyNavPropsSync="set_nav_state">
           <!--  -->
           <Description :initialState="initialState" :recommendnew="recommendnew"/>
