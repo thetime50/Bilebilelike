@@ -13,6 +13,43 @@ obj_test.js
 
 // const replyJson =require("./reply")
 
+
+const setAttribute = function(obj,attrPath,value){
+  let paths=[],attr=obj,i=0
+  let arrStr = (replace)=>{
+    let base="\\[(\\d+)\\]"
+    if(replace){
+      return new RegExp(base,"g")
+    }else{
+      return new RegExp("^" + base + "$")
+    }
+  }
+
+  if(typeof attrPath === "string"){
+    attrPath=attrPath.replace(arrStr(true),".[$1]")
+    paths=attrPath.split(".")
+    paths.forEach((val,index,arr) => {
+      if(arrStr().test(val)){
+        arr[index]=parseInt(val.slice(1,val.length-1))
+      }
+    });
+  }else if(typeof attrPath === "array")
+    paths=attrPath
+  for(i=0;i< paths.length-1;i++){
+    if(paths[i]=="")
+      continue
+    if(attr[paths[i]]===undefined){
+      if(typeof(paths[i+1])=="number")
+        attr[paths[i]]=[]
+      else
+        attr[paths[i]]={}
+    }
+    attr=attr[paths[i]]
+  }
+  attr[paths[i]]=value
+  return obj
+}
+
 const iteration = function({
   obj,
   point = obj,
@@ -87,6 +124,7 @@ const objToolCreater = function({ obj, cb }) {
 
 
 module.exports={
+  setAttribute,
   iteration,
   objToolCreater,
 }

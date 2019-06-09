@@ -5,10 +5,13 @@ assert.js
 /* 功能性测试 */
 
 const assert = require("assert")
-const { iteration,objToolCreater } = require("./obj_test.js")
+const {
+  setAttribute,
+  iteration,
+  objToolCreater } = require("./obj_test.js")
 
 function putResult(){
-  // console.log(...arguments)
+  console.log(...arguments)
 }
 
 var obja = {
@@ -84,3 +87,15 @@ assert.strictEqual(iterationTest_2(),
   "2 d/q: qqq\r\n"
 );
 
+function setAttributeTeat(){
+  return JSON.stringify(
+    setAttribute({},"a.b.c[12].d[0][3].c",4)
+  )
+}
+console.log("setAttributeTeat()")
+putResult(setAttributeTeat())
+assert.strictEqual(setAttributeTeat(), 
+  '{"a":{"b":{"c":'+
+    '[null,null,null,null,null,null,null,null,null,null,null,null,'+
+      '{"d":[null,null,null,{"c":4}]}]'+
+  '}}}')
