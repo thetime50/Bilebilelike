@@ -11,9 +11,9 @@ obj_test.js
 
 // }
 
-import replyJson from "./reply"
+// const replyJson =require("./reply")
 
-export function iteration({
+const iteration = function({
   obj,
   point = obj,
   depth = 0,
@@ -50,49 +50,33 @@ export function iteration({
     return { break: true }
 }
 
-var obja = {
-  a: 123, b: 456,
-  c: {
-    x: 233,
-    y: {
-      m: "666", n: "777"
-    }
-  }
-}
-function cb(state) {
-  if (state.type == "after") {
-    console.log(state.path)
-  }
-}
-iteration({ obj: obja, c: cb })
+// function jcb(state) {
+//   // if (typeof (state.point) != "object" || state.point == {}) {
+//   //   console.dir(state.depth, state.point)
+//   // }
 
-function jcb(state) {
-  // if (typeof (state.point) != "object" || state.point == {}) {
-  //   console.dir(state.depth, state.point)
-  // }
-
-  if (typeof (state.point) == "object") {
-    if (state.type == "after") {
-      console.log(new Array(state.depth + 1).join("  ") +
-        state.index +
-        ":" + (Array.isArray(state.point) ? "[" : "{"))
-    } else {
-      console.log(new Array(state.depth + 1).join("  ") +
-        (Array.isArray(state.point) ? "]," : "},"))
-    }
-  }
-}
+//   if (typeof (state.point) == "object") {
+//     if (state.type == "after") {
+//       console.log(new Array(state.depth + 1).join("  ") +
+//         state.index +
+//         ":" + (Array.isArray(state.point) ? "[" : "{"))
+//     } else {
+//       console.log(new Array(state.depth + 1).join("  ") +
+//         (Array.isArray(state.point) ? "]," : "},"))
+//     }
+//   }
+// }
 
 // iteration({ obj: replyJson, cb: jcb })
 
 //////////////////////////////////////////
-// export function objToolCreater({ obj, cb }) {
-//   this.obj = obj
-//   this.cb = cb
-//   this.iteration = function () {
-//     iteration({ obj: this.obj, cb: this.cb })
-//   }
-// }
+const objToolCreater = function({ obj, cb }) {
+  this.obj = obj
+  this.cb = cb
+  this.iteration = function () {
+    iteration({ obj: this.obj, cb: this.cb })
+  }
+}
 
 // var objtool = new objToolCreater({ obj: replyJson })
 // objtool.tree.obj = {}
@@ -102,4 +86,7 @@ function jcb(state) {
 // }
 
 
-console.log("\r\n\r\nend")
+module.exports={
+  iteration,
+  objToolCreater,
+}
