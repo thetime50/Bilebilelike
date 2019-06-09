@@ -1,4 +1,8 @@
-export var replyJson={
+/*
+reply.js
+ */
+
+module.exports = {
 	"code": 0,
 	"message": "0",
 	"ttl": 1,

@@ -64,7 +64,7 @@ const iteration = function({
   cb && (retTemp = cb({ obj, point, depth, parent, index, path, type: "after" }))
   needBreak = needBreak || (retTemp && retTemp.break)
   if (typeof (point) == "object") {
-    for (let index in point) {
+    const enterIter = (index) => {
       let item = point[index]
       path.push(index)
       let ret = iteration({
@@ -77,8 +77,18 @@ const iteration = function({
         cb,
       })
       path.pop()
-      if (ret && ret.break)
-        break
+      return (ret && ret.break)
+    }
+    if(Array.isArray(point)){
+      for (let index=0; index<point.length; index++){
+        if( enterIter(index) )
+          break
+      }
+    }else{
+      for (let index in point) {
+        if( enterIter(index) )
+          break
+      }
     }
   }
   cb && (retTemp = cb({ obj, point, depth, parent, index, path, type: "before" }))
