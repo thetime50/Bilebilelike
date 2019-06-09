@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+run.html
+ -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+<button id="run">run</button>
+
+</body>
+<script type="text/javascript">
+"use strict"
+var runEle = document.getElementById("run")
+
+runEle.addEventListener("click",()=>{
+  const RUN_JSONP="run-jsonp"
+  let script = document.createElement("script");
+  let runJsonpEle=document.getElementById(RUN_JSONP)
+  script.id=RUN_JSONP
+  script.src = "./obj_test.js";
+  script.type="text/javascript"
+
+
+  if(runJsonpEle!=null){
+    document.head.replaceChild(script,runJsonpEle)
+  }else{
+    document.head.appendChild(script)
+  }
+})
+
+</script>
+</html>
