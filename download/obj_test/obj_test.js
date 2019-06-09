@@ -115,14 +115,6 @@ const objToolCreater = function({ obj, cb }) {
   }
 }
 
-// var objtool = new objToolCreater({ obj: replyJson })
-// objtool.tree.obj = {}
-// objtool.tree.point = objtool.tree.obj
-// objtool.cb = function (state) {
-
-// }
-
-
 module.exports={
   setAttribute,
   iteration,
