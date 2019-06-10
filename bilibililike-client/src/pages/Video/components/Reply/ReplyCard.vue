@@ -5,9 +5,14 @@ ReplyCard.vue
   <div class="component-reply-card">
     <div class="left-header">
       <j-link :link="replie | spaceFilter">
-        <div class="header-img">
-          <!-- <img :src="replie | avatarFilter" :alt="replie | unameFilter"> -->
-          <img v-lazy="replyRootAvatar" :alt="replie | unameFilter">
+        <div class="header-warp">
+          <div class="header-img">
+            <!-- <img :src="replie | avatarFilter" :alt="replie | unameFilter"> -->
+            <img v-lazy="replyRootAvatar" :alt="replie | unameFilter">
+          </div>
+          <div class="pendant-img" v-if="replyRootPendant.image">
+            <img :src="replyRootPendant.image" :alt="replyRootPendant.name">
+          </div>
         </div>
       </j-link>
     </div>
@@ -55,6 +60,9 @@ export default {
   computed: {
     replyRootAvatar(){
       return getAttribute(this.replie,"member.avatar")
+    },
+    replyRootPendant(){
+      return getAttribute(this.replie,"member.pendant")
     },
     interiorReplies(){
       return getAttribute(this.replie,"replies")
@@ -113,14 +121,28 @@ export default {
     grid-template-rows auto
     align-items start
     .left-header
-      .header-img
+      position relative
+      .header-warp
         width 3rem
         height @width
-        border-radius 2rem
-        overflow hidden
-        img
+        .header-img
           width 100%
           height 100%
+          border-radius 2rem
+          overflow hidden
+          img
+            width 100%
+            height 100%
+        .pendant-img
+          position absolute
+          top 50%
+          left 50%
+          height 170%
+          width 170%
+          transform translate(-50%,-50%)
+          img
+            height 100%
+            width 100%
     .right-warp
       position relative
       margin-left $block-interval
