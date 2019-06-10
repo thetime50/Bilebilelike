@@ -96,7 +96,7 @@ $dbg=false
     overflow hidden
     .loop-div a img
       display block
-    .tj-dots
+    div.tj-dots
       position absolute
       right 0.5rem
       bottom -0.2rem
