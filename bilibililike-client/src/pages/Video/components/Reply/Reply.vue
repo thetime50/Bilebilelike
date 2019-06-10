@@ -43,4 +43,10 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+@import "../../../../assets/style/index.styl"
+
+.component-reply
+  .reply-depth-1
+    padding $block-interval
+    border-bottom 1px solid $def-line-color
 </style>

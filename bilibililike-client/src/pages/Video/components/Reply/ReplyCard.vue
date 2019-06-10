@@ -10,7 +10,7 @@ ReplyCard.vue
       </div>
     </div>
     <div class="right-warp">
-      <div class="name">
+      <div class="uname" :class="{vip:vipStatus}">
         {{replie | unameFilter}}
       </div>
       <div class="attention">
@@ -19,14 +19,17 @@ ReplyCard.vue
       <div class="date"> {{replie | ctimeDateFilter}} </div>
       <div class="content">{{replie | contentMessageFilter}}</div>
       <div class="like-nolike-share">
-        <div class="like">{{replie | likeFilter}}</div>
-        <div class="nolike"></div>
-        <div class="share"></div>
+        <div class="like">
+          <i class="iconfont icon-dianzan"/>{{replie | likeFilter | autoChNum}}
+        </div>
+        <div class="nolike"><i class="iconfont icon-buxihuan-"/></div>
+        <div class="share"><i class="iconfont icon-fenxiang"/></div>
+        <div class="more"><i class="iconfont icon-gengduo"/></div>
       </div>
       <div class="reply-depth-2">
-        <div class="interior-replie" v-for="(insReplie,index) in interiorReplies" :key="index">
+        <!-- <div class="interior-replie" v-for="(insReplie,index) in interiorReplies" :key="index">
           {{insReplie | unameFilter}}:{{insReplie | contentMessageFilter}}
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -34,6 +37,9 @@ ReplyCard.vue
 
 <script>
 import {getAttribute} from "@/assets/js/tool.js"
+import tool from "@/assets/js/tool.js"
+const autoChNum=tool.autoChNum
+
 export default {
   name: "ReplyCard",
   props: {
@@ -48,7 +54,10 @@ export default {
     },
     interiorReplies(){
       return getAttribute(this.replie,"replies")
-    }
+    },
+    vipStatus(){
+      return getAttribute(this.replie,"member.vip.vipStatus")
+    },
   },
   filters: {
     slice(s){
@@ -56,6 +65,9 @@ export default {
     },
     getAttribute(){
       return getAttribute(...arguments)
+    },
+    autoChNum(num,chCnt=4,type=2){
+      return autoChNum(num,chCnt,type)
     },
     unameFilter(replie){
       return getAttribute(replie,"member.uname")
@@ -78,13 +90,15 @@ export default {
       return getAttribute(replie,"content.message")
     },
     likeFilter(replie){
-      return getAttribute(replie,"up_action.like")
+      return getAttribute(replie,"like")
     },
   },
 };
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
+@import "../../../../assets/style/index.styl"
+
   .component-reply-card
     display grid
     grid-template-columns auto 1fr
@@ -92,24 +106,52 @@ export default {
     align-items start
     .left-header
       .header-img
-        width 4rem
+        width 3rem
         height @width
+        border-radius 2rem
+        overflow hidden
         img
           width 100%
           height 100%
     .right-warp
-      //
+      position relative
+      margin-left $block-interval
       &>div
         text-align left
-      .name
+        &:not(.attention):not(.uname)
+          margin-top 0.8rem
+      .uname
+        font-size 0.9rem
+        font-weight 900
+        &.vip
+          color $blbl-pink
       .attention
+        position absolute
+        top 0
+        right 0
+        color $blbl-pink
       .date
+        font-size 0.7rem
+        color $def-info-color
       .content
+        font-size 0.9rem
+        line-height 120%
       .like-nolike-share
-        .like
-        .nolike
-        .share
-          //
+        position relative
+        display grid
+        grid-template-columns 1fr 1fr 1fr 1fr
+        grid-template-rows auto
+        align-items start
+        div
+          font-size 0.7rem
+          top 0
+          color $def-info-color
+        // .like
+        // .nolike
+        // .share
+        .more
+          position absolute
+          right 0
       .reply-depth-2
         .interior-replie
           //
