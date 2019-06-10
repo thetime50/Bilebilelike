@@ -140,7 +140,7 @@ export const setAttribute = function(obj,attrPath,value){
     paths=attrPath.split(/\.|\[|\]/)
   else if(typeof attrPath === "array")
     paths=attrPath
-  for(let i=0;i< paths.length-1;i++){
+  for(i=0;i< paths.length-1;i++){
     if(paths[i]=="")
       continue
     if(attr[paths[i]]===undefined)
@@ -157,7 +157,7 @@ export const replacesStrAttribute = function(obj,attrPath,replace){
     paths=attrPath.split(/\.|\[|\]/)
   else if(typeof attrPath === "array")
     paths=attrPath
-  for(let i=0;i< paths.length-1;i++){
+  for(i=0;i< paths.length-1;i++){
     if(paths[i]=="")
       continue
     if(attr[paths[i]]===undefined)

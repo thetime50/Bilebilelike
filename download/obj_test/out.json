@@ -1,1 +1,259 @@
-{"time":"23:56:33","extract":{"code":0,"message":"0","ttl":1,"data":{"page":{"num":1,"size":20,"count":8697,"acount":59201},"config":{"showadmin":1,"showentry":1,"showfloor":0,"showtopic":1,"show_up_flag":true,"read_only":false,"show_del_log":false},"replies":[{"rpid":1106993469,"oid":32675854,"type":1,"mid":22294733,"root":0,"parent":0,"dialog":0,"count":185,"rcount":174,"state":0,"fansgrade":0,"attr":0,"ctime":1538648600,"rpid_str":"1106993469","root_str":"0","parent_str":"0","like":16516,"action":0,"member":{"mid":"22294733","uname":"究极生物卡兹酱","sex":"保密","sign":"","avatar":"http://i2.hdslb.com/bfs/face/b6aaf02b0c109b6dc1c59de9cc45610a39aca0f7.jpg","rank":"10000","DisplayRank":"0","level_info":{"current_level":5,"current_min":0,"current_exp":0,"next_exp":0},"pendant":{"pid":0,"name":"","image":"","expire":0},"nameplate":{"nid":0,"name":"","image":"","image_small":"","level":"","condition":""},"official_verify":{"type":-1,"desc":""},"vip":{"vipType":1,"vipDueDate":1561478400000,"dueRemark":"","accessStatus":0,"vipStatus":1,"vipStatusWarn":"","themeType":0,"label":{"path":""}},"fans_detail":{},"following":0},"content":{"message":"总结了一下吉良被承太郎暴打的原因\n1.金发\n2.握了一下路牌\n3.替身能打出快速地连击拳且力速低于白金\n4.替身能力与时间有关\n5.一拳打穿了身着绿色学兰的人的胸部\n6.让承太郎的眼上沾了血\n7.敢和白金近身。且走进了射程范围之内\n8.为了装逼而从承太郎的身边走过\n9.倒计时数秒数\n10.如实地说出了「無駄」\n11.如实地说出了\n「你的替身能力太弱了，我随便就能打，你以为你的白金之星能赢过我的XXX吗」\n12.优先朝着承太郎的帽子出手","plat":3,"device":"phone","members":[]},"replies":[{"rpid":1106999896,"oid":32675854,"type":1,"mid":37908629,"root":1106993469,"parent":1106993469,"dialog":1106999896,"count":0,"rcount":0,"state":0,"fansgrade":0,"attr":0,"ctime":1538648825,"rpid_str":"1106999896","root_str":"1106993469","parent_str":"1106993469","like":134,"action":0,"member":{"mid":"37908629","uname":"是我滑稽君哒","sex":"保密","sign":"你以为我是拉二？，阔诺dio哒!","avatar":"http://i0.hdslb.com/bfs/face/9200fcf8fdf8bd259af3575a615c9b65e48e999e.jpg","rank":"10000","DisplayRank":"0","level_info":{"current_level":4,"current_min":0,"current_exp":0,"next_exp":0},"pendant":{"pid":267,"name":"2019拜年祭·典藏","image":"http://i2.hdslb.com/bfs/face/5ac24fa22208f48126bfacb42901e932946f6aa3.png","expire":1565165498},"nameplate":{"nid":0,"name":"","image":"","image_small":"","level":"","condition":""},"official_verify":{"type":-1,"desc":""},"vip":{"vipType":2,"vipDueDate":1600963200000,"dueRemark":"","accessStatus":0,"vipStatus":1,"vipStatusWarn":"","themeType":0,"label":{"path":""}},"fans_detail":{},"following":0},"content":{"message":"你来得太晚了","plat":1,"device":"","members":[{"mid":"37908629","uname":"是我滑稽君哒","sex":"保密","sign":"你以为我是拉二？，阔诺dio哒!","avatar":"http://i0.hdslb.com/bfs/face/9200fcf8fdf8bd259af3575a615c9b65e48e999e.jpg","rank":"10000","DisplayRank":"0","level_info":{"current_level":4,"current_min":0,"current_exp":0,"next_exp":0},"pendant":{"pid":267,"name":"2019拜年祭·典藏","image":"http://i2.hdslb.com/bfs/face/5ac24fa22208f48126bfacb42901e932946f6aa3.png","expire":1565165498},"nameplate":{"nid":0,"name":"","image":"","image_small":"","level":"","condition":""},"official_verify":{"type":-1,"desc":""},"vip":{"vipType":2,"vipDueDate":1600963200000,"dueRemark":"","accessStatus":0,"vipStatus":1,"vipStatusWarn":"","themeType":0,"label":{"path":""}}}]},"replies":{},"assist":0,"folder":{"has_folded":false,"is_folded":false,"rule":""},"up_action":{"like":false,"reply":false}}],"assist":0,"folder":{"has_folded":false,"is_folded":false,"rule":"https://www.bilibili.com/blackboard/foldingreply.html"},"up_action":{"like":false,"reply":false}}],"hots":{},"upper":{"mid":928123,"top":{},"vote":{}},"top":{},"notice":{"id":411,"title":"考生加油站，为2019考生加油打call","content":"考生加油站，为2019考生加油打call ！","link":"https://live.bilibili.com/blackboard/activity-college-entrance-examination.html#/act/stage3"},"vote":0,"blacklist":0,"assist":0,"mode":3,"support_mode":[1],"folder":{"has_folded":false,"is_folded":false,"rule":"https://www.bilibili.com/blackboard/foldingreply.html"}}}}
+{
+	"time": "23:56:33",
+	"extract": {
+		 "code": 0,
+		 "message": "0",
+		 "ttl": 1,
+		 "data": {
+			  "page": {
+					"num": 1,
+					"size": 20,
+					"count": 8697,
+					"acount": 59201
+			  },
+			  "config": {
+					"showadmin": 1,
+					"showentry": 1,
+					"showfloor": 0,
+					"showtopic": 1,
+					"show_up_flag": true,
+					"read_only": false,
+					"show_del_log": false
+			  },
+			  "replies": [{
+					"rpid": 1106993469,
+					"oid": 32675854,
+					"type": 1,
+					"mid": 22294733,
+					"root": 0,
+					"parent": 0,
+					"dialog": 0,
+					"count": 185,
+					"rcount": 174,
+					"state": 0,
+					"fansgrade": 0,
+					"attr": 0,
+					"ctime": 1538648600,
+					"rpid_str": "1106993469",
+					"root_str": "0",
+					"parent_str": "0",
+					"like": 16516,
+					"action": 0,
+					"member": {
+						 "mid": "22294733",
+						 "uname": "究极生物卡兹酱",
+						 "sex": "保密",
+						 "sign": "",
+						 "avatar": "http://i2.hdslb.com/bfs/face/b6aaf02b0c109b6dc1c59de9cc45610a39aca0f7.jpg",
+						 "rank": "10000",
+						 "DisplayRank": "0",
+						 "level_info": {
+							  "current_level": 5,
+							  "current_min": 0,
+							  "current_exp": 0,
+							  "next_exp": 0
+						 },
+						 "pendant": {
+							  "pid": 0,
+							  "name": "",
+							  "image": "",
+							  "expire": 0
+						 },
+						 "nameplate": {
+							  "nid": 0,
+							  "name": "",
+							  "image": "",
+							  "image_small": "",
+							  "level": "",
+							  "condition": ""
+						 },
+						 "official_verify": {
+							  "type": -1,
+							  "desc": ""
+						 },
+						 "vip": {
+							  "vipType": 1,
+							  "vipDueDate": 1561478400000,
+							  "dueRemark": "",
+							  "accessStatus": 0,
+							  "vipStatus": 1,
+							  "vipStatusWarn": "",
+							  "themeType": 0,
+							  "label": {
+									"path": ""
+							  }
+						 },
+						 "fans_detail": {},
+						 "following": 0
+					},
+					"content": {
+						 "message": "总结了一下吉良被承太郎暴打的原因\n1.金发\n2.握了一下路牌\n3.替身能打出快速地连击拳且力速低于白金\n4.替身能力与时间有关\n5.一拳打穿了身着绿色学兰的人的胸部\n6.让承太郎的眼上沾了血\n7.敢和白金近身。且走进了射程范围之内\n8.为了装逼而从承太郎的身边走过\n9.倒计时数秒数\n10.如实地说出了「無駄」\n11.如实地说出了\n「你的替身能力太弱了，我随便就能打，你以为你的白金之星能赢过我的XXX吗」\n12.优先朝着承太郎的帽子出手",
+						 "plat": 3,
+						 "device": "phone",
+						 "members": []
+					},
+					"replies": [{
+						 "rpid": 1106999896,
+						 "oid": 32675854,
+						 "type": 1,
+						 "mid": 37908629,
+						 "root": 1106993469,
+						 "parent": 1106993469,
+						 "dialog": 1106999896,
+						 "count": 0,
+						 "rcount": 0,
+						 "state": 0,
+						 "fansgrade": 0,
+						 "attr": 0,
+						 "ctime": 1538648825,
+						 "rpid_str": "1106999896",
+						 "root_str": "1106993469",
+						 "parent_str": "1106993469",
+						 "like": 134,
+						 "action": 0,
+						 "member": {
+							  "mid": "37908629",
+							  "uname": "是我滑稽君哒",
+							  "sex": "保密",
+							  "sign": "你以为我是拉二？，阔诺dio哒!",
+							  "avatar": "http://i0.hdslb.com/bfs/face/9200fcf8fdf8bd259af3575a615c9b65e48e999e.jpg",
+							  "rank": "10000",
+							  "DisplayRank": "0",
+							  "level_info": {
+									"current_level": 4,
+									"current_min": 0,
+									"current_exp": 0,
+									"next_exp": 0
+							  },
+							  "pendant": {
+									"pid": 267,
+									"name": "2019拜年祭·典藏",
+									"image": "http://i2.hdslb.com/bfs/face/5ac24fa22208f48126bfacb42901e932946f6aa3.png",
+									"expire": 1565165498
+							  },
+							  "nameplate": {
+									"nid": 0,
+									"name": "",
+									"image": "",
+									"image_small": "",
+									"level": "",
+									"condition": ""
+							  },
+							  "official_verify": {
+									"type": -1,
+									"desc": ""
+							  },
+							  "vip": {
+									"vipType": 2,
+									"vipDueDate": 1600963200000,
+									"dueRemark": "",
+									"accessStatus": 0,
+									"vipStatus": 1,
+									"vipStatusWarn": "",
+									"themeType": 0,
+									"label": {
+										 "path": ""
+									}
+							  },
+							  "fans_detail": {},
+							  "following": 0
+						 },
+						 "content": {
+							  "message": "你来得太晚了",
+							  "plat": 1,
+							  "device": "",
+							  "members": [{
+									"mid": "37908629",
+									"uname": "是我滑稽君哒",
+									"sex": "保密",
+									"sign": "你以为我是拉二？，阔诺dio哒!",
+									"avatar": "http://i0.hdslb.com/bfs/face/9200fcf8fdf8bd259af3575a615c9b65e48e999e.jpg",
+									"rank": "10000",
+									"DisplayRank": "0",
+									"level_info": {
+										 "current_level": 4,
+										 "current_min": 0,
+										 "current_exp": 0,
+										 "next_exp": 0
+									},
+									"pendant": {
+										 "pid": 267,
+										 "name": "2019拜年祭·典藏",
+										 "image": "http://i2.hdslb.com/bfs/face/5ac24fa22208f48126bfacb42901e932946f6aa3.png",
+										 "expire": 1565165498
+									},
+									"nameplate": {
+										 "nid": 0,
+										 "name": "",
+										 "image": "",
+										 "image_small": "",
+										 "level": "",
+										 "condition": ""
+									},
+									"official_verify": {
+										 "type": -1,
+										 "desc": ""
+									},
+									"vip": {
+										 "vipType": 2,
+										 "vipDueDate": 1600963200000,
+										 "dueRemark": "",
+										 "accessStatus": 0,
+										 "vipStatus": 1,
+										 "vipStatusWarn": "",
+										 "themeType": 0,
+										 "label": {
+											  "path": ""
+										 }
+									}
+							  }]
+						 },
+						 "replies": {},
+						 "assist": 0,
+						 "folder": {
+							  "has_folded": false,
+							  "is_folded": false,
+							  "rule": ""
+						 },
+						 "up_action": {
+							  "like": false,
+							  "reply": false
+						 }
+					}],
+					"assist": 0,
+					"folder": {
+						 "has_folded": false,
+						 "is_folded": false,
+						 "rule": "https://www.bilibili.com/blackboard/foldingreply.html"
+					},
+					"up_action": {
+						 "like": false,
+						 "reply": false
+					}
+			  }],
+			  "hots": {},
+			  "upper": {
+					"mid": 928123,
+					"top": {},
+					"vote": {}
+			  },
+			  "top": {},
+			  "notice": {
+					"id": 411,
+					"title": "考生加油站，为2019考生加油打call",
+					"content": "考生加油站，为2019考生加油打call ！",
+					"link": "https://live.bilibili.com/blackboard/activity-college-entrance-examination.html#/act/stage3"
+			  },
+			  "vote": 0,
+			  "blacklist": 0,
+			  "assist": 0,
+			  "mode": 3,
+			  "support_mode": [1],
+			  "folder": {
+					"has_folded": false,
+					"is_folded": false,
+					"rule": "https://www.bilibili.com/blackboard/foldingreply.html"
+			  }
+		 }
+	}
+}
