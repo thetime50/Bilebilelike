@@ -4,15 +4,19 @@ ReplyCard.vue
 <template>
   <div class="component-reply-card">
     <div class="left-header">
-      <div class="header-img">
-        <!-- <img :src="replie | avatarFilter" :alt="replie | unameFilter"> -->
-        <img v-lazy="replyRootAvatar" :alt="replie | unameFilter">
-      </div>
+      <j-link :link="replie | spaceFilter">
+        <div class="header-img">
+          <!-- <img :src="replie | avatarFilter" :alt="replie | unameFilter"> -->
+          <img v-lazy="replyRootAvatar" :alt="replie | unameFilter">
+        </div>
+      </j-link>
     </div>
     <div class="right-warp">
-      <div class="uname" :class="{vip:vipStatus}">
-        {{replie | unameFilter}}
-      </div>
+      <j-link :link="replie | spaceFilter">
+        <div class="uname" :class="{vip:vipStatus}">
+          {{replie | unameFilter}}
+        </div>
+      </j-link>
       <div class="attention">
         <i class="iconfont icon-jia"/>关注
       </div>
@@ -27,9 +31,9 @@ ReplyCard.vue
         <div class="more"><i class="iconfont icon-gengduo"/></div>
       </div>
       <div class="reply-depth-2">
-        <!-- <div class="interior-replie" v-for="(insReplie,index) in interiorReplies" :key="index">
-          {{insReplie | unameFilter}}:{{insReplie | contentMessageFilter}}
-        </div> -->
+        <div class="interior-replie" v-for="(insReplie,index) in interiorReplies" :key="index">
+          <j-link :link="insReplie | spaceFilter">{{insReplie | unameFilter}}</j-link>: {{insReplie | contentMessageFilter}}
+        </div>
       </div>
     </div>
   </div>
@@ -92,6 +96,10 @@ export default {
     likeFilter(replie){
       return getAttribute(replie,"like")
     },
+    spaceFilter(replie){
+      let mid = getAttribute(replie,"member.mid")
+      return "http://space.bilibili.com/"+mid
+    },
   },
 };
 </script>
@@ -153,6 +161,22 @@ export default {
           position absolute
           right 0
       .reply-depth-2
+        background-color $def-back-color
+        padding 0.6rem
         .interior-replie
-          //
+          display -webkit-box
+          -webkit-box-orient vertical
+          overflow hidden
+          -webkit-line-clamp 2
+          font-size 0.9rem
+          line-height 120%
+          max-height (@font-size * 1.2 *2)
+          div
+            display inline
+          &:nth-child(n+2)
+            margin-top 0.6rem
+          .component-jump-link *
+            color #5090cc
+            font-size @font-size
+
 </style>
