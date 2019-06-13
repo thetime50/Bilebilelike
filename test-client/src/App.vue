@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <left-menu-drawer></left-menu-drawer>
     <router-view/>
     <TestFooterGuide v-show="$route.meta.showFooter"/>
   </div>
@@ -7,10 +8,12 @@
 
 <script>
 import TestFooterGuide from "./components/TestFooterGuide/TestFooterGuide.vue"
+import LeftMenuDrawer from "./components/LeftMenuDrawer/LeftMenuDrawer.vue"
 
 export default {
   name: 'App',
   components: {
+    LeftMenuDrawer,
     TestFooterGuide
   }
 }
