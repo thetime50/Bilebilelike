@@ -1,19 +1,21 @@
 <template>
 <div class="component-tuijian">
-  <div class="loop-slider">
-    <slide :slideConf="{}" :scrollConf="{}" :key="refreshTime.getTime()"
-      :styles="{ 'dots':'tj-dots', 'dot':'tj-dot' }">
-      <j-link v-for="(item,index) in resLoc" :link="item.url" :styles="{'comp':'loop-div'}" :key="index">
-        <img :src="item.pic" :alt="item.name" width="100%">
-      </j-link>
-    </slide>
-  </div>
-  <div class="cades">
-    <div v-for="(item,index) in loadRanking" class="cades-line" :key="index">
-      <div class="card"><InfoCard :info="item[0]" :key="'in-'+2*index"> </InfoCard></div>
-      <div class="card"><InfoCard :info="item[1]" :key="'in-'+2*index+1"> </InfoCard></div>
+  <VerticalScroll>
+    <div class="loop-slider">
+      <slide :slideConf="{}" :scrollConf="{}" :key="refreshTime.getTime()"
+        :styles="{ 'dots':'tj-dots', 'dot':'tj-dot' }">
+        <j-link v-for="(item,index) in resLoc" :link="item.url" :styles="{'comp':'loop-div'}" :key="index">
+          <img :src="item.pic" :alt="item.name" width="100%">
+        </j-link>
+      </slide>
     </div>
-  </div>
+    <div class="cades">
+      <div v-for="(item,index) in loadRanking" class="cades-line" :key="index">
+        <div class="card"><InfoCard :info="item[0]" :key="'in-'+2*index"> </InfoCard></div>
+        <div class="card"><InfoCard :info="item[1]" :key="'in-'+2*index+1"> </InfoCard></div>
+      </div>
+    </div>
+  </VerticalScroll>
 </div>
 </template>
 
@@ -21,6 +23,7 @@
 import {mapState,mapActions} from "vuex"
 import Slide from "@/components/RouteScroll/Slide.vue"
 import InfoCard from "@/components/InfoCard/InfoCard.vue"
+import VerticalScroll from "@/components/VerticalScroll/VerticalScroll.vue"
 
 // 首页轮播
 // 首页视频
@@ -32,6 +35,7 @@ export default {
   components: {
     Slide,
     InfoCard,
+    VerticalScroll,
   },
   data () {
     return {

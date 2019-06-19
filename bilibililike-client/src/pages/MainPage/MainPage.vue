@@ -1,42 +1,37 @@
 <template>
 <div class="component-main-page">
-  <StickyScroll>
-    <template v-slot:sticky>
-      <div class="main-page-title-nav">
-        <TitleNav v-if="nav_enable"
-          :nowIndex="nav_nowIndex"
-          :cursorWidth="nav_cursorWidth"
-          :positionSync="nav_positionSync"
-          :titles="nav_titles"
-          :navStyle="nav_style"
-          :navChange="nav_change"/>
+  <div class="main-page-title-nav">
+    <TitleNav v-if="nav_enable"
+      :nowIndex="nav_nowIndex"
+      :cursorWidth="nav_cursorWidth"
+      :positionSync="nav_positionSync"
+      :titles="nav_titles"
+      :navStyle="nav_style"
+      :navChange="nav_change"/>
+  </div>
+  <!--  -->
+  <header-top left-icon-type="leftMenu">
+    <template>
+      <div class="heater-v-slot">
+        <router-link class="m-search" :to="{path:'/search',query:{page:'MainPage'}}"><!-- search -->
+          <div class="search-back-div">
+            <i class="iconfont icon-sousuo"></i>
+          </div>
+        </router-link>
+        <router-link class="m-game" :to="'/game'"><!-- game -->
+          <i class="iconfont icon-youxifull"></i>
+        </router-link>
+        <router-link class="m-offline-cache" :to="'/offlinecache'"><!-- offline-cache -->
+          <i class="iconfont icon-xiazai"></i>
+        </router-link>
+        <router-link class="m-message" :to="'/message'"><!-- message -->
+          <i class="iconfont icon-xiaoxi"></i>
+        </router-link>
       </div>
     </template>
-    <template>
-      <!--  -->
-      <header-top left-icon-type="leftMenu">
-        <template>
-          <div class="heater-v-slot">
-            <router-link class="m-search" :to="{path:'/search',query:{page:'MainPage'}}"><!-- search -->
-              <div class="search-back-div">
-                <i class="iconfont icon-sousuo"></i>
-              </div>
-            </router-link>
-            <router-link class="m-game" :to="'/game'"><!-- game -->
-              <i class="iconfont icon-youxifull"></i>
-            </router-link>
-            <router-link class="m-offline-cache" :to="'/offlinecache'"><!-- offline-cache -->
-              <i class="iconfont icon-xiazai"></i>
-            </router-link>
-            <router-link class="m-message" :to="'/message'"><!-- message -->
-              <i class="iconfont icon-xiaoxi"></i>
-            </router-link>
-          </div>
-        </template>
-      </header-top>
-      <route-scroll :routes="routes" :nav="nav" :_dummyNavPropsSync="set_nav_state"/>
-    </template>
-  </StickyScroll>
+  </header-top>
+
+  <route-scroll :routes="routes"/>
 </div>
 </template>
 
@@ -44,9 +39,7 @@
 import {mapState,mapMutations} from "vuex"
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 import RouteScroll from "../../components/RouteScroll/RouteScroll.vue"
-import DummyNav from "../../components/RouteScroll/DummyNav.vue"
 import TitleNav from "@/components/RouteScroll/TitleNav.vue"
-import StickyScroll from "@/components/StickyScroll/StickyScroll.vue"
 
 const routes=[
   {text:"直播",path:"/mainpage/zhibo"},
@@ -62,12 +55,10 @@ export default {
     HeaderTop,
     RouteScroll,
     TitleNav,
-    StickyScroll,
   },
   data () {
     return {
       routes:routes,
-      nav:DummyNav,
     };
   },
   computed:{
