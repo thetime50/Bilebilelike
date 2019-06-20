@@ -1,15 +1,5 @@
 <template>
 <div class="component-main-page">
-  <div class="main-page-title-nav">
-    <TitleNav v-if="nav_enable"
-      :nowIndex="nav_nowIndex"
-      :cursorWidth="nav_cursorWidth"
-      :positionSync="nav_positionSync"
-      :titles="nav_titles"
-      :navStyle="nav_style"
-      :navChange="nav_change"/>
-  </div>
-  <!--  -->
   <header-top left-icon-type="leftMenu">
     <template>
       <div class="heater-v-slot">
@@ -40,7 +30,6 @@
 import {mapState,mapMutations} from "vuex"
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue"
 import RouteScroll from "../../components/RouteScroll/RouteScroll.vue"
-import TitleNav from "@/components/RouteScroll/TitleNav.vue"
 
 const routes=[
   {text:"直播",path:"/mainpage/zhibo"},
@@ -55,7 +44,6 @@ export default {
   components: {
     HeaderTop,
     RouteScroll,
-    TitleNav,
   },
   data () {
     return {
@@ -63,18 +51,8 @@ export default {
     };
   },
   computed:{
-    ...mapState("navState",[
-      "nav_enable",
-      "nav_nowIndex",
-      "nav_cursorWidth",
-      "nav_positionSync",
-      "nav_titles",
-      "nav_style",
-      "nav_change",
-    ]),
   },
   methods: {
-    ...mapMutations("navState",["set_nav_state"])
   }
 }
 </script>
