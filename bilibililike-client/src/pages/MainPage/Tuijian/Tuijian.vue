@@ -1,18 +1,20 @@
 <template>
 <div class="component-tuijian">
   <VerticalScroll>
-    <div class="loop-slider">
-      <slide :slideConf="{}" :scrollConf="{}" :key="refreshTime.getTime()"
-        :styles="{ 'dots':'tj-dots', 'dot':'tj-dot' }">
-        <j-link v-for="(item,index) in resLoc" :link="item.url" :styles="{'comp':'loop-div'}" :key="index">
-          <img :src="item.pic" :alt="item.name" width="100%">
-        </j-link>
-      </slide>
-    </div>
-    <div class="cades">
-      <div v-for="(item,index) in loadRanking" class="cades-line" :key="index">
-        <div class="card"><InfoCard :info="item[0]" :key="'in-'+2*index"> </InfoCard></div>
-        <div class="card"><InfoCard :info="item[1]" :key="'in-'+2*index+1"> </InfoCard></div>
+    <div class="tuijian-wrap">
+      <div class="loop-slider">
+        <slide :slideConf="{}" :scrollConf="{}" :key="refreshTime.getTime()"
+          :styles="{ 'dots':'tj-dots', 'dot':'tj-dot' }">
+          <j-link v-for="(item,index) in resLoc" :link="item.url" :styles="{'comp':'loop-div'}" :key="index">
+            <img :src="item.pic" :alt="item.name" width="100%">
+          </j-link>
+        </slide>
+      </div>
+      <div class="cades">
+        <div v-for="(item,index) in loadRanking" class="cades-line" :key="index">
+          <div class="card"><InfoCard :info="item[0]" :key="'in-'+2*index"> </InfoCard></div>
+          <div class="card"><InfoCard :info="item[1]" :key="'in-'+2*index+1"> </InfoCard></div>
+        </div>
       </div>
     </div>
   </VerticalScroll>
@@ -89,44 +91,48 @@ export default {
 $dbg=false
 
 .component-tuijian
-  background-color $def-back-color
-  padding-top ($block-interval * 0.8)
-  *
-    $debug-border($dbg)
-  .loop-slider
-    $debug-border($dbg)
-    margin 0 $block-interval
-    border-radius $block-radius
+  height calc(100% - 2.8rem)//$title-nav-height
+  overflow hidden
+  .tuijian-wrap
+    background-color $def-back-color
+    padding-top ($block-interval * 0.8)
     overflow hidden
-    .loop-div a img
-      display block
-    div.tj-dots
-      position absolute
-      right 0.5rem
-      bottom -0.2rem
-      .tj-dot
-        vertical-align middle
-        $dot-size = 0.5rem
-        background-color #fff
-        width: $dot-size
-        height: $dot-size
-        &.active
+    *
+      $debug-border($dbg)
+    .loop-slider
+      $debug-border($dbg)
+      margin 0 $block-interval
+      border-radius $block-radius
+      overflow hidden
+      .loop-div a img
+        display block
+      div.tj-dots
+        position absolute
+        right 0.5rem
+        bottom -0.2rem
+        .tj-dot
+          vertical-align middle
+          $dot-size = 0.5rem
+          background-color #fff
           width: $dot-size
           height: $dot-size
-          background-color $blbl-pink
-  .cades
-    margin $block-interval
-    .cades-line
-      width 100%
-      overflow hidden
-      &:nth-child(n+1)
-        margin-top $block-interval
-      .card
-        width 50%
-        box-sizing border-box
-        float left
-        &:nth-child(odd)
-          padding-right ($block-interval / 2)
-        &:nth-child(even)
-          padding-left ($block-interval / 2)
+          &.active
+            width: $dot-size
+            height: $dot-size
+            background-color $blbl-pink
+    .cades
+      margin $block-interval
+      .cades-line
+        width 100%
+        overflow hidden
+        &:nth-child(n+1)
+          margin-top $block-interval
+        .card
+          width 50%
+          box-sizing border-box
+          float left
+          &:nth-child(odd)
+            padding-right ($block-interval / 2)
+          &:nth-child(even)
+            padding-left ($block-interval / 2)
 </style>

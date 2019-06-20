@@ -19,7 +19,7 @@ export default {
   mounted () {
     // this.$nextTick(()=> {//
     this._interval=setInterval(()=>{
-      console.log(this.$refs["component-vertical-scroll"].innerHTML.length)
+      // console.log(this.$refs["component-vertical-scroll"].innerHTML.length)
       if(this.$refs["component-vertical-scroll"].innerHTML.length>100){
         clearInterval(this._interval)
         this.scroll = new BScroll(this.$refs["component-vertical-scroll"],{ 
@@ -30,13 +30,13 @@ export default {
           // stopPropagation:true,
         })
       }
-    },1000)
+    },10)
   },
 }
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
-.component-Vertical-scroll
+.component-vertical-scroll
   position relative
   width 100%
   height 100%

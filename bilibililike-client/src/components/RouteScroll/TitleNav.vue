@@ -80,7 +80,7 @@ export default {
 
 <style lang="stylus"  rel="stylesheet/stylus">
   @import "../../assets/style/index.styl"
-  $line = 2.8rem
+  $line = $title-nav-height
   .component-title-nav
     position relative
     border-bottom 1px solid $def-line-color

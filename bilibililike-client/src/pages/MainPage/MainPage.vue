@@ -30,8 +30,9 @@
       </div>
     </template>
   </header-top>
-
-  <route-scroll :routes="routes"/>
+  <div class="route-scroll">
+    <route-scroll :routes="routes"/>
+  </div>
 </div>
 </template>
 
@@ -121,4 +122,11 @@ export default {
         margin 0 $com-iconsize*0.1
     .m-game .iconfont.icon-youxifull
       font-size $com-iconsize*1.2
+  &>.route-scroll
+    height calc(100% - 3.5rem)//$header-top-height
+    .component-route-scroll
+    .route-scroll-slide
+    .component-slide
+    .slide-group
+      height 100%
 </style>
