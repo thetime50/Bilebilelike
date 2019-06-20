@@ -38,7 +38,6 @@ export default {
     this.$nextTick(()=>{
       let ele=this.$refs["component-description"]
       let top=getAbsPosition(ele).y
-      console.log(top)
       ele.style.height=window.innerHeight-top+"px"
     })
   },

@@ -62,11 +62,6 @@ export default {
 .component-main-page
   height 100%
   width 100%
-  .main-page-title-nav
-    position absolute
-    top $header-top-height
-    width 100%
-    background-color #fff
   .header .div-section2//尽量外面套自己的class 不要去引内部的class
     width 100%
     .heater-v-slot
