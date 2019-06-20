@@ -103,8 +103,7 @@
       clearTimeout(this.timer)
     },
     beforeDestroy() {
-      this.slide.disable()
-      delete this.slide
+      this.slide.destroy()
       clearTimeout(this.timer)
     },
     computed: {
@@ -188,9 +187,6 @@
         })
       },
       _onScrollEnd() {
-        if (!this.slide) {
-          return
-        }
         let pageIndex = this.slide.getCurrentPage().pageX
         this.currentPageIndex = pageIndex
         if (this.autoPlay) {
