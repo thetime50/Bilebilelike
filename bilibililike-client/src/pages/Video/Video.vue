@@ -53,7 +53,6 @@ import {getAttribute} from "@/assets/js/tool.js"
 import SlotScroll from "../../components/RouteScroll/SlotScroll.vue"
 import ProportionImg from "../../components/ProportionImg/ProportionImg.vue"
 import Progress from "../../components/Progress/Progress.vue"
-import StickyScroll from "@/components/StickyScroll/StickyScroll.vue"
 
 import Description from "./components/Description/Description.vue"
 import Reply from "./components/Reply/Reply.vue"
@@ -64,7 +63,6 @@ export default {
     SlotScroll,
     Description,
     Reply,
-    StickyScroll,
 
     ProportionImg,
     Progress,

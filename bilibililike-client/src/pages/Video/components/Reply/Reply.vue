@@ -46,6 +46,9 @@ export default {
       }
     },10)
   },
+  beforeDestroy () {
+    this._interval && clearInterval(this._interval)
+  },
   filters: {
     slice(s){
       return JSON.stringify(s).slice(0,100)

@@ -32,6 +32,9 @@ export default {
       }
     },10)
   },
+  beforeDestroy () {
+    this._interval && clearInterval(this._interval)
+  },
 }
 </script>
 

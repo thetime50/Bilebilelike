@@ -41,6 +41,9 @@ export default {
       }
     },10)
   },
+  beforeDestroy () {
+    this._interval && clearInterval(this._interval)
+  },
   methods: {
     stickyTopRefresh(y){
       let appNavList=this.$refs["sticky-scroll-sticky"]
