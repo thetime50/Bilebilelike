@@ -180,11 +180,6 @@ export default {
 .component-video
   width 100%
   height 100%
-  .video-page-title-nav
-    position absolute
-    top 15.77rem
-    width 100%
-    background-color #fff
   .video-container
     width 100%
     .video-header

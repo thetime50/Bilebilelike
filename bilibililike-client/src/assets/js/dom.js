@@ -48,3 +48,34 @@ export function getRect(el) {
     }
   }
 }
+
+//获取元素绝对位置  
+export function getAbsPosition(element){
+  var abs={x:0,y:0}  
+  //如果浏览器兼容此方法  
+  if (document.documentElement.getBoundingClientRect){
+    //注意，getBoundingClientRect()是jQuery对象的方法
+    //如果不用jQuery对象，可以使用else分支。
+    abs.x = element.getBoundingClientRect().left;
+    abs.y = element.getBoundingClientRect().top;
+      
+    abs.x += window.screenLeft +
+                document.documentElement.scrollLeft -
+                document.documentElement.clientLeft;
+    abs.y += window.screenTop +
+                document.documentElement.scrollTop -
+                document.documentElement.clientTop;
+  }else{//如果浏览器不兼容此方法
+      while(element!=document.body){
+          abs.x+=element.offsetLeft;
+          abs.y+=element.offsetTop;
+          element=element.offsetParent;
+      }
+   //计算想对位置
+   abs.x += window.screenLeft +
+          document.body.clientLeft - document.body.scrollLeft;
+   abs.y += window.screenTop +
+          document.body.clientTop - document.body.scrollTop;
+  }
+  return abs;  
+} 

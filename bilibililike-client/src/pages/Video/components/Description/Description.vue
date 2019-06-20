@@ -2,9 +2,13 @@
 Description.vue
 -->
 <template>
-<div class="component-description">
-  <VideoInfo :initialState="initialState"/>
-  <RecommendNew :recommendnew="recommendnew"/>
+<div class="component-description" ref="component-description">
+  <VerticalScroll>
+    <div class="description-wrap">
+      <VideoInfo :initialState="initialState"/>
+      <RecommendNew :recommendnew="recommendnew"/>
+    </div>
+  </VerticalScroll>
 </div>
 </template>
 
@@ -12,12 +16,15 @@ Description.vue
 import {getAttribute} from "@/assets/js/tool.js"
 import VideoInfo from "./components/VideoInfo.vue"
 import RecommendNew from "./components/RecommendNew.vue"
+import VerticalScroll from "@/components/VerticalScroll/VerticalScroll.vue"
+import {getAbsPosition} from "@/assets/js/dom.js"
 
 export default {
   name: "Description",
   components: {
     VideoInfo,
     RecommendNew,
+    VerticalScroll,
   },
   props:{
     initialState:{type:Object,default:()=>{return {}}},
@@ -26,6 +33,14 @@ export default {
   data () {
     return {
     };
+  },
+  mounted () {
+    this.$nextTick(()=>{
+      let ele=this.$refs["component-description"]
+      let top=getAbsPosition(ele).y
+      console.log(top)
+      ele.style.height=window.innerHeight-top+"px"
+    })
   },
   filters: {
     slice(s){
@@ -42,5 +57,6 @@ export default {
 @import "../../../../assets/style/index.styl"
 
 .component-description
-  padding $block-interval
+  .description-wrap
+    padding $block-interval
 </style>
