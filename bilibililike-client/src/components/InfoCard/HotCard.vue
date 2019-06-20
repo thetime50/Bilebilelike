@@ -1,5 +1,8 @@
+<!--
+HotCard.vue
+-->
 <template>
-<div class="component-video-page-card">
+<div class="component-hot-card">
   <j-link :link="infoAid | av2url">
     <div class="video-page-card-wrap">
       <div class="image-div">
@@ -10,20 +13,20 @@
         <div class="title"> {{infoTitle}} </div>
         <div class="owner">
           <div class="owner-up"><i class="iconfont icon-upzhu"></i></div>
-          <div class="owner-name">{{infoName}}</div>
+          <div class="owner-name">{{infoAuthor}}</div>
         </div>
         <div class="footer-data">
           <div class="bofang-icon">
             <i class="iconfont icon-bofangshu"></i>
           </div>
           <div class="bofang-num">
-            {{infoView | autoChNum}} 
+            {{infoPlay | autoChNum}} 
           </div>
           <div class="danmu-icon">
             <i class="iconfont icon-danmushu"></i>
           </div>
           <div class="danmu-num">
-            {{infoDanmaku | autoChNum}}
+            {{infoVideoRreview | autoChNum}}
           </div>
           <!-- <div class="duration">{{info.duration}}</div> -->
         </div>
@@ -41,7 +44,7 @@ import ProportionImg from "@/components/ProportionImg/ProportionImg.vue"
 const autoChNum=tool.autoChNum
 // 图片懒加载
 export default {
-  name: "VideoPageCard",
+  name: "HotCard",
   components: {
     ProportionImg,
   },
@@ -62,14 +65,14 @@ export default {
     infoTitle(){
       return getAttribute(this.info,"title")
     },
-    infoView(){
-      return getAttribute(this.info,"stat.view")
+    infoPlay(){
+      return getAttribute(this.info,"play")
     },
-    infoDanmaku(){
-      return getAttribute(this.info,"stat.danmaku")
+    infoVideoRreview(){
+      return getAttribute(this.info,"video_review")
     },
-    infoName(){
-      return getAttribute(this.info,"owner.name")
+    infoAuthor(){
+      return getAttribute(this.info,"author")
     },
   },
   filters: {
@@ -88,11 +91,11 @@ export default {
 </script>
 
 <style lang="stylus"  rel="stylesheet/stylus">
-@import "../../../../../assets/style/index.styl"
+@import "../../assets/style/index.styl"
 
 $dbg=false
 $img-footer-font-size = 0.7rem
-.component-video-page-card
+.component-hot-card
   .video-page-card-wrap
     overflow hidden
     display grid
