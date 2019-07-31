@@ -1,0 +1,40 @@
+{
+	// 使用 IntelliSense 了解相关属性。 
+	// 悬停以查看现有属性的描述。
+	// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		// {
+		// 	"type": "chrome",
+		// 	"request": "launch",
+		// 	"name": "Launch Chrome against localhost",
+		// 	"url": "http://192.168.31.5:8080",//"http://localhost:8080",
+		// 	"webRoot": "${workspaceFolder}"
+		// },
+      {
+			"type": "chrome",
+			"request": "launch",
+			"name": "wepack中调试 from test",
+			"url": "http://192.168.31.5:8090",//"http://localhost:8080",
+			"webRoot": "${workspaceFolder}/test-client/src",
+			"breakOnLoad": true,
+			"sourceMapPathOverrides": {
+			  "webpack:///src/*": "${webRoot}/*"
+			}
+		 },
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "wepack中调试",
+        "url": "http://192.168.31.5:8080",//"http://localhost:8080",
+        "webRoot": "${workspaceFolder}/bilibililike-client/src",
+        "breakOnLoad": true,
+        "sourceMapPathOverrides": {
+          "webpack:///src/*": "${webRoot}/*"
+		  },
+			 "runtimeExecutable":"${workspaceRoot}/bilibililike-client/electron.cmd",
+			//  "runtimeExecutable":"E:/Users/LGame/AppData/Local/360Chrome/Chrome/Application/360chrome.exe",//浏览器未启动时可以	 
+      //   "runtimeExecutable":"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",//1
+      }
+	]
+}
