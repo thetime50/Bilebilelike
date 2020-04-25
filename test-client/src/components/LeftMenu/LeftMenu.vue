@@ -63,7 +63,8 @@ export default {
       mainMenuGroup:[
         [
           {text:"首页"      ,icon:"icon-zhuye"                ,meth:this.createDefItemMeth("/")},
-          {text:"AnimeTest"  ,icon:"icon-lishi"                ,meth:this.createDefItemMeth("/AnimeTest")},
+          {text:"AnimeTest"  ,icon:"icon-lishi"              ,meth:this.createDefItemMeth("/animetest")},
+          {text:"slotClassTest"  ,icon:"icon-lixianhuancun"  ,meth:this.createDefItemMeth("/slotclasstest")},
           {text:"离线缓存"  ,icon:"icon-lixianhuancun"        ,meth:this.createDefItemMeth("")},
           {text:"我的收藏"  ,icon:"icon-shoucang"             ,meth:this.createDefItemMeth("")},
           {text:"稍后再看"  ,icon:"icon-shaohouzaikan"        ,meth:this.createDefItemMeth("")},
