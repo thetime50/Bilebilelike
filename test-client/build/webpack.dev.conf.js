@@ -9,7 +9,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const fs = require('fs');
 
+const caPath= '../../ca/192.168.31.230'
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -27,6 +29,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       rewrites: [
         { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
       ],
+    },
+    // https:true,
+    https: {
+        key: fs.readFileSync(path.resolve(__dirname, caPath+'/private.key')),
+        cert: fs.readFileSync(path.resolve(__dirname, caPath+'/certificate.crt')),
+        ca: fs.readFileSync(),
     },
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
