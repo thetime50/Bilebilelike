@@ -1,0 +1,21 @@
+[ req ]
+distinguished_name  = req_distinguished_name
+x509_extensions     = root_ca
+
+[ req_distinguished_name ]
+
+# 以下内容可随意填写
+countryName             = CN (2 letter code)
+countryName_min         = 2
+countryName_max         = 2
+stateOrProvinceName     = ZheJiang
+localityName            = HangZhou
+0.organizationName      = Mycompany
+organizationalUnitName  = technology 
+commonName              = develop 
+commonName_max          = 64
+emailAddress            = xxxxxxxx@gmail.com 
+emailAddress_max        = 64
+
+[ root_ca ]
+basicConstraints            = critical, CA:true

@@ -1,0 +1,1 @@
+about: https://github.com/thetime50/note/blob/master/%E6%97%A5%E5%BF%97/2020/log-2020-05-03.md

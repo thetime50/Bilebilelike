@@ -32,9 +32,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     },
     // https:true,
     https: {
-        key: fs.readFileSync(path.resolve(__dirname, caPath+'/private.key')),
-        cert: fs.readFileSync(path.resolve(__dirname, caPath+'/certificate.crt')),
-        ca: fs.readFileSync(path.resolve(__dirname, caPath+'/certificate.crt')),
+        key: fs.readFileSync(path.resolve(__dirname, caPath+'/MyCompanyLocalhost.pvk')),
+        cert: fs.readFileSync(path.resolve(__dirname, caPath+'/MyCompanyLocalhost.cer')),
+        ca: fs.readFileSync(path.resolve(__dirname, caPath+'/MyCompanyLocalhost.cer')),
     },
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
