@@ -6,7 +6,7 @@
 
 <!-- 
 http://old.wwei.cn/
-https://thetime50.github.io/Bilebilelike
+http://thetime50.com/Bilebilelike
 液态 205 15%  
 #fc65fc #12d4ff #12d4ff #ffffff
  -->
